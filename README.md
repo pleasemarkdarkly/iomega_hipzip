@@ -1,6 +1,6 @@
 ### Iomega Hipzip featuring 40MB Clik! Disks
 
-![Iomega Hipzip](https://github.com/pleasemarkdarkly/iomega_hipzip/readme/iomega.png "Iomega Hipzip")
+![Iomega Hipzip](https://github.com/pleasemarkdarkly/iomega_hipzip/blob/master/readme/iomega.png "Iomega Hipzip")
 
 Entire Operating System and Media Player Source code (minus Microsoft Windows Media Audio codec removed)
 
@@ -10,7 +10,7 @@ Entire Operating System and Media Player Source code (minus Microsoft Windows Me
 * PC and Mac compatible
 * Fast USB connectivity
 
-A link to [Iomega Hipzip Product Manual](https://github.com/pleasemarkdarkly/iomega_hipzip/readme/hipzip.pdf). <http://github.com/pleasemarkdarkly/iomega_hipzip/hipzip.pdf>
+A link to [Iomega Hipzip Product Manual](https://github.com/pleasemarkdarkly/iomega_hipzip/blob/master/readme/hipzip.pdf). <http://github.com/pleasemarkdarkly/iomega_hipzip/hipzip.pdf>
 
 # todo:
 * [ ] Product features
