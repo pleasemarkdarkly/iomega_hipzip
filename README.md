@@ -1,5 +1,7 @@
 ### Iomega Hipzip featuring 40MB Clik! Disks
 
+![Iomega Hipzip]({{ site.baseurl }}/readme/iomega.png "Iomega Hipzip")
+
 Entire Operating System and Media Player Source code (minus Microsoft Windows Media Audio codec removed)
 
 * Store digital audio files on 40 MB PocketZip disks; 2 disks included for 80 MB of storage
@@ -8,13 +10,12 @@ Entire Operating System and Media Player Source code (minus Microsoft Windows Me
 * PC and Mac compatible
 * Fast USB connectivity
 
-![Iomega Hipzip]({{ site.baseurl }}/images/iomega.png "Iomega Hipzip")
-
-A link to [Iomega Hipzip Product Manual](http://github.com/pleasemarkdarkly/iomega_hipzip/hipzip.pdf). <http://github.com/pleasemarkdarkly/iomega_hipzip/hipzip.pdf>
+A link to [Iomega Hipzip Product Manual](http://github.com/pleasemarkdarkly/iomega_hipzip/readme/hipzip.pdf). <http://github.com/pleasemarkdarkly/iomega_hipzip/hipzip.pdf>
 
 # todo:
 * [ ] Product features
-* [ ] MPEG codec
+* [ ] MPEG, Vorbis codec
+* [ ] Bonus Devices
 * [ ] DJ manual
 * [ ] Pogo graphic
 
