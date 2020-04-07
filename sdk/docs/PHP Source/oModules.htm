@@ -1,0 +1,138 @@
+<?php
+
+$pagetitle = "The Role of Make";
+include("startpage.php");
+
+?>
+
+
+
+<p class="Body1">
+To streamline the configuration and build process, Dharma uses two completely different Makefiles. The first one, in the base "dadio" directory, creates a build directory, along with creating the second makefile. The second one, in the generated build directory, makes the actual object code. We'll call the first one the "Configuration Make" and the second one the "Build Make."
+</p>
+
+<?= head("oConfigMake","Configuration Make",3); ?>
+
+<p class="Body1">
+The <span class="Module">configuration make</span> requires you to specify a target configuration. Target configurations are specified in the <span class="Code">config/</span> directory, listed in the <span class="Code">target.mk</span> file in the TARGETS variable. Each configuration should have corresponding <span class="Code">*.mk</span> and <span class="Code">*_modules</span> files.
+</p>
+<p class="Body1">
+When <span class="Code">make</span> is
+invoked at the top level, it searches the <span class="Code">TARGETS </span>variable to see
+if it can build the requested build target. If it is found, it
+attempts to load the file <span class="Code">configs/<em>&lt;target></em>.mk</span>, then invokes the DCL
+script parser (<span class="Code">scripts/parse_dcl.pl</span>) on the target.
+
+</p>
+
+<p class="Body1">
+The <span class="Code">*.mk</span> file uses standard Makefile format, and specifies default parameters for the build, including target executable name, the name of the eCos configuration to link to, and any macros to execute during compilation. See <?= crossref("odotmkFile", "Configuration .mk Files"); ?> for more information about these files.
+</p>
+
+<p class="Body1">
+The <span class="Code">*_modules</span> file is simply a listing pointing to configuration files for each module that this configuration uses. These secondary configuration files are actually in the source directory, and use a specially created language, Dharma Configuration Language (DCL), to define what happens during the configuration make. See <?= crossref("oModulesFile", "Configuration _modules Files"); ?> for more about the <span class="Code">*_modules</span> file, and <?= crossref("oDCLFiles", "Configuration .dcl Files"); ?> for more about the individual module DCL files.
+</p>
+
+<p class="Body1">
+So the configuration make walks through all of the DCL files specified in the *_modules file, and builds a tree under the builds/ directory. It uses symbolic links to link to the appropriate header files, generates make files for each module, and creates a symbolic link to the main Makefile in the source to be used for the build.
+</p>
+<?= head("","Output of Configuration Make",0); ?>
+<p class="Body1">
+The resulting make files for each module are named <span class="Code">_module.mk</span>. The configuration make also creates a pair of top level files for the build system: <span class="Code">_modules.h</span> and
+<span class="Code">_config.mk</span>.
+
+</p>
+<p class="Body1">
+<span class="Code">_modules.h</span> is a standard C header with macros defined for each module
+present in the system. The naming for modules is derived from their
+type and module name. This allows code to be conditional on whether or
+not a given module is available.
+
+</p>
+<p class="Body1">
+<span class="Code">_config.mk</span> is a makefile include that tells the player makefile which
+modules will be built into the system, which configuration files were
+used to generate those modules, and provides some other simple
+information to the main makefile.
+
+</p>
+<p class="Note">
+<strong>Note:</strong> You should never need to edit any of these target files. If you want to customize the behavior of the build process, edit the corresponding DCL file for the module, or the <span class="Code">*.mk</span> file for the configuration, and the configuration make will generate the build files according to your needs. This system prevents you from having to customize your build files every time you need to regenerate the build tree.
+</p>
+<?= head("oBuildMake","Build Make",3); ?>
+
+<p class="Body1">
+The <span class="Module">Build Make</span> runs within the <span class="Code">builds/&lt;target name></span> directory. The same Makefile is used for all builds, but it is symbolically linked to the build tree, and runs from there.
+When make is invoked in the build tree, the build Makefile first includes the
+<span class="Code">_config.mk</span> file. From this file it is able to determine a list of
+<span class="Code">_module.mk</span> files to include and which configuration files were used to
+generate the build tree. If any of the configuration files are newer
+than the <span class="Code">_config.mk</span> file, it reruns the DCL parser to update the build tree. 
+
+</p>
+<p class="Body1">
+Next, it includes all <span class="Code">_module.mk</span> files. From the list of compiled
+sources that is assembled in the <span class="Code">_module.mk</span> files, it generates a list
+of object files (OBJS) and a list of dependency files (DEPS). From
+this point on, the behavior of the makefile depends on the target:
+
+</p>
+<ul>
+<li>If a test target was specified ('<span class="Code">make TEST=<em>&lt;path_to_test></em></span>'), the
+     makefile includes the dependency information for that test,
+     builds all object files in the build, and links the test.
+</li> 
+<li>  If a test group was specified ('<span class="Code">make fs_tests</span>'), the makefile
+     recursively invokes itself on each test in the test
+     grouping. When it recurses, it does not check to see if any
+     configuration files have been updated.
+</li> 
+<li>   If the <span class="Code">config</span>, <span class="Code">clean</span>, or <span class="Code">depclean</span> target was specified, the
+     makefile does not include any dependency information and will
+     perform the requested operation - '<span class="Code">config</span>' will force the DCL
+     parser to run on the tree, '<span class="Code">clean</span>' will delete all object files,
+     '<span class="Code">depclean</span>' will delete all object files and all dependency files.
+</li>
+<li>   If no target is specified, the makefile includes all dependency
+     information and builds the default target.</li>
+</ul>
+<p class="Body1">
+When a target is being built, <span class="Code">make</span> looks to make sure all the object
+files listed in OBJS are up to date. On a freshly generated tree, no
+object files or dependencies will exist. This forces make to search
+for sources and rebuild them. Since all source files reside in the
+<span class="Code">player/</span> directory, we use <span class="Code">VPATH</span> to force make to search that
+directory. The result is that the source is allowed to reside in the
+<span class="Code">player/</span> directory while object files and dependencies are placed in
+the build directory.
+
+</p>
+<p class="Body1">
+GCC has extensions that allow dependency generation and compilation in
+a single pass. As a result of this, when a file is being compiled a
+new dependency file will automatically be generated for it. GCC 2.9x
+has a bug that causes dependency files to be generated without path
+information for the target, but this bug seems to have been resolved
+in GCC 3.x. As such, the makefile will attempt to determine the
+current GCC version and compensate for this bug, at a small
+performance decrease.
+
+</p>
+<p class="Body1">
+After all object files and dependency files are up to date, the
+makefile will attempt to link a player with the eCos libraries. This
+is the final step in the build. After the build is complete, you may
+notice a file named "<span class="Code">_build_list</span>" in the build directory. This file
+lists target files that were generated during the build process. This
+can be useful when writing scripts to package builds, or when you are
+creating multiple images, as is usually the case when building tests.
+
+</p>
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

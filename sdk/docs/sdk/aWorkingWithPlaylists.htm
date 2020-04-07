@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Working With Playlists</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="aMainApplication.htm" title='Main Application'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aControllingMediaPlayer.htm" title='Controlling the Media Player'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='aWorkingWithPlaylists'>Working with Playlists</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+
+
+
+<p class="Body1"><span class="Module">Playlists</span> are defined as separate objects, but they are tightly integrated with the <span class="Module">Content Manager</span>. 
+</p>
+<p class="Body1">
+Before you can create a playlist, the <span class="Module">Content Manager</span> must have a complete list of available tracks (see <a href="aMainApplication.htm#aContentEnumeration">Content Enumeration</a>). This list is stored as a collection of <em>Media Content Records</em>.
+</p>
+
+<p class="Body1">Then, before the media player can play any tracks, you need to create a playlist. You will probably want to get some sort of user input to determine what tracks to add to the playlist, and in what sequence.
+</p>
+<p class="Body1">
+The purpose of separating the media content records from the playlist is so that your users can play their music in any sequence. They can play a single track multiple times, or omit available tracks entirely.
+</p>
+
+</td></tr>
+<tr><td colspan=2><p class='PictureWide'><img src='images/PlaylistEntries.gif' alt='Playlist Entries link to Media Content Records' width="726" height="471"></p></td></tr>
+				<tr><td></td><td>
+
+
+<p class="Body1">When you've populated the media records and playlist records, you pass a pointer for the playlist, and another for the <span class="Module">Content Manager</span>, into the <span class="Module">Play Manager</span> if you haven't already. You can also set a Playlist Mode, from among the following options:
+</p>
+<ul>
+	<li>NORMAL: Play the entire list from start to finish, and then stop.</li>
+	<li>RANDOM: Play each track once, in random order.</li>
+	<li>REPEAT_ALL: Play the entire list from start to finish, and then restart.</li>
+	<li>REPEAT_RANDOM: Play a random track, and then play another random track, until the user intervenes…</li>
+	<li>REPEAT_TRACK: Keep playing the current track until you run out of power…</li>
+	
+</ul>
+
+
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="aMainApplication.htm" title='Main Application'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aControllingMediaPlayer.htm" title='Controlling the Media Player'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 29, 2001 2:23 am
+</p>
+</body>
+
+</html>

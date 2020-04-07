@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Data Sources</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="aDataStream.htm" title='Data Streams'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aMetadata.htm" title='Metadata'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='aDataSources'>Data Sources</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">
+Each data source used by your device is represented by a <span class="Module">Data Source</span> object. The Data Source object provides a standard interface so that the other parts of your system can use the same calls for different data sources.
+</p>
+<p class='Picture'><img src='images/IDataSourceClass.gif' alt='IDataSource Class diagram' width="151" height="165"></p>
+<p class="Body1">Each <span class="Module">Data Source</span> object essentially wraps drivers that interact with the device itself, and provides a common interface used by the <span class="Module">Data Source Manager</span>.</p>
+<p class="Body1">The Dharma SDK includes <span class="Module">Data Source</span> objects for the following types of devices:</p>
+
+<ul>
+	<li>CD Player</li>
+	<li>FAT Device</li>
+	<li>Serial Input</li>
+	<li>Network Interface</li>
+</ul>
+
+</td></tr>
+<tr valign='top'><td><h3><a name='aDSM'>Data Source Manager</a></h3></td>
+				<td><p class="Body1">The <span class="Module">Data Source Manager</span> handles registration of all of the data sources. 
+</p>
+<p class="Body1">Collecting metadata is a major function of the <span class="Module">Data Source Manager</span>. While reporting the filenames on a given device is not expensive, most data sources do not provide easy access to metadata, such as Artist, Title, Album, track length, etc. To get this information, you generally need to open the file with its codec, a time-consuming, expensive process. </p>
+
+<p class="Body1">To help optimize the collection of the Metadata, the Data Source Manager uses a separate worker thread. This thread handles all of the file I/O functions so that your device can handle other tasks without waiting. The worker thread has its own internal queue, and calls to the <span class="Module">Data Source Manager</span> simply add requests to this queue. The worker thread sends its results to the main event queue, where your application can forward them to the <span class="Module">Play Manager</span>, which, in turn, adds them to the <span class="Module">Content Manager</span>.</p>
+
+
+</td></tr>
+<tr><td colspan=2><p class='PictureWide'><img src='images/DSMWorker.gif' alt='Data Source Manager worker thread' width="751" height="496"></p></td></tr>
+				<tr><td></td><td>
+
+
+
+<p class="Body1">Depending on the type of content enumeration being used, the worker thread in the <span class="Module">Data Source Manager</span> collects a list of filenames on the data source (single-pass), a <span class="Module">Metadata</span> object for each track on the data source (single-pass with metadata), or a <span class="Module">Metadata</span> object for a specified track (second pass of double-pass). See <a href="aMainApplication.htm#aContentEnumeration">Content Enumeration</a> for more on the types of Content Enumeration, and <a href="aMetadata.htm#aMetadata">Metadata</a> for more on Metadata objects.</p>
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="aDataStream.htm" title='Data Streams'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aMetadata.htm" title='Metadata'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 29, 2001 2:30 am
+</p>
+</body>
+
+</html>

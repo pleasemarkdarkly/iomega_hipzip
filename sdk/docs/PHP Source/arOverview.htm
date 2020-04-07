@@ -1,0 +1,53 @@
+<?php
+
+$pagetitle = "Architectural Overview";
+include("startpage.php");
+
+?>
+
+
+
+
+<p class="Body1">The Dharma SDK provides an object-oriented framework to help you quickly build the firmware for your media player.</p>
+<p class="Body1">This document describes the architecture of the objects provided as part of the software development kit, and gives you what you need to know to jump-start your development.
+</p>
+<p class="Body1">The Dharma SDK comes with working code with basic functionality. You will want to build on the set of features to make the device dance.
+</p>
+<p class="Body1">At the highest level, the client application controls the user interface, including the display, buttons, and connections to devices and media. The Dharma SDK includes the low-level drivers for many devices, but your client application must define which ones are being used. The main event handling routines are all in your client code. Your client code interacts almost exclusively with the <span class="Module">Play Manager</span>, which routes requests to other appropriate modules:
+</p>
+<?= picture("image003.gif", "Interacting with the Play Manager for all tasks"); ?>
+
+<p class="Body1">The SDK provides several abstract classes. You may extend these classes as necessary to add functionality to the device. These abstract classes include: <?= crossref("cIContentManager", "Content Manager"); ?>, <?= crossref("cIPlaylist", "Playlist"); ?>, <?= crossref("cIMetadata", "Metadata"); ?>, <?= crossref("cIDataSource", "Data Source"); ?>, <?= crossref("cDataStreams", "Data Streams"); ?>, <?= crossref("cICodec", "Codec"); ?>, and <?= crossref("cIFilter", "Filter"); ?>. Follow the links for more detailed information about each of these abstract classes.</p>
+
+
+
+<?= head("aEventLoop", "Event Loop", 2); ?>
+
+<p class="Body1">The first task for your new application will be to create an event loop. The example event loop simply grabs the oldest event off the queue and passes to the default event handler in the <span class="Module">Play Manager</span>. 
+</p>
+<p class="Body1">Events are triggered by all of the user interface elements: buttons, switches, jog dials, media insertion/removal, etc. In addition, the SDK objects generate events such as:
+</p>
+<ul>
+	<li><span class="Module">Media Player</span> track progress</li>
+	<li>Content Enumeration information</li>
+	<li>Errors.</li>
+</ul>
+<p class="Body1">Your main event loop can pass all events to the default event handler in the <span class="Module">Play Manager</span>, but you will probably want to intercept certain events and add your own handler.
+</p>
+
+
+
+
+
+<?= head("aUserInterface", "User Interface", 2); ?>
+
+<p class="Body1">The demo applications provide examples of two user interfaces: a serial text-based interface, and a simple bit-mapped interface. To make a more sophisticated interface, you might want to use a GUI toolkit, such as <?= crossref("http://www.swellsoftware.com/PEG.html", "PEG"); ?>, <?= crossref("http://www.mojodesigns.com/eyelet_gui/index.html", "Eyelet"); ?>, or <?= crossref("http://www.microwindows.org/", "MicroWindows"); ?>. These are available from individual vendors.</p>
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

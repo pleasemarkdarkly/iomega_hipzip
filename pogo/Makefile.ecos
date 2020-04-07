@@ -1,0 +1,106 @@
+#
+#  Dan Bolstad - danb@iobjects.com
+#  Dan Conti - danc@iobjects.com
+#
+#  eCos kernel library makefile
+#
+
+ifndef TARGET
+%::
+	@echo "Please specify a target"
+	@exit 1
+endif
+
+
+#
+# default rules
+#
+
+.PHONY: all clean
+.SUFFIXES:
+%.mk :: ;
+
+
+# include the config build options, which defines
+# MLT_FILE
+include $(TARGET).mk
+
+ifeq (,$(findstring cygwin,$(OSTYPE)))
+        MLTCONV_EXE := mltconv
+        ECOSCONFIG_EXE := ecosconfig
+else
+        MLTCONV_EXE := mltconv.exe
+        ECOSCONFIG_EXE := ecosconfig.exe
+endif
+
+
+
+INSTALL_PREFIX = $(ECOS_BUILD_NAME)
+ECOS_DIR = $(PWD)/ecos
+TARGET_DIR = $(ECOS_DIR)/builds/$(ECOS_BUILD_NAME)
+BUILD_DIR = $(TARGET_DIR)/$(INSTALL_PREFIX)_build
+INSTALL_DIR = $(TARGET_DIR)/$(INSTALL_PREFIX)_install
+INSTALL_MLT_DIR = $(INSTALL_DIR)/include/pkgconf
+MLT_DIR = $(TARGET_DIR)/$(INSTALL_PREFIX)_mlt
+
+MLTCONV_DIR = $(PWD)/scripts/
+MLTCONV_PATH = $(MLTCONV_DIR)/$(MLTCONV_EXE)
+ECOSCONFIG_DIR = $(PWD)/scripts
+ECOSCONFIG_PATH = $(ECOSCONFIG_DIR)/$(ECOSCONFIG_EXE)
+
+CONFIG_FILE = $(ECOS_BUILD_NAME).ecc
+SRC_REPOSITORY = $(ECOS_DIR)/packages/
+
+ifdef BINARY_DIST
+
+all:
+	@if [ ! -f $(INSTALL_DIR)/lib/libtarget.a ]; then \
+	  echo "Kernel installation $(INSTALL_DIR) not found"  ;\
+	  exit 1  ;\
+	 fi
+
+clean:  ;
+
+else
+
+all:
+	echo $(ECOSCONFIG_PATH)
+	@if [ ! -f $(TARGET_DIR)/$(CONFIG_FILE) ]; then \
+	  echo "Kernel config file $(TARGET_DIR)/$(CONFIG_FILE) not found"  ;\
+	  exit 1  ;\
+	 fi
+
+	mkdir -p $(BUILD_DIR)
+	@if [ ! -f $(INSTALL_DIR)/lib/libtarget.a -o $(TARGET_DIR)/$(CONFIG_FILE) -nt $(INSTALL_DIR)/lib/libtarget.a ]; then \
+	  echo ;\
+	  echo ---- CONSTRUCT THE BUILD AND INSTALL TREES ;\
+          if [ -w $(TARGET_DIR)/$(CONFIG_FILE) ]; then     \
+            WAS_RDONLY=0                                  ;\
+          else                                             \
+            WAS_RDONLY=1                                  ;\
+            chmod a+w $(TARGET_DIR)/$(CONFIG_FILE)        ;\
+          fi                                              ;\
+	  cd $(BUILD_DIR) &&                               \
+	  $(ECOSCONFIG_PATH) --ignore-errors --no-resolve --srcdir=$(SRC_REPOSITORY) --config=$(TARGET_DIR)/$(CONFIG_FILE) --prefix=$(INSTALL_DIR) tree || exit 1;\
+	  echo                                            ;\
+	  if [ $$WAS_RDONLY -eq 1 ]; then                  \
+	    chmod a-w $(TARGET_DIR)/$(CONFIG_FILE)        ;\
+	  fi                                              ;\
+	  echo ---- USE CUSTOM MLT FILES                  ;\
+	  chmod a+w $(INSTALL_DIR)/include/pkgconf/mlt*   ;\
+	  cd $(MLTCONV_DIR) &&                             \
+	  $(MLTCONV_PATH) $(MLT_DIR)/$(MLT_FILE) $(INSTALL_MLT_DIR) ;\
+	  echo                                            ;\
+	fi
+	@echo ---- BUILD THE KERNEL LIBRARIES
+	cd $(BUILD_DIR) && $(MAKE) -j"$$NUMBER_OF_PROCESSORS"
+	@[ $$? -eq 0 ] || exit 1
+	@echo $@ finished
+
+clean:
+	rm -rf $(BUILD_DIR)
+	rm -rf $(INSTALL_DIR)
+
+endif
+
+

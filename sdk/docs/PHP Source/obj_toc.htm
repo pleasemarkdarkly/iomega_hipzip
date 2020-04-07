@@ -1,0 +1,20 @@
+<?php
+
+$pagetitle = "Dharma Operations";
+$type = "TOC";
+include("startpage.php");
+
+?>
+
+
+<p>This section describes how to use the Dharma board to run your application.</p>
+<ul>
+<?php 
+showTOC($toc);
+echo ("</ul><p>&nbsp;</p>");
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

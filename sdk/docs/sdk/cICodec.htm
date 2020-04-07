@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Abstract Classes: ICodec</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="cAbstractClasses.htm" title='Dharma Abstract Classes'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="cIFilter.htm" title='IFilter'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='cICodec'>ICodec</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">The <span class="Module">ICodec</span> class is a wrapper class for your actual codecs. The SDK includes full codecs for the WMA and PCM formats, and pre-compiled object code for the ARM MP3 codec.</p>
+<p class="Note"><strong>Note:</strong> The included MP3 codec is licensed from ARM, Inc. <!-- Interactive Objects is permitted to distribute object code for this codec only. If you need source code, contact Advanced RISC Machines directly. --></p>
+<p class="Body1">You can add a new codec by simply writing a new wrapper object that extends the <span class="Module">ICodec</span> class, calling the appropriate methods on the codec from the wrapper.</p>
+
+
+<p class="Body1">
+See the <a href="JavaScript:OpenView('doxy/Codec_8h-source.html#doxy/Codec_8h-source');">Codec.h</a> file for the specific structures and methods for the <span class="Module">ICodec</span> class.
+</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name='cCodecRegistration'>Codec Registration System</a></h3></td>
+				<td>
+<p class="Body1">
+Dharma provides an abstract way for codecs to be available to the
+playback system through codec registration. The actual registration
+process has been simplified to a pair of easy to use macros, which
+take care of the actual work.
+
+</p>
+
+
+</td></tr>
+<tr valign='top'><td><h4><a name=''>DEFINE_CODEC Macro</a></h4></td>
+				<td>
+
+<p class="Body1">
+        Fills out the codec class definition with additional members
+        necessary for codecs to work in Dharma. This
+        satisfies the underlying requirements of the ident
+        (IIdentifiableObject) baseclass.
+
+</p>
+<p class='ProcHead'><a name=''>Arguments</a></p>
+<table>
+	<tr><td>        codecname   </td><td>  A string name for the codec</td></tr>
+	<tr><td>        codecID     </td><td>     A unique identifier for the codec</td></tr>
+	<tr><td>        can_probe    </td><td>    Either true or false indicating whether the system can probe bitstreams against this   codec. In the case of PCM and similar pass   through codecs, this should be false   
+</td></tr>
+	<tr><td>  
+   extensions... </td><td> 
+   A variable length list of strings that indicate which extensions are supported by this codec. This is case insensitive.</td></tr>
+
+</table>
+<p class='ProcHead'><a name=''>Example usage</a></p>
+<p class="CodeBlock">
+        DEFINE_CODEC( "iObjects MP3 Codec", 783, true, "mp3" )<br>
+		DEFINE_CODEC( "iObjects PCM Codec", 784, false, "pcm", "raw" )
+</p>
+
+
+
+</td></tr>
+<tr valign='top'><td><h4><a name=''>REGISTER_CODEC Macro</a></h4></td>
+				<td>
+       <p class="Body1">
+ To be used in your implementation file. This macro defines helper data
+        structures and has function implementations necessary for your
+        codec to be registered with Dharma.
+
+</p>
+<p class='ProcHead'><a name=''>Arguments</a></p>
+<table>
+	<tr><td>        classname   </td><td> The name of your class, such as 'CMP3Codec'</td></tr>
+	<tr><td>        codecID    </td><td>  The same codecID used in the DEFINE_CODEC macro</td></tr>
+
+</table>
+
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="cAbstractClasses.htm" title='Dharma Abstract Classes'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="cIFilter.htm" title='IFilter'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 31, 2001 1:20 pm
+</p>
+</body>
+
+</html>

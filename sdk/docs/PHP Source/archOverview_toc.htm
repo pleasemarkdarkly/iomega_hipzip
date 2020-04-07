@@ -1,0 +1,20 @@
+<?php
+
+$pagetitle = "Architectural Overview";
+$type = "TOC";
+include("startpage.php");
+
+?>
+
+<p>Here's a list of the current contents of the SDK documentation.</p>
+
+<ul>
+<?php 
+showTOC($toc);
+echo ("</ul><p>&nbsp;</p>");
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

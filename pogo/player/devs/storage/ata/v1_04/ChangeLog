@@ -1,0 +1,5 @@
+2001-11-07	Dan Conti	<danc@iobjects.com>
+
+	* *.dcl:
+	Change PLD wait states to 2 (from 6)
+

@@ -1,0 +1,107 @@
+
+Dharma SDK Evaluation and Development License agreement
+
+By accepting and installing this software you are agreeing to the terms and conditions of this software license agreement.
+ 
+
+1.0 DEFINITIONS
+
+
+(a) "Dharma" shall mean IObject's digital audio Dharma firmware development source and tools 
+(b) "Digital Audio Application" shall mean a Dharma program, which includes any source or libraries or other material, built to run on the Dharma development platform or any hardware derived from the Dharma platform design.
+(c) "Licensee" means an individual or a legal entity exercising rights under, and complying with all of the terms of, this License or a future version of this License. For legal entities, "Licensee" includes any entity, which controls, is controlled by, or is under common control with the licensee. For purposes of this definition, "control" means (a) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or (b) ownership of fifty percent (50%) or more of the outstanding shares or beneficial ownership of such entity.
+(d) "Modifications" means any addition to or deletion from the substance or structure of either the Original Code or any previous Modifications. When Covered Code is released as a series of files, a Modification is:
+(e) "Device" Means the dharma platform, hardware and software
+(f) Software Development Kit (SDK) means all Dharma hardware components, code, and documentation. 
+(g) Digital Audio System (DSA) means any software application or hardware device that plays, encodes or manages encoded audio media files.
+(h) Digital Audio Product Deliverables (DAPD) means any hardware or hardware details, software, code and documentation that make up the Dharma SDK.
+
+2.0 NOTICE
+
+The licensee have acquired an item ("DEVICE") that includes software licensed by [COMPANY] from Interactive Objects Inc. or its affiliates.  Those installed software products, as well as associated media, hardware, printed materials, and "online" or electronic documentation ("SOFTWARE") are protected by copyright laws and international copyright treaties, ad well as other intellectual property laws and treaties.  The SOFTWARE is licensed, not sold.
+
+IF YOU DO NOT AGREE WITH THIS END USER LICENSE AGREEMSNT ("EULA"), DO NOT USE THE DEVICE OR COPY THE SOFTWARE.  INSTEAD, PROMPTLY CONTACT [Interactive Objects, 12600 SE 38th, Suite 150, Bellevue, WA 98006, www.iobjects.com, 425-653-5505] FOR INSTRUCTIONS ON RETURN OF THE UNUSED DEVICE(S) FOR A REFUND.  ANY USE OF THE SOFTWARE, INCLUDING BUT NOT LIMITED TO USE ON THE DEVICE, WILL CONSTITUTE YOUR AGREEMENT TO THIS EULA (OR RATIFICATION OF ANY PREVIOUS CONSENT).
+
+
+
+
+3.0 LICENSE GRANT
+
+Subject to the restrictions set forth in this Agreement, Interactive Objects grants to licensee the following limited license rights:
+
+(a) To install as part of the Dharma (tm) SDK, one (1) copy of the Dharma software in association with the Dharma development platform to be used in evaluation and development of a digital audio application.
+
+(b) To configure or modify Dharma in accordance with the instructions, if any, contained in the Digital Audio Product Deliverables solely to enable Dharma software to execute on a Dharma board.
+
+(c) Limited use of the Dharma SDK for internal hardware development boards based on Dharma design, not exceed 10 (ten) units.
+
+(d) Licensee's license shall extend to all updates made available by iObjects during the term of this Agreement.
+
+(e) Except as provided in Section 2(c), DHARMA may not be distributed in whole or in part other than installed on the Digital Audio System.
+
+(f) Licensee may not distribute any DHARMA documentation, source code, libraries, or application code derived from the Dharma(tm) SDK without the express written consent of IObjects.
+
+(g) A distribution license agreement for any distribution of source, binaries, or other materials contained here within may be obtained by contacting IObjects at sales@iobjects.com.
+
+Interactive Objects, Inc 
+12600 SE 38th, Suite 150 
+Bellevue, WA 98006 
+Phone: 425-653-5505
+Fax: 425-653-5777 
+http://www.iobjects.com
+
+(h) Licensee shall not reverse engineer, decompile or disassemble any Dharma components or software except as permitted by applicable law.
+
+(i) All distribution and use of Dharma is by license only.  IObjects does not authorize Dharma to be "issued to the public", "put into circulation", or subject to a "first sale" as the copyright laws may use those (or similar) terms.  
+
+(j) IObjects reserves all rights not expressly granted including, without limitation, modification rights, translation rights, rental rights, and rights to source code.  Licensee acknowledges that IObjects (and/or its suppliers, if applicable) shall retain all copyright, patent, moral, trademark, title and other proprietary and intellectual property in Dharma, Digital Audio Product Deliverables and components thereof, in whole or in part in any form.
+
+(k) Licensee will not remove, modify, or obscure any copyright, trademark, patent or other intellectual property notices included on Dharma or Dharma Upgrade.
+
+
+
+4.0 CARE OF IOBJECTS INTELLECTUAL PROPERTY
+
+The Licensee shall take all reasonable care and attention to ensure that Dharma be protected from unauthorized copying, and shall not under any circumstances; reproduce said items, except under the terms of this OEM agreement.
+
+
+
+5.0 PROHIBITION AGAINST ASSIGNMENT, SUBLICENSE AND DISTRIBUTION.
+
+This Agreement, and any rights or obligations hereunder, shall not be assigned, sublicensed or distributed by the licensee (by contract, merger, sale or acquisition of assets, operation of law, or otherwise).
+
+
+
+6.0 DISCLAIMER OF LIABILITY
+
+IN NO EVENT SHALL IOBJECTS BE LIABLE FOR ANY DIRECT, CONSEQUENTIAL, INDIRECT, INCIDENTAL, OR SPECIAL DAMAGES WHATSOEVER, ARISING OUT OF THIS AGREEMENT, INCLUDING WITHOUT LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, AND THE LIKE, ARISING OUT OF THE PERFORMANCE, USE OF, OR INABILITY TO USE, ALL OR PART OF EITHER THE LICENSED SOFTWARE OR THE HARDWARE, EVEN IF IOBJECTS HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. BECAUSE SOME STATES DO NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, THE ABOVE LIMITATION MAY NOT APPLY. 
+
+
+
+7.0 NONDISCLOSURE OBLIGATION
+
+Licensee shall keep confidential the Digital Audio Product Deliverables, any Dharma source code provided by IObjects, the terms and conditions of this Agreement, and other non-public information and know-how disclosed to licensee by IObjects. Licensee may disclose the terms and conditions of this Agreement in confidence to its immediate legal and financial consultants as required in the ordinary course of licensee business. Licensee obligation under this Section shall survive termination or expiration of this Agreement and shall extend until such time as the information protected hereby is in the public domain.
+
+
+
+8.0 GENERAL
+
+(a) This Agreement shall be construed and controlled by the laws of the State of Washington, and licensee further consents to jurisdiction by the state and federal courts sitting in the State of Washington. Process may be served on either party by air express courier, (e.g. DHL, Airborne) charges prepaid, return receipt requested. If IObjects or licensee employs attorneys to enforce any rights arising out of or relating to this Agreement, the prevailing party shall be entitled to recover reasonable attorney's fees.
+
+(b) Licensee agrees that it will not export Dharma in violation of any U.S. export restrictions.  
+
+(c) If any provision or portion of this Agreement shall be held by a court of competent jurisdiction to be illegal, invalid or unenforceable, the remaining provisions or portions shall remain in full force and effect.
+
+(d) No waiver of any breach of any provision of this Agreement shall constitute a waiver of any prior, concurrent, or subsequent breach of the same or any other provisions hereof, and no waiver shall be effective unless made in writing and signed by an authorized representative of the waiving party.
+
+(e) Any assignment of this Agreement without prior written consent of the non-assigning party shall be void.
+
+(f) Dharma may be imported, distributed, or sold in or to a country or territory only if allowed by, and in compliance with, all applicable laws and regulations of such country or territory as well as all terms and conditions of this Agreement. 
+
+(g) This agreement, together with all appendices, riders, exhibits or other attachments referred herein, constitutes the entire agreement between Iobjects and the Licensee and supercedes all proposals, oral and written, between the parties on this subject.
+
+
+9.0 TERMINATION
+(a) Either party may terminate this Agreement for any reason upon sixty (60) days prior written notice. 
+(b) Either party may suspend performance and/or terminate this Agreement immediately upon written notice at any time if the other party is in material breach of any material warranty, term, condition or covenant of this Agreement, and fails to cure that breach within sixty (60) days after written notice thereof. 
+(c) This License and the rights granted hereunder will terminate automatically if You fail to comply with terms herein and fail to cure such breach within 30 days of becoming aware of the breach. All sublicenses to the Covered Code which are properly granted shall survive any termination of this License. Provisions which, by their nature, must remain in effect beyond the termination of this License shall survive.

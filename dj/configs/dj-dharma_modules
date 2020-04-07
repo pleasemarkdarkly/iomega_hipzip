@@ -1,0 +1,11 @@
+
+include dj_shared_modules
+
+# hardware specific modules
+devs/storage/ata/current                hd_slave
+devs/audio/current                      record
+
+# LCD/GUI support
+devs/lcd/v1_0                           dharma
+gui/peg/current                         dharma
+gui/peg/screendriver/v1_0               dharma

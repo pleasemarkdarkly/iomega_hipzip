@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Module Versioning</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="oConfigSystem.htm" title='Configuration System'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="oInstallationGuide.htm" title='Dharma Operation Guide'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='oModuleVersion'>Module Versioning</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">
+One of the problems posed by the GNU make system is that dependency (.d) and object (.o) files in the build tree must have the exact same path within the build tree as their corresponding source file within the source tree. However, since modules refer to headers in other modules, it is less than ideal to have version numbers in the path to the headers.
+</p>
+<p class="Body1">
+Accommodating differing versions of different modules is one of the main reasons the configuration system is set up the way it is. The DCL language was set up to create a symbolic link to the correct header file in a non-version-specific directory so that other modules may link to it.
+</p>
+<p class="Body1">
+During compilation, however, <span class="Code">make</span> de-references the symbolic links, and builds the actual modules in directories that match the path in the source tree.
+</p>
+</td></tr>
+<tr valign='top'><td><h3><a name=''>What This Means For You</a></h3></td>
+				<td><p class="Body1">
+Versioning is completely optional. You can omit version directories in your source tree, or move all of the source files out of each version directory into its parent directory, and you will not need to change any of the configurations.
+</p>
+<p class="Body1">
+If you want to use versioning, you must use the following "magic" directory names:
+</p>
+<ul>
+	<li>current &ndash; represents the latest development version.</li>
+	<li>v# &ndash; "#" represents a version number. For example, "v3".</li>
+	<li>v#_# &ndash; represents a version with a sub-version. For example, "v3_2".</li>
+</ul>
+<p class="Body1">
+If any of the above are present in the <span class="Code"><em>&lt;target></em>_modules</span> path, the DCL parser will put a symbolic link to the header file in the parent directory of the listed directory.
+</p>
+<p class="Body1">
+If none of the above are in the path, the path will be used exactly as listed in the <span class="Code"><em>&lt;target></em>_modules</span> file.
+</p>
+
+
+<p class='ProcHead'><a name=''>Example</a></p>
+<p class="Body1">
+Say you have the following module:
+</p>
+ 
+<p class="CodeBlock">player/playlist/simpleplaylist/v1_0</p>
+ 
+<p class="Body1">
+... that has one header and one source file:
+</p>
+<p class="CodeBlock">player/playlist/simpleplaylist/v1_0/include/SimplePlaylist.h<br>
+player/playlist/simpleplaylist/v1_0/src/SimplePlaylist.cpp<br>
+</p> 
+<p class="Body1">
+When the DCL parser generates the build tree, it will generate a symbolic link as follows:
+</p>
+ 
+<p class="CodeBlock">builds/simple/playlist/simpleplaylist/SimplePlaylist.h -> ../../player/playlist/simpleplaylist/v1_0/include/SimplePlaylist.h
+</p> 
+<p class="Body1">
+However, when the source file is compiled, the output will be in:
+</p>
+ 
+<p class="CodeBlock">builds/simple/playlist/simpleplaylist/v1_0/src/SimplePlaylist.o</p>
+ 
+<p class="Body1">
+... since compiling uses <span class="Code">make</span>, and <span class="Code">make</span> requires that the path to the source file mirror the path to the object file. 
+
+</p>
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="oConfigSystem.htm" title='Configuration System'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="oInstallationGuide.htm" title='Dharma Operation Guide'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 31, 2001 12:33 pm
+</p>
+</body>
+
+</html>

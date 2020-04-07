@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Metadata</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="aDataSources.htm" title='Data Sources'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aContentManager.htm" title='Content Manager'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='aMetadata'>Metadata</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">In the Dharma SDK, <span class="Module">Metadata</span> objects are associated with individual tracks on a data source. The interface for <span class="Module">Metadata</span> objects is generic, treating all metadata as key/value pairs in an associative array.</p>
+
+<p class="Body1">
+Your application can use <span class="Module">Metadata</span> objects to display information about a track, search for information, create catalogs, or whatever else you want. Your application can define a default <span class="Module">Metadata</span> creation function for the <span class="Module">Media Player</span>. The <span class="Module">Content Manager</span> may provide a <span class="Module">Metadata</span> object whenever a <span class="Module">Data Source</span> performs certain types of content enumeration. In both cases, the <span class="Module">Metadata</span> object is populated with information in the file decoded by the <span class="Module">Codec</span>. 
+</p>
+<p class="Body1">
+If you don't want to use metadata, you need to specify a Single-Pass refresh mode for content enumeration, and set the Media Player metadata creation function to null (the default setting).
+</p>
+<p class='Picture'><img src='images/IMetadataClass.gif' alt='IMetadata Class Diagram' width="152" height="195"></p>
+<p class="Body1">
+The <span class="Code">IMetadata</span> class is primarily used by <span class="Module">Codec</span> objects to populate <span class="Module">Metadata</span> objects. It provides methods for accessing any attribute by ID. Metadata attributes are designed as key/value pairs&mdash;you provide a key to set or get the value. Concrete extensions of this class provide other methods to access the data directly.
+</p>
+
+
+</td></tr>
+<tr valign='top'><td><h3><a name=''>Metadata Object Lifecycle</a></h3></td>
+				<td><p class="Body1">
+Metadata objects are created at two different times:
+</p>
+<ol>
+	<li>By the <span class="Module">Content Manager</span> during content enumeration; and</li>
+	<li>By the <span class="Module">Media Player</span> when a new track is selected.</li>
+</ol>
+
+</td></tr>
+<tr valign='top'><td><h4><a name=''>Content Manager Metadata objects</a></h4></td>
+				<td>
+<p class="Body1">
+During content enumeration, the <span class="Module">Data Source</span> requests a <span class="Module">Metadata</span> object from the <span class="Module">Content Manager</span> to pass to the <span class="Module">Codec</span>. The <span class="Module">Content Manager</span> owns the <span class="Module">Metadata</span> object, and is responsible for creating, destroying, and storing it. <span class="Module">Metadata</span> objects are not requested during a single-pass enumeration, or the first pass of a double-pass enumeration.
+</p>
+<p class="Body1">
+See <a href="aMainApplication.htm#aContentEnumeration">Content Enumeration</a> for more information about content enumeration modes.
+
+</p>
+
+</td></tr>
+<tr valign='top'><td><h4><a name=''>Media Player Metadata objects</a></h4></td>
+				<td>
+
+<p class="Body1">
+When the <span class="Module">Media Player</span> sets a new track, it gets an input stream from the data source and passes it to the <span class="Module">Codec</span>. Your application can pass a default metadata creation function into the <span class="Module">Media Player</span> (<span class="Code">CMediaPlayer::SetCreateMetadataFunction()</span>). If you pass a function to the media player with this method, the media player will call whatever function you provide, expecting an IMetadata object in return. This object will then be passed to the <span class="Module">Codec</span> for data population, and finally, sent to the Event Queue.
+</p>
+<p class="Body1">
+Your application might use the <span class="Module">Metadata</span> object created by the media player for displaying information about the current track on the user interface. 
+</p>
+<p class="Body1">
+When your application has finished using the <span class="Module">Metadata</span> object from the <span class="Module">Media Player</span>, it can pass the event to the default event handler for destruction. If you do not use this event handler, you will have to destroy the object yourself.
+</p>
+
+<p class="Body1">
+See <a href="JavaScript:OpenView('cIMetadata.htm#cIMetadata');">IMetadata</a> for more information about the specific <span class="Module">Metadata</span> objects provided in the SDK, and implementing your own metadata objects.
+</p>
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="aDataSources.htm" title='Data Sources'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aContentManager.htm" title='Content Manager'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 29, 2001 2:32 am
+</p>
+</body>
+
+</html>

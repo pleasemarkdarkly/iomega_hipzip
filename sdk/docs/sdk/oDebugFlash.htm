@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Debug flash resident images</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="oBurnToFlash.htm" title='Download an Image to Flash'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="oUSB.htm" title='USB Test Application'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='oDebugFlash'>Debug an Image in Flash</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+
+ 
+<p class="Body1">
+It is possible to debug a flash-resident image. This is useful when an image has a condition that is difficult to trace or requires multiple runs. To debug a flash-resident image, first make sure that the image burned to flash and the image on your host are the same build. Follow the steps in the previous section to <a href="oBurnToFlash.htm#oBurnToFlash">burn your image to flash</a>, and then proceed as follows:
+
+</p> 
+
+<ol>
+<li>Reset the board and load the image:
+<p class="CodeBlock">RedBoot> reset<br>
+RedBoot> fis load simple<br>
+</p></li> 
+
+<li>Close the terminal program and start gdb from your shell:
+<p class="CodeBlock">cd /c/iobjects/dadio/builds/simple<br>
+arm-elf-gdb dadio.exe<br>
+</p> </li>
+
+<li>At the gdb prompt, execute the following commands:
+<p class="CodeBlock">(gdb) set height 0<br>
+(gdb) set remotebaud 115200<br>
+(gdb) target remote com1<br>
+</p></li> </ol>
+<p class="Body1">
+At this point, gdb should attach to the remote device. the trick is to point gdb at the image to be debugged rather than the debug stub itself:
+
+</p> 
+<p class="CodeBlock">(gdb) set $pc=0x20040
+</p> 
+<p class="Body1">
+This modifies the program counter to point to the entry point of the image we loaded from flash.
+
+</p> 
+<p class="Body1">
+At this point all the standard gdb commands are available, and the image can be debugged as normal. To debug the image again, the board will have to be reset and the sequence 1-3 repeated.
+
+</p> 
+
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="oBurnToFlash.htm" title='Download an Image to Flash'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="oUSB.htm" title='USB Test Application'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Nov 1, 2001 5:03 pm
+</p>
+</body>
+
+</html>

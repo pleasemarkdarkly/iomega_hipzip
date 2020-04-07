@@ -1,0 +1,47 @@
+Portions of the software in the Dharma SDK were built using third party object code.  Distribution rights have been licensed by Interactive Objects Inc. for the Dharma SDK version 1.0 only.  All rights are reserved by the original licensor and granted to Interactive Objects under license.
+
+
+
+SanDisk
+SanDisk Host Developer’s Tool Kit User’s Guide © 1998 SANDISK CORPORATION
+
+CORPORATE HEADQUARTERS
+140 Caspian Court
+Sunnyvale, CA 94089-1000
+408-542-0500
+FAX: 408-542-0503
+URL: http://www.sandisk.com
+
+
+Red Hat
+eCosTM v1.3
+Cygwin 
+
+Red Hat Corporate Headquarters
+Regional Headquarters
+
+Mailing Address:
+P.O. Box 13588
+RTP, NC 27709
+USA
+Shipping Address:
+2600 Meridian Parkway
+Durham, NC 27713
+USA
+http://www.redhat.com/about/contact/directory.html 
+
+
+EQUI4 Software
+Metakit 
+Equi4 Software
+Meekrap oord 6
+3991 VE, Houten
+The Netherlands
+Email:   jcw@equi4.com
+Website:   http://www.equi4.com
+Phone:   +31 30 637 7550
+Fax:   +31 30 637 3784
+Timezone:   GMT +1
+
+http://www.equi4.com/metakit/ 
+

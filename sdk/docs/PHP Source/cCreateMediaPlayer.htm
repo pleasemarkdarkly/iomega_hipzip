@@ -1,0 +1,25 @@
+<?php
+
+$pagetitle = "Creating Your Media Player";
+include("startpage.php");
+
+?>
+
+<p class="Body1">
+This section describes the demos available as part of the Dharma SDK, global macros and types you can use in your application, and details about extending the provided abstract classes. 
+
+</p>
+<p class="Body1">
+The best way to create a player application is to start with one of the demo applications, and extend them as necessary to accomplish what you want.
+</p>
+<p class="Body1">
+Read through the <?= crossref("cGlobalDefinitions", "Global Definitions"); ?> section before you start, and then dig into the source for the demo applications. If you need to implement one of the abstract classes, see the appropriate section below.
+</p>
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

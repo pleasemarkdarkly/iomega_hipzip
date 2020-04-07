@@ -1,0 +1,42 @@
+<?php
+
+$pagetitle = "Build the image";
+include("startpage.php");
+
+?>
+
+
+ 
+<ol>
+<li> Start a bash shell and <span class="Code">cd</span> into your installation directory:
+<p class="CodeBlock">cd /c/iobjects/dadio/sdk</p>
+ </li>
+<li>Determine which target you want to build by looking at the available targets in <span class="Code">configs/targets.mk</span>, then build it. This generates the build tree, and creates a player image:
+<p class="CodeBlock">make simple</p>
+</li>
+ 
+<li>After the build is completed, you can <span class="Code">cd</span> into the build directory to find the generated image:
+<p class="CodeBlock">cd builds/simple<br>
+ls -l simple.exe
+</p></li>
+
+</ol> 
+<p class="Note">
+<strong>Note:</strong> Since the build tree was created in step #2, you can build directly from the build directory and save a little time from this point on:<br>
+<br>
+
+<span class="Code">cd /c/iobjects/dadio/sdk/builds/simple<br>
+
+make
+</span>
+</p> 
+
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

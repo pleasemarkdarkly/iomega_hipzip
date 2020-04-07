@@ -1,0 +1,7 @@
+# list of file lists to copy
+
+base.files
+docs/sdk/doc_sdk.files
+ecos/builds/net-ramv2/net-ramv2_install/net-ramv2_install.files
+ecos/builds/ramv2/ramv2_install/ramv2_install.files
+ecos/builds/usb-ramv2/usb-ramv2_install/usb-ramv2_install.files

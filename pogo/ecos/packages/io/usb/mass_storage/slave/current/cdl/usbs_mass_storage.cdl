@@ -1,0 +1,110 @@
+# ====================================================================
+#
+#      usbs_mass_storage.cdl
+#
+#      USB slave-side mass storage package.
+#
+# ====================================================================
+#####COPYRIGHTBEGIN####
+#                                                                          
+# -------------------------------------------                             
+# -------------------------------------------                              
+#                                                                          
+#####COPYRIGHTEND####
+# ====================================================================
+######DESCRIPTIONBEGIN####
+#
+# Author(s):      toddm@iobjects.com
+# Original data:  toddm@iobjects.com
+# Contributors:
+# Date:           2001-21-02
+#
+#####DESCRIPTIONEND####
+# ====================================================================
+
+cdl_package CYGPKG_IO_USB_SLAVE_MASS_STORAGE {
+    display     "USB slave mass storage support"
+    include_dir "cyg/io/usb"
+    parent      CYGPKG_IO_USB_SLAVE
+    requires    { CYGHWR_IO_USB_SLAVE_OUT_ENDPOINTS >= 1 }
+    requires    { CYGHWR_IO_USB_SLAVE_IN_ENDPOINTS >= 1 }
+    compile     usbs_mass_storage.c usbs_mass_storage_atapi.c usbs_mass_storage_mmc.c
+    implements  CYGINT_IO_USB_SLAVE_CLIENTS
+    doc         io-usb-slave-mass_storage.html
+    
+    description "
+        The USB mass storage package supports the development
+        of USB peripherals which provide mass storage to
+        the host machine."
+
+    cdl_option CYGPKG_IO_USB_SLAVE_MASS_STORAGE_DEVICE {
+	display "Underlying device used for mass storage"
+	flavor  data
+     	legal_values { "ATAPI" "MMC" }
+	default_value { "MMC" }
+	description "
+	    The mass storage protocol needs a device to communicate
+            with.  This option selects it."
+    }
+
+    cdl_option CYGPKG_IO_USB_SLAVE_MASS_STORAGE_THREAD_PRIORITY {
+	display "Priority level for USB mass storage thread."
+	flavor  data
+	default_value 10
+	description   "
+	This option allows the thread priority level used by the
+	USB mass storage thread to be adjusted by the user."
+    }
+
+    cdl_option CYGPKG_IO_USB_SLAVE_MASS_STORAGE_THREAD_STACK_SIZE {
+	display "Stack size for USB mass storage thread."
+	flavor  data
+	default_value 4096
+	description   "
+	This option allows the stack size used by the USB
+	mass storage thread to be adjusted by the user."
+    }
+
+    cdl_component CYGPKG_IO_USB_MASS_STORAGE_OPTIONS {
+        display "USB mass storage build options"
+        flavor  none
+        description   "
+	    Package specific build options including control over
+	    compiler flags used only in building this package,
+	    and details of which tests are built."
+
+
+        cdl_option CYGPKG_IO_USB_MASS_STORAGE_CFLAGS_ADD {
+            display "Additional compiler flags"
+            flavor  data
+            no_define
+            default_value { "" }
+            description   "
+                This option modifies the set of compiler flags for
+                building the driver. These flags are used in addition
+                to the set of global flags."
+        }
+
+        cdl_option CYGPKG_IO_USB_MASS_STORAGE_CFLAGS_REMOVE {
+            display "Suppressed compiler flags"
+            flavor  data
+            no_define
+            default_value { "" }
+            description   "
+                This option modifies the set of compiler flags for
+                building the driver. These flags are removed from
+                the set of global flags if present."
+        }
+
+        cdl_option CYGPKG_IO_USB_MASS_STORAGE_TESTS {
+            display "USB mass storage tests"
+            flavor  data
+            no_define
+            calculated { 
+		""
+            }
+            description   "
+                This option specifies the set of tests for the USB mass storage package."
+        }
+    }
+}

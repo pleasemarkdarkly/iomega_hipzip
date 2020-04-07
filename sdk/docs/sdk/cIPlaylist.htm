@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Abstract Classes: IPlaylist</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="cIContentManager.htm" title='IContentManager'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="JavaScript:OpenView('doxy/index.html');" title='SDK Main Page'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='cIPlaylist'>IPlaylist</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">
+A <span class="Module">Playlist</span> object is a sequential collection of Media Content Records accessible using a zero-based index. Its main responsibility is to provide the current Playlist Entry, and set the next and previous playlist entries according to a provided mode.
+</p>
+<p class="Body1">
+The client application creates a <span class="Module">Playlist</span> object and loads it into the <span class="Module">Play Manager</span>. If you want to change the playlist, you can either add or delete entries in the current playlist, or load a new playlist (stored on FAT-formatted media as a file, for example) and set it in the <span class="Module">Play Manager</span>.
+</p>
+<p class="Body1">
+The main reasons you may want to implement your own Playlist class might be if you don't like the shuffle mechanism in <span class="Code">CSimplePlaylist</span>, or if you want to add some sort of tracking or caching strategy.
+</p>
+
+<p class="Body1">
+See <a href="JavaScript:OpenView('doxy/classIPlaylist.html#doxy/classIPlaylist');">Playlist</a> in the API reference for more information.
+</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name=''>CSimplePlaylist Random Sequence</a></h3></td>
+				<td><p class="Body1">There is always a current track in a playlist. When you call the reshuffle entries method, whatever the current track is, becomes the first entry in the random list. If you wanted to start playback with a random song, and still hear all songs in a playlist, you would have to reshuffle the playlist, move to the next playlist entry, and then reshuffle again (to get the first entry forward in the list).</p>
+<p class="Body1">If you add new entries to a playlist that already exists and is already shuffled, the new entries are inserted at the end of the indexed sequence but inserted randomly into the random list. If the current track is not at the beginning of the random list, it is likely that some of the new entries will get inserted earlier in the random list and will not be heard until the list is reshuffled or repeated.</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name='cIPlaylistEntry'>IPlaylistEntry</a></h3></td>
+				<td>
+<p class="Body1">
+A <span class="Module">Playlist Entry</span> is a simple interface used to get a pointer to the media content record it represents. 
+</p>
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="cIContentManager.htm" title='IContentManager'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="JavaScript:OpenView('doxy/index.html');" title='SDK Main Page'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 9, 2001 2:05 pm
+</p>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+
+CmdPrompt = '> '
+
+sendln
+
+
+wait   CmdPrompt
+sendln 'rem mute mod test'
+wait   CmdPrompt
+sendln 'rem you should hear 2 tones played, not 3'
+
+
+wait   CmdPrompt
+sendln 'dac on'
+
+
+wait   CmdPrompt
+sendln 'tone 1000 44100 1'
+pause 1
+
+wait   CmdPrompt
+sendln 'gpio d 2 0 0'
+
+wait   CmdPrompt
+sendln 'tone 1000 44100 1'
+
+pause 1
+
+wait   CmdPrompt
+sendln 'gpio d 2 0 1'
+
+wait   CmdPrompt
+sendln 'tone 1000 44100 1'
+
+pause 1

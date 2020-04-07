@@ -1,0 +1,24 @@
+<?php
+
+$pagetitle = "Filters";
+include("startpage.php");
+
+?>
+
+<p class="Body1">Filters provide the ability to enhance, distort, or otherwise modify the raw output of the media player. Systems such as Sound Retrieval System (SRS) can be added using filters. Filters are always downstream of the codec. </p>
+<p class="Body1">The SDK provides the interfaces for creating filters, but there are no filters included. </p>
+<p class="Body1">The <span class="Code">IFilter</span> class behaves in a similar way to the <span class="Code">ICodec</span> class. It's designed as a wrapper to the actual code. You implement the methods for the <span class="Code">IFilter</span> class that call the appropriate methods in the actual filter.</p>
+<p class="Body1">The SDK includes a ring buffer system (RBUF) for buffering data between codecs and filters. Your filters will generally read from a dedicated input RBUF, and write to a dedicated output RBUF. Filters and RBUFs are strung together in a daisy-chain manner. The last RBUF becomes the input buffer for the Output Filter, which writes directly to the Output Stream.</p>
+<?= head("aFilterManager","Filter Manager",3); ?>
+<p class="Body1">The <span class="Module">Filter Manager</span> creates filter objects on request from the Media Player. To work correctly, you must register your filters, and provide input and output RBUF sizes.</p>
+<p class="Body1">
+The <span class="Module">Filter Manager</span> can provide any filter previously registered using the registration interface. See the <?= crossref("doxy/Filter_8h-source", "Filter.h"); ?> documentation for more details on how to register a filter.
+</p>
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

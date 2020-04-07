@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Abstract Classes: IContentManager</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="cDataStreams.htm" title='Data Streams'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="cIPlaylist.htm" title='IPlaylist'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='cIContentManager'>IContentManager</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">
+The primary responsibility of the <span class="Module">Content Manager</span> is to maintain a list of content available on all of the data sources. Content is divided into two types: media content records, and playlist content records. Content records have two unique identifiers: an ID for the record provided by the <span class="Module">Content Manager</span>, and the URL provided by the data source.
+</p>
+
+<p class="Body1">The SDK comes with two different <span class="Module">Content Managers</span>:</p>
+
+<ol>
+	<li>Simple Content Manager</li>
+	<li>Metakit Content Manager</li>
+
+</ol>
+
+<p class="Body1">The Simple Content Manager is a very basic implementation of the <span class="Code">IContentManager</span> class. It returns the same list of media content records, no matter which method is called.</p>
+
+<p class="Body1">
+The Metakit Content Manager uses the open source Metakit database to store metadata for each track, allowing basic sorting and filtering by any metadata you register in the Content Manager. It also implements <a href="JavaScript:OpenView('doxy/classIQueryableContentManager.html#doxy/classIQueryableContentManager');">IQueryableContentManager</a>, which provides methods for accessing content records based on Artist, Album, and Genre.
+</p>
+
+<p class="Body1">
+The <span class="Code">CSimpleContentManager</span> allows you to specify a <span class="Module">Metadata</span> object creation function. The <span class="Code">CMetakitContentManager</span> is written to use a corresponding <span class="Code">CConfigurableMetadata</span> object.
+</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name=''>Content Updates</a></h3></td>
+				<td><p class="Body1">
+The <span class="Module">Play Manager</span> starts a content update whenever the default event handler gets a New Media Inserted event, or whenever a content refresh is requested. The <span class="Module">Play Manager</span> calls the <span class="Module">Content Manager </span>in the following sequence:
+</p>
+
+<ol>
+	<li><span class="Module">Play Manager</span> calls <span class="Code">MarkRecordsFromDataSourceUnverified()</span>, passing a data source ID.</li>
+	<li>If the refresh mode is DSR_ONE_PASS_WITH_METADATA, the data source calls <span class="Code">CreateMetadataRecord()</span> for each media record.</li>
+	<li>The <span class="Module">Play Manager</span> calls <span class="Code">AddContentRecords()</span>, passing a <span class="Code">content_record_update_t</span> struct filled with content records created and populated by the <span class="Module">Data Source</span>.</li>
+	<li>If the refresh mode is DSR_TWO_PASS:</li>
+	<ol>
+		<li>The <span class="Module">Content Manager</span> should remove content records from the struct that it already has metadata for, and return the struct containing only content records it needs metadata for. </li>
+		<li>The data source calls <span class="Code">CreateMetadata()</span> for each content record.</li>
+		<li>The <span class="Module">Play Manager</span> passes the updated records to AddContentRecords().</li>
+	</ol>
+	<li>When the content refresh is complete, the <span class="Module">Play Manager</span> calls <span class="Code">DeleteUnverifiedRecordsFromDataSource()</span>.</li>
+</ol>
+
+</td></tr>
+<tr valign='top'><td><h3><a name=''>CreateMetadataRecord()</a></h3></td>
+				<td><p class="Body1">
+This function is primarily called by a data source during a content update. It should return a pointer to a metadata object that will store the attributes of interest. If the <span class="Module">Content Manager</span> doesn't need any metadata, this function can return zero.
+</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name=''>AddContentRecords()</a></h3></td>
+				<td><p class="Body1">
+The default handler calls this function after receiving an EVENT_CONTENT_UPDATE or EVENT_CONTENT_METADATA_UPDATE, passing a pointer to a <span class="Code">content_record_update_t</span> struct created or modified by a data source during content enumeration.
+</p>
+
+<p class="Body1">
+For playlist content records, simply traverse the array stored in the "playlists" field of the struct and call <span class="Code">AddPlaylistRecord()</span> for each one. The URL of each record must be deallocated by calling <span class="Code">free()</span> after the call to <span class="Code">AddPlaylistRecord()</span>.
+</p>
+
+<p class="Body1">
+For media content records, the procedure is a bit more involved. If this is the first part of a two-pass content update, the media list should be pruned of records that already exist in the database, so they won't be passed back to the data source for metadata retrieval.
+</p>
+
+<p class="Body1">
+For each record in the "media" field of the <span class="Code">content_record_update_t</span> struct <span class="Code">AddMediaRecord()</span> should be called.  If the <span class="Code">bTwoPass</span> field of the struct is false or if the media record already exists in the manager (determined by passing TRUE or FALSE back through the <span class="Code">pbAlreadyExists</span> parameter in the <span class="Code">AddMediaRecord</span> call) then the entry in the media array can be deleted. Call <span class="Code">free()</span> on the URL and <span class="Code">Remove()</span> on the media array to dispose of the record.  Otherwise leave the record in the array and go to the next one. In two-pass mode, records left in the media array after the function finishes will be sent to the data source for metadata retrieval.
+
+</p>
+</td></tr>
+<tr valign='top'><td><h3><a name=''>AddMediaRecords()</a></h3></td>
+				<td><p class="Body1">
+This function is used to add or update a single media record in the content manager.
+</p>
+
+
+<p class="Body1">
+If it's a new record to be added, then:
+</p>
+
+
+<ul>
+	<li>     Create a media content record to store the incoming data.</li>
+	<li>     The media content record should make a copy of the URL, since that memory is managed by the caller.</li>
+	<li>    The metadata pointer is the responsibility of the function, since it was created by the content manager's CreateMetadataFunction.  Its data should be stored somewhere, either merged into the media content record (which is a subclass of IMetadata) or a pointer to the metadata object kept around.  The metadata object should be deleted when no longer in use.</li>
+	<li>     If pbAlreadyExists is non-zero, then set the contents to false.</li>
+	<li>     Return a pointer to the new media content record.</li>
+</ul>
+
+<p class="Body1">
+If a record with a matching URL already exists in the content manager, then:
+</p>
+<ul>
+	<li>     Merge the metadata from the media_record_info_t's pMetadata field with the metadata in the media content record.</li>
+	<li>     Delete the passed-in metadata object.</li>
+	<li>     If the media content record isn't verified and the media_record_info_t struct's bVerified is true, then set the record as verified.</li>
+	<li>     If pbAlreadyExists is non-zero, then set the contents to true.</li>
+	<li>    Return a pointer to the matching media content record.</li>
+
+</ul>
+
+
+</td></tr>
+<tr valign='top'><td><h3><a name=''>AddPlaylistRecord</a></h3></td>
+				<td>
+<p class="Body1">
+This function is used to add or update a single playlist content record in the
+content manager.
+
+</p>
+<p class="Body1">
+If it's a new record to be added, then:
+</p>
+<ul>
+	<li>     Create a playlist content record to store the incoming data.</li>
+	<li>    The playlist content record should make a copy of the URL, since that memory is managed by the caller.</li>
+	<li>     Return a pointer to the new playlist content record.</li>
+	
+</ul>
+
+<p class="Body1">
+If a record with a matching URL already exists in the content manager, then:
+
+</p> 
+<ul>
+	<li>    If the playlist content record isn't verified and the playlist_record_info_t struct's bVerified is true, then set the record as verified.</li>
+	<li>     Return a pointer to the matching playlist content record.</li>
+
+</ul>
+
+</td></tr>
+<tr valign='top'><td><h3><a name=''>Record verification</a></h3></td>
+				<td>
+<p class="Body1">
+Content records exist in two states: verified and unverified.  A record is
+considered verified if it has been found on a data source.  A record is
+unverified if it was added in some other manner (e.g., loading the content
+manager's state from file).
+
+</p>
+<p class="Body1">
+When a content update starts, the play manager will call
+MarkRecordsFromDataSourceUnverified().  The content manager is responsible for
+marking all records (both media and playlist content records) from the
+specified data source as unverified.
+
+</p>
+<p class="Body1">
+During a content update, content records passed to AddMediaRecord and
+AddPlaylistRecord will be marked as verified.  If the record already
+exists in the manager then its status should be set to verified.
+
+</p>
+<p class="Body1">
+After a content update is completed, the play manager will call
+DeleteUnverifiedRecordsFromDataSource().  The content manager should then
+delete all records (both media and playlist content records) still marked as
+unverified.
+
+</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name=''>Getting content records</a></h3></td>
+				<td>
+<p class="Body1">
+The content manager provides four functions for retrieving records:
+GetAllMediaRecords, GetMediaRecordsByDataSourceID,
+GetAllPlaylistRecords, and GetPlaylistRecordsByDataSourceID.
+
+</p>
+<p class="Body1">
+The first argument in each of these functions is a reference to an array
+of pointers to records.  It is the responsibility of the functions to add
+content to that array.  Call PushBack() on the array to add either media
+content records or playlist content records to the end.  The functions
+shouldn't alter the array in any other way (such as clearing the list or
+removing records).
+
+</p>
+
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="cDataStreams.htm" title='Data Streams'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="cIPlaylist.htm" title='IPlaylist'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Nov 1, 2001 4:27 pm
+</p>
+</body>
+
+</html>

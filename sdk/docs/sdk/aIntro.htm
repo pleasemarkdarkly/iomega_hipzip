@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Main Application</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aQuickStart.htm" title='Quick Start Guide'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h1
+><a name='aIntro'>Introduction</a></h1
+><table cellpadding=5>
+<tr><td></td><td>
+
+
+
+<p class="Body1">
+The Dharma<SUP><FONT SIZE="-1">TM</FONT></SUP> SDK (also referred to as Dharma<SUP><FONT SIZE="-1">TM</FONT></SUP> Application Stack or
+simply Dharma<SUP><FONT SIZE="-1">TM</FONT></SUP>) provides a diverse and well defined set of APIs and
+components necessary for commercial digital audio playback. This
+release of the Dharma OS, as an external SDK for external parties
+to develop with, is the first source release of Dharma in any form,
+and, naturally, is our best. Dharma is a "living" system, in that
+we are constantly adding new features and functionality into the core
+system, so this SDK is a snapshot of Dharma that has been polished
+for release.
+
+</p>
+</td></tr>
+<tr><td colspan=2><h2><a name=''>Documentation structure</a></h2></td></tr>
+				<tr><td width=50>&nbsp;</td><td>
+<p class="Body1">
+The full documentation is available both online and in PDF format. The documentation is divided into the following areas:
+</p>
+<ul>
+	<li><a href="arOverview.htm#arOverview">Architectural Overview</a> &ndash; A description of the Dharma Operating System.</li>
+	<li><a href="JavaScript:OpenView('cCreateMediaPlayer.htm#cCreateMediaPlayer');">Player Tutorial</a> &ndash; How to use the Dharma SDK to develop a media player.</li>
+	<li><a href="JavaScript:OpenView('oInstallationGuide.htm#oInstallationGuide');">Dharma Board documentation</a> &ndash; Instructions for using the Dharma board, including downloading and image creation, hardware specifications, and data sheets.</li>
+	<li><a href="JavaScript:OpenView('doxy/index.html#doxy/index');">API Reference</a> &ndash; Reference for each class in the Dharma SDK.</li>
+</ul>
+
+
+</td></tr>
+<tr><td colspan=2><h2><a name=''>Documentation conventions</a></h2></td></tr>
+				<tr><td width=50>&nbsp;</td><td>
+<ul>
+<li>Filenames are written in UNIX form and are relative to the "sdk"
+  folder. So if the documentation refers to a file
+  <span class="Code">./player/util/registry/include/Registry.h</span>
+  and you installed in c:\dadio, the full unix path would be:
+  <span class="Code">/dadio/sdk/player/util/registry/include/Registry.h</span>
+  and the DOS path might be:
+  <span class="Code">c:\dadio\sdk\player\util\registry\include\Registry.h</span>.</li>
+
+<li>Resources are defined as modules that a given component relies on.</li>
+</ul>
+
+</td></tr>
+<tr><td colspan=2><h2><a name=''>Glossary</a></h2></td></tr>
+				<tr><td width=50>&nbsp;</td><td>
+<dl>
+	<dt>Cygwin</dt>
+	<dd>A UNIX environment for Windows. The free Cygwin package is on the Dharma SDK CD-ROM, and includes the <span class="Code">bash</span> shell and several UNIX tools.</dd>
+	
+	<dt>Dadio<SUP><FONT SIZE="-1">TM</FONT></SUP></dt>
+	<dd>Obsolete. The former name of the software application stack included with Dharma. </dd>
+	
+	<dt>DCL</dt>
+	<dd>Dharma Configuration Language. A custom mini-language for generating different options in makefiles used to build Dharma-based images.</dd>
+	
+	<dt>Dharma<SUP><FONT SIZE="-1">TM</FONT></SUP></dt>
+	<dd>A hardware board used for developing Dharma objects, and the software application stack provided in this SDK for jump-starting your development. The hardware consists of a motherboard, CPU, and many peripherals that may be plugged in or removed to test various configurations. The software consists of a set of embedded objects written in C++ that are designed for the Cirrus 7312, 7409, and 9312 chips.</dd>
+
+	<dt><a name="aeCos">eCos</a><SUP><FONT SIZE="-1">TM</FONT></SUP></dt>
+	<dd>"Embedded Configurable Operating System." An open-source real-time operating system used by Dharma. Dharma does not include the source for eCos &ndash; instead, it provides object code for three different configurations: minimum RAM configuration, network-enabled, and USB-enabled. If these configurations do not meet your needs, contact Interactive Objects. </dd>
+	
+	<dt>PCM</dt>
+	<dd>Pulse Code Modulation. A digital scheme for transmitting analog data.</dd>
+
+	<dt>Symbolic Links</dt>
+	<dd>Similar to Windows shortcuts, symbolic links are a way of having one file or directory appear in multiple places in the file system. A symbolic link is sort of a soft link that points to a file actually located somewhere else. The convenience of this is that you can have a single copy of a file, but use it from several locations (when compiling, for example).</dd>
+</dl>
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aQuickStart.htm" title='Quick Start Guide'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Nov 1, 2001 3:41 pm
+</p>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+TD.firstline	{ color: white; background-color: black; font-family: Verdana; font-size: 11px; font-weight: bold }
+TD.listing		{ color: #66ff00; background-color: 45576d; font-family: Verdana; font-size: 11px }
+TD.crnt_listing	{ color: #ffffff; background-color: 45576d; font-family: Verdana; font-size: 11px; font-weight: bold }
+TD.actionlinks	{ background-color: b8c8d8; font-family: Verdana; font-size: 11px; text-align: center; veritcal-align: middle }
+A:link			{ color: #45576D }
+A:visited		{ color: #45576D }

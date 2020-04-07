@@ -1,0 +1,39 @@
+<?php
+
+$pagetitle = "Dharma SDK";
+$type = "summary";
+$meta = "<style>
+<!-- 
+.qindex {display: none;}
+
+// -->
+</style>";
+include("startpage.php");
+starttable();
+echo ("<tr><td colspan=2>");
+if (empty($chapter)) {$chapter = "";}
+if (empty($doxy)) {$doxy = "";}
+
+$files = getFileList($chapter);
+$subpage = true;
+foreach ($files as $file)
+{
+if (empty($chapter) and (strstr($file,"doxy/")&& !$doxy))
+	{
+
+	continue;
+	}
+	if (!strstr($file, "doxy/"))
+	{
+$currentHeader = getNav($file, $next, $prev);
+echo head(substr($currentHeader[0],0,strpos($currentHeader[0],".")),$currentHeader[1],trim($currentHeader[2]));
+	}
+
+include($file);
+}
+
+
+
+include("endpage.php");
+
+?>

@@ -1,0 +1,36 @@
+<?php
+
+$pagetitle = "Dharma Operation Guide";
+include("startpage.php");
+
+?>
+
+<p class="Body1">This section describes the mechanics of using the Dharma board, including:</p>
+<ul>
+	<li><?= crossref("oBootLoader", "Installing a boot loader"); ?></li>
+	<li><?= crossref("oCreateImage", "Building an image"); ?></li>
+	<li><?= crossref("oDownloadImage", "Downloading an image to the Dharma board"); ?></li>	
+	<li><?= crossref("oDebugImage", "Debugging an image"); ?></li>
+
+	<li><?= crossref("oBurnToFlash", "Burning an image to flash"); ?></li>
+	<li><?= crossref("oDebugFlash", "Debugging an image in flash"); ?></li>
+
+</ul>
+
+<p>Installation of the software was discussed in the <?= crossref("aQuickStart", "Quick Start Guide"); ?>, and is also available on the CD in the Readme.txt file.</p>
+
+
+<p class="Body1">
+To perform the steps in this section, you must connect the Dharma board to a COM port on your PC using a null modem cable. 
+
+</p>
+
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

@@ -1,0 +1,17 @@
+.bashrc
+Makefile
+Makefile.ecos
+configs/targets.mk
+configs/simple.mk
+configs/simple_modules
+configs/net.mk
+configs/net_modules
+configs/hdcdcf.mk
+configs/hdcdcf_modules
+player/Makefile
+scripts/parse_dcl.pl
+support/downloader.exe
+images/redboot_stub.bin
+images/usb_hd_test.srec
+images/usb_cf_test.srec
+images/gdb_module_115200.bin

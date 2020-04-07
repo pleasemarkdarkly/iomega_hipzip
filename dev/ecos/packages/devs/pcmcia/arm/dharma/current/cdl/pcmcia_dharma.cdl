@@ -1,0 +1,33 @@
+# ====================================================================
+#
+#      pcmcia_dharma.cdl
+#
+#      PCMCIA (Compact Flash) - Hardware support on Dharma
+#
+# ====================================================================
+# ====================================================================
+######DESCRIPTIONBEGIN####
+#
+# Author(s):      toddm
+# Original data:  toddm
+# Contributors:
+# Date:           2001-09-14
+#
+#####DESCRIPTIONEND####
+#
+# ====================================================================
+
+cdl_package CYGPKG_DEVS_PCMCIA_DHARMA {
+    display       "Dharma PCMCIA support"
+
+    parent        CYGPKG_IO_PCMCIA
+    active_if	  CYGPKG_IO_PCMCIA
+    active_if	  CYGPKG_HAL_ARM_EDB7XXX
+
+    implements    CYGHWR_IO_PCMCIA_DEVICE
+
+    include_dir   .
+    include_files ; # none _exported_ whatsoever
+    description   "PCMCIA device support for Dharma"
+    compile       dharma_pcmcia.c
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Media Player</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="aPlayManager.htm" title='Play Manager'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aCodec.htm" title='Codecs'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='aMediaPlayer'>Media Player</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">The Media Player controls the actual playback on your device's speakers. The Play Manager handles all interaction with the Media Player, so you don't need to do anything to get it to work. You can, however, call methods on the Media Player to find out details about the currently playing track, including the length of the track, and how far into the track the media player currently is. </p>
+<p class="Body1">The Media Player has four states: </p>
+<ol>
+	<li>PLAYING</li>
+	<li>PAUSED</li>
+	<li>STOPPED</li>
+	<li>NOT_CONFIGURED.</li>
+</ol>
+<p class="Body1">Before starting the media player, it must be associated with a Playstream, which points to the output device. The media player starts out in the NOT_CONFIGURED state, until a playlist entry has been passed to the <span class="Code">SetSong()</span> method. When this method is called, the Media Player creates an appropriate Codec object and all of the registered filters, and transitions to the STOPPED state.</p>
+<p class="Body1">You can then add or remove filters to the data flow by using the <span class="Code">AddNode()</span> and <span class="Code">RemoveNode()</span> methods, adding as many filters as desired. </p>
+
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="aPlayManager.htm" title='Play Manager'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aCodec.htm" title='Codecs'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Sep 17, 2001 11:06 am
+</p>
+</body>
+
+</html>

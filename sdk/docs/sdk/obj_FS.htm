@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Dharma SDK</title>
+</head>
+<SCRIPT LANGUAGE="JavaScript">
+
+	// This frameset script takes a parameter called
+	// 'FS' which directs what frameset will be loaded
+	// in the frame 'body'.  If no parameter is passed
+	// it will place a default there.
+	// 
+	// It will also pass a 'main' parameter to the URL
+	// for the 'body' frameset.
+	//
+	
+	// Netscape 3.x and greater
+	// Internet Explorer 4.x
+	//
+	// Container frame
+	// Start container frameset
+
+	document.write('<frameset rows="120, *">\n');
+	document.write('<frame name="topframe" src="dadio_buttonbar.htm" scrolling="no" noresize frameborder=no>\n');
+	document.write('<frameset cols="180, *">\n');
+	document.write('<frame name="leftframe" src="obj_toc.htm" scrolling="auto">\n');
+	
+	// create the left and right sides of the last frame
+	var fs1P1='<frame name="main" src="';
+	var fs1P2='" scrolling="auto">';
+	var allParts='';
+	
+	// capture the string in the address line of the browser
+	var szLocation=document.location.href;
+
+	// check to see if 'main' was passed
+		var id=szLocation.lastIndexOf('main=');
+	
+	if (id>0){
+		// 'main' was passed
+		var iLen=szLocation.length;
+		
+		// capture what the value of 'main' is
+		mainpage=szLocation.substring(id+5,iLen+1);
+
+	} else {
+		// 'main' was not passed
+
+		mainpage='oBuildSystem.htm';
+
+	}
+
+
+	//concatinate the left, main, and right parts of the frame variables
+	allParts=fs1P1 + mainpage + fs1P2;
+
+	// write the line out
+	document.write(allParts + '\n');
+
+	// close tag the frameset
+	document.write('</FRAMESET>\n');
+	document.write('</FRAMESET>\n');
+</script>
+
+
+</html>

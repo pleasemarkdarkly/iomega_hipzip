@@ -1,0 +1,49 @@
+# Date    : Apr  4 2002
+# Time    : 15:43:37
+# CPU     : 7312
+# OS      :
+# Compiler: gcc 3.0.3
+# Flags   :
+# Endian  : Little
+# Other   :
+#
+#
+#
+
+stru1  (sizeof =   4):   0   2
+stru2  (sizeof =   4):   0
+stru3  (sizeof =   8):   0   2   4   4   4
+stru4  (sizeof =  36):   0   4   8  12  16  20  24  26  28
+stru7  (sizeof = 484):   0   2  34  68  72  76  80
+stru8  (sizeof = 496):   0   4   6   8  12
+stru5  (sizeof =  12):   0   4   8
+stru6  (sizeof = 404):   0   2   4
+stru9  (sizeof =  28):   0   2   4   8  12
+stru10 (sizeof =  40):   0   4   8  10  12
+stru11 (sizeof =  20):   0   2   4   8  12  14  16
+stru12 (sizeof =  28):   0   2   4   8  12  16  20  24
+stru13 (sizeof =  40):   0   4  20  28  30
+stru16 (sizeof =  20):   0   4   8  12
+stru18 (sizeof =  16):   0   4   8  12
+stru21 (sizeof =  20):   0   4   8  12
+stru23 (sizeof =  56):   0   4   8  12  16  20  24  28  32  36  40  44
+stru15 (sizeof =   8):   0   4
+stru17 (sizeof =   4):   0
+stru19 (sizeof =  20):   0   0   0
+stru20 (sizeof =   8):   0   4
+stru24 (sizeof =   8):   0   4
+stru22 (sizeof =  12):   0   4   8
+stru25 (sizeof =  16):   0   4   8  12
+stru14 (sizeof =   8):   0   2
+sizeof(unsigned char) : 1
+sizeof(unsigned short): 2
+sizeof(unsigned int)  : 4
+sizeof(unsigned long) : 4
+sizeof(void *)        : 4
+Number of bits in unsigned char : 8
+Number of bits in unsigned short: 16
+Number of bits in unsigned int  : 32
+Number of bits in unsigned long : 32
+endian8  : 12 
+endian16 : 34 12 
+endian32 : 78 56 34 12 

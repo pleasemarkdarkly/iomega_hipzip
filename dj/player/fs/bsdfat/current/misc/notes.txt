@@ -1,0 +1,34 @@
+notes on the interface between the eCos filesystem layer and the
+msdosfs (fat) layer from FreeBSD (approx jan 1 2002 snap)
+
+* moved all file operation functions to msdosfs_fo_* in msdosfs_fops.c
+* not going to seperate out directory operation functions, since
+  msdosfs_fo_read handles both readdir() and standard read() style
+  requests
+* removed references to vnodes
+
+
+object mapping
+
+cyg_file
+ * f_mte   points to cyg_mtab_entry
+ * f_data  points to denode
+
+
+cyg_mtab_entry
+ * data    points to msdosfsmount (internal mount data)
+ * root    points to denode
+
+msdosfmount
+ * pm_mountp  points to cyg_mtab_entry
+
+denode
+ * de_pmp     points to msdosfsmount
+ * de_dev     is an io handle (cyg_file mapped to an io handle?)
+ * de_vnode   is a cyg_file
+
+cyg_dir is actually a denode ptr; eCos defines cyg_dir as a
+CYG_ADDRWORD and just passes it around. we'll use it to point to a denode
+
+
+structure

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Build the image</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="oBootLoader.htm" title='Install the Boot Loader'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="oDownloadImage.htm" title='Download an Image'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='oCreateImage'>Create an Image</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+
+ 
+<ol>
+<li> Start a bash shell and <span class="Code">cd</span> into your installation directory:
+<p class="CodeBlock">cd /c/iobjects/dadio/sdk</p>
+ </li>
+<li>Determine which target you want to build by looking at the available targets in <span class="Code">configs/targets.mk</span>, then build it. This generates the build tree, and creates a player image:
+<p class="CodeBlock">make simple</p>
+</li>
+ 
+<li>After the build is completed, you can <span class="Code">cd</span> into the build directory to find the generated image:
+<p class="CodeBlock">cd builds/simple<br>
+ls -l simple.exe
+</p></li>
+
+</ol> 
+<p class="Note">
+<strong>Note:</strong> Since the build tree was created in step #2, you can build directly from the build directory and save a little time from this point on:<br>
+<br>
+
+<span class="Code">cd /c/iobjects/dadio/sdk/builds/simple<br>
+
+make
+</span>
+</p> 
+
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="oBootLoader.htm" title='Install the Boot Loader'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="oDownloadImage.htm" title='Download an Image'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 30, 2001 9:19 am
+</p>
+</body>
+
+</html>

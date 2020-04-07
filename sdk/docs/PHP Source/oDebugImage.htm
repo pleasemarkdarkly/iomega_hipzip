@@ -1,0 +1,85 @@
+<?php
+
+$pagetitle = "Download and Debug the Image with gdb";
+include("startpage.php");
+
+?>
+
+
+ 
+<p class="Body1">
+Once a gdb stub has been installed on the board, it is possible to use <span class="Code">gdb</span> to load and debug an image. Since our image has been cross compiled, we need to use a cross debugger. Assuming you have built the target 'simple', you can perform the following steps to debug the image:
+
+</p> 
+
+<ol>
+<li>Open a bash shell and <span class="Code">cd</span> into the build directory:
+<p class="CodeBlock">cd /c/iobjects/dadio/sdk/builds/simple</p>
+</li> 
+<li>Prepare the Dharma(tm) board by powering it on, waiting one second, then hitting the WAKEUP button.
+</li> 
+<li>At the shell, load gdb:
+<p class="CodeBlock">arm-elf-gdb simple.exe</p>
+ 
+This should bring you to the <span class="Code">(gdb)</span> prompt.
+</li> 
+<li>Configure <span class="Code">gdb</span> for the remote target:
+ 
+<p class="CodeBlock">(gdb) set height 0<br>
+(gdb) set remotebaud 115200<br>
+(gdb) target remote com1<br>
+</p> 
+<p class="Body1">
+The <strong>height</strong> variable controls the pager &ndash; setting it to 0 disables the pager. The <strong>remotebaud</strong> variable controls the baud rate of the serial target. <strong>target remote com1 </strong>indicates that <span class="Code">gdb</span> should attach to a remote target on <span class="Code">com1</span> &ndash; if you are using a different serial port, you should specify <span class="Code">com<em>X</em></span> where <em>X</em> is your serial port number.
+
+</p> 
+<p class="Body1">
+At this point <span class="Code">gdb</span> will try to connect to the Dharma board. If the Dharma board is not properly connected or does not have a debug stub on it, <span class="Code">gdb</span> on the desktop side will hang. You can interrupt <span class="Code">gdb</span> by pressing CTRL-C, and then type "quit" to exit the console. After the board has been properly connected and set up, repeat steps 3-4 to attach the debugger.
+
+</p> 
+
+
+<p class="Note">
+<strong>Note:</strong> <span class="Code">gdb</span> will look for and execute a startup script if one is available. This allows highly repetitive commands, such as the three listed above, to be executed automatically. To use a startup script, create a file named <span class="Code">gdb.ini</span> in the same directory as your image, and put the commands in that file exactly as you would type them at the <span class="Code">gdb</span> prompt.
+
+</p></li> 
+
+
+<li>Transfer the image from the host to the device:
+<p class="CodeBlock">(gdb) load</p>
+ 
+This may take a while, depending on the size of the image. <span class="Code">gdb</span> will provide feedback describing which section is currently transfering. When the transfer is complete, it will return to the <span class="Code">(gdb)</span> prompt.
+ 
+</li>
+
+<li>Set any breakpoints you may have:
+<p class="CodeBlock">(gdb) break cyg_user_start<br>
+
+(gdb) break main/demos/simple/src/main.cpp:84
+</p> 
+<span class="Code">gdb</span> will come back with the line number and file associated with the breakpoint and a breakpoint number. You can disable or delete this breakpoint using the <strong>disable</strong> and <strong>delete</strong> commands.
+</li> 
+<li>Execute the image:
+<p class="CodeBlock">(gdb) continue</p>
+</li> </ol>
+
+<p class="Body1">
+Most of our demo applications provide some level of feedback over the serial port. Most images will attempt to draw to the lcd, or access peripherals on the board. This should give you feedback about the execution of the application. If you have breakpoints set, <span class="Code">gdb</span> will return you to the <span class="Code">(gdb)</span> prompt and indicate the breakpoint that has been hit.
+
+</p> 
+<p class="Body1">
+Complete documentation regarding <span class="Code">gdb</span> syntax and features is available at:
+
+</p> 
+<p class="Body2">
+<?= crossref("http://www.gnu.org/manual/gdb-4.17/gdb.html", "http://www.gnu.org/manual/gdb-4.17/gdb.html"); ?>
+</p>
+ 
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

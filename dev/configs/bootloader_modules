@@ -1,0 +1,16 @@
+bootloader/test		dharma
+bootloader/main		dharma
+util/debug		dharma
+io/storage              dharma
+devs/storage/ata	hd_slave
+fs/fat			bootloader
+gui/simplegui/common            dharma
+gui/simplegui/font              dharma
+gui/simplegui/screen            dharma
+gui/simplegui/screenelem/bitmap dharma
+gui/simplegui/screenelem/common dharma
+gui/simplegui/screenelem/drawregion dharma
+gui/simplegui/screenelem/textlabel  dharma
+gui/simplegui/show              dharma
+devs/lcd small_lcd
+util/datastructures dharma

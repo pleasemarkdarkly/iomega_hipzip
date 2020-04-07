@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Filters</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="aVolumeControl.htm" title='Volume Control'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="JavaScript:OpenView('cCreateMediaPlayer.htm');" title='Creating Your Media Player'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='aFilters'>Filters</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">Filters provide the ability to enhance, distort, or otherwise modify the raw output of the media player. Systems such as Sound Retrieval System (SRS) can be added using filters. Filters are always downstream of the codec. </p>
+<p class="Body1">The SDK provides the interfaces for creating filters, but there are no filters included. </p>
+<p class="Body1">The <span class="Code">IFilter</span> class behaves in a similar way to the <span class="Code">ICodec</span> class. It's designed as a wrapper to the actual code. You implement the methods for the <span class="Code">IFilter</span> class that call the appropriate methods in the actual filter.</p>
+<p class="Body1">The SDK includes a ring buffer system (RBUF) for buffering data between codecs and filters. Your filters will generally read from a dedicated input RBUF, and write to a dedicated output RBUF. Filters and RBUFs are strung together in a daisy-chain manner. The last RBUF becomes the input buffer for the Output Filter, which writes directly to the Output Stream.</p>
+</td></tr>
+<tr valign='top'><td><h3><a name='aFilterManager'>Filter Manager</a></h3></td>
+				<td><p class="Body1">The <span class="Module">Filter Manager</span> creates filter objects on request from the Media Player. To work correctly, you must register your filters, and provide input and output RBUF sizes.</p>
+<p class="Body1">
+The <span class="Module">Filter Manager</span> can provide any filter previously registered using the registration interface. See the <a href="JavaScript:OpenView('doxy/Filter_8h-source.html#doxy/Filter_8h-source');">Filter.h</a> documentation for more details on how to register a filter.
+</p>
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="aVolumeControl.htm" title='Volume Control'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="JavaScript:OpenView('cCreateMediaPlayer.htm');" title='Creating Your Media Player'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 8, 2001 11:37 pm
+</p>
+</body>
+
+</html>

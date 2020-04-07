@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Title</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="cDemo2.htm" title='Demo 2: Local Playback with Metadata Sorting'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="cGlobalDefinitions.htm" title='Global Definitions'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='cDemo3'>Demo 3: Streaming technologies</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+
+<p class="Body1">
+The streaming technologies demo uses Shoutcast URLs to connect to a streaming data source. This demo uses the same player controls as the <a href="cDemo1.htm#cDemo1">hard drive #1 demo</a>, except for loading and saving device state (buttons #8 and #16).  The data source consists of several URLs hard-coded into the <span class="Code">main.cpp</span> file that the device accesses on startup and streams through the player.  A Next Shoutcast URL button (mapped to button #7) lets you cycle through all of the URLs mapped to the demo. 
+</p>
+
+</td></tr>
+<tr valign='top'><td><h4><a name=''>Features</a></h4></td>
+				<td><p class="Body1">
+Demo #3 supports the following features:
+</p>
+<ul>
+	<li><strong>Play files from a Shoutcast URL.</strong> Access the internet and stream content from the server. </li>
+
+<li><strong>Simple UI.</strong> Display player functions; File name or Track ID and Artist name and album name for the playing track, Volume level, Bass level, Treble level, Play-pause-stop mode, play list mode, Time code for track, Internet source.
+</li>
+	<li><strong>Save and load device state information.</strong> Save and load the current settings of the device (Volume level, bass level, treble level, Playlist track selection, content database).</li>
+
+	<li><strong>Support button events.</strong> Play-Pause/Stop/Next track/Previous track/ Volume up/ Volume down/ Next Internet URL/ Save device state.</li>
+
+</ul>
+</td></tr>
+<tr valign='top'><td><h4><a name=''>Demo button configuration and description</a></h4></td>
+				<td><p class='Picture'><img src='images/DharmaButtons.gif' alt='Dharma Buttons' width="312" height="126"></p><p class="Body1">
+
+The streaming media demo supports the following button functions:
+</p>
+
+</td></tr>
+<tr><td colspan=2>
+<table border="1" cellspacing="3">
+	<tr><td>Button #</td><td>	Function	</td><td>Notes</td></tr>
+	<tr valign="top"><td>1	</td><td>Play / Pause	</td><td>
+Same as Demo #1.
+</td></tr>
+	<tr valign="top"><td>2	</td><td>Previous track</td><td>
+Five Shoutcast URLs are stored in the demo, each pointing to a streaming media source carrying a different genre &ndash; Classical, Rock, Country, Jazz, and Alternative. Pressing this button causes the demo to access the previous URL in the list, returning to the last one after the beginning of the list is reached.
+
+	</td></tr>
+	<tr valign="top"><td>3	</td><td>Volume Up	</td><td>
+	Same as Demo #1.
+</td></tr>
+	<tr valign="top"><td>4	</td><td>Bass up	</td><td>
+	Same as Demo #1.
+	</td></tr>
+	<tr valign="top"><td>5	</td><td>Treble up	</td><td>	
+Same as Demo #1.
+</td></tr>
+	<tr valign="top"><td>6	</td><td>Not used</td><td>
+
+	</td></tr>
+	<tr valign="top"><td>7	</td><td>Not used</td><td>
+
+</td></tr>
+
+<tr valign="top"><td>8	</td><td>Not used	</td><td>
+
+</td></tr>
+	<tr valign="top"><td>9	</td><td>Stop	</td><td>
+Same as Demo #1.
+</td></tr>
+	<tr valign="top"><td>10	</td><td>Next track	</td><td>
+Five Shoutcast URLs are stored in the demo, each pointing to a streaming media source carrying a different genre &ndash; Classical, Rock, Country, Jazz, and Alternative. Pressing this button causes the demo to access the next URL in the list, returning to the first one after the end of the list is reached.
+
+
+</td></tr>
+	<tr valign="top"><td>11	</td><td>Volume Down	</td><td>
+Same as Demo #1.
+</td></tr>
+	<tr valign="top"><td>12	</td><td>Bass down	</td><td>
+Same as Demo #1.
+</td></tr>
+	<tr valign="top"><td>13	</td><td>Treble down	</td><td>
+Same as Demo #1.
+</td></tr>
+	<tr valign="top"><td>14	</td><td>Not used  </td><td>	
+</td></tr>
+	<tr valign="top"><td>15	</td><td>Not used	</td><td></td></tr>
+	<tr valign="top"><td>16	</td><td>Not used	</td><td></td></tr>
+	
+</table>
+</td></tr>
+<tr><td></td><td>
+</td></tr>
+<tr valign='top'><td><h4><a name=''>Shoutcast URLs</a></h4></td>
+				<td><p class="Body1">
+The Net Data Source object supports DHCP and DNS. You can provide a named URL or a static IP address to access a media stream. 
+</p>
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="cDemo2.htm" title='Demo 2: Local Playback with Metadata Sorting'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="cGlobalDefinitions.htm" title='Global Definitions'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 31, 2001 1:10 pm
+</p>
+</body>
+
+</html>

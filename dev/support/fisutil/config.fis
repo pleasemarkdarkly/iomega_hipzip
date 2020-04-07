@@ -1,0 +1,63 @@
+# fisutil sample script
+# syntax notes:
+# lines with # at the front are ignored
+# lines with '\n' at the front are ignored (blank lines)
+# all numbers are hexidecimal, without a leading 0x
+# order is important, there is no parse tree, etc.
+# collision detection is pretty minimal, images must be arranged in the
+# order they need to appear, so a forced image must be at about the right place
+# (usually ok, the only forced images should be codecs, and bootloader, which
+# are at the beginning and end of usable space.
+
+# flashbase
+E0000000
+
+# flashsize (2mb in this example)
+200000
+
+# blocksize
+20000
+
+# number of images
+3
+
+##### Start Images
+
+##### Image 1
+# file
+boot.bin
+# name
+boot
+# ram load
+00000000
+# flash force
+E0000000
+
+
+##### Image 2
+# file
+app.img
+# name 
+app
+# ram load
+00020000
+# flash force
+00000000
+
+
+##### Image 3
+# file
+codecs.bin
+# name
+codecs
+# ram load
+00000000
+# flash force 
+E0180000
+
+##### End Images
+
+
+# output image name
+image.bin
+

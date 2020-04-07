@@ -1,0 +1,97 @@
+<?php
+
+$pagetitle = "Title";
+include("startpage.php");
+
+?>
+
+
+<p class="Body1">
+For demos and repetitive testing, you may want to burn the image to the flash memory rather than transfer it over a serial connection every time. RedBoot provides flash management and can be used to do this as follows:
+
+</p> 
+<ol>
+
+<li>Start a bash shell, and <span class="Code">cd</span> to the build directory:
+<p class="CodeBlock">cd /c/iobjects/dadio/sdk/builds/simple</p>
+</li> 
+<li>Convert your image to the srec format using the following syntax:
+<p class="CodeBlock">arm-elf-objcopy -O srec simple.exe simple.srec</p>
+ 
+This will generate the file "simple.srec" in the current directory.
+
+<p class="Note">
+<strong>Note:</strong> You can set up a <span class="Code">post_link_step</span> in the build system to automatically perform this copy step. Refer to the <?= crossref("oOptionalVars", "build system documentation"); ?> for more information.
+
+</p> 
+</li>
+
+<li>Start your terminal program and wake up the board. Your terminal program must support xmodem, ymodem, or zmodem for the transfer.
+</li> 
+<li>At the RedBoot prompt, initiate a transfer on the device side:
+<p class="CodeBlock">RedBoot> load -m xmodem -b 0x20000 simple</p>
+ 
+This tells redboot to start an xmodem transfer, and to place the transfered image at <span class="Code">0x20000</span> in RAM. The image is given a name, "simple", but this is not used at this point.
+</li> 
+
+<li>Initate a transfer on the host side. If you are using TeraTerm, this can be done by going to File-> Transfer-> XMODEM-> Send....
+Send the previously created <span class="Code">simple.srec</span> image to the device
+</li> 
+
+<li>When the transfer completes, RedBoot will print some gathered information about the image. For example:
+<p class="CodeBlock">Entry Point: 0x00020040, address range: 0x00020000-0x000ae1c4, length: 0x0008e1c4
+</p> 
+You will need this information to burn this image to the flash.
+</li> 
+<li>Tell RedBoot to burn the image to the flash using the following command:
+<p class="CodeBlock">RedBoot> fis create -b 0x20000 -l 0x8e1c4 -e 0x20040 -r 0x20000 simple
+</p> 
+<p class="Body1">
+"fis create" tells redboot we want to create a new image in the Flash Image System (FIS).
+
+</p>
+<p class="Body1">
+"-b 0x20000" indicates the base address in RAM of the image to burn, and corresponds directly to the "-b 0x20000" argument we used in the "load" operation.
+</p>
+<p class="Body1">
+"-l 0x8e1c4" tells RedBoot the length of the image &ndash; this is taken from the info line in step 6.
+</p>
+<p class="Body1">
+"-e 0x20040" tells RedBoot the entry point to the image &ndash; again, taken from the info line in step 6.
+</p>
+<p class="Body1">
+"-r 0x20000" indicates the address to load the image to. This is important since all of our images will need to be loaded to this address.
+</p>
+<p class="Body1">
+"simple" assigns a name to this image.
+
+</p> 
+At this point, RedBoot will begin burning the flash with the image. when it is done, it will return to the RedBoot prompt.
+ </li>
+<li>Verify the image was burned correctly:
+<p class="CodeBlock">RedBoot> fis list</p>
+ 
+The listing of the flash contents should have an entry for "simple".
+ </li>
+
+<li>Load and execute the image. It is possible to execute the image already in RAM (from step 4) without reloading it from the FIS. However, to properly verify the image, we should reset the board and reload the image:
+<p class="CodeBlock">RedBoot> reset</p>
+ 
+The board should reset and return to the RedBoot> prompt.
+ 
+<p class="CodeBlock">RedBoot> fis load simple<br>
+RedBoot> go<br>
+</p> 
+<p class="Body1">
+This should start executing the image.
+</p>
+</li> 
+
+</ol>
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

@@ -1,0 +1,136 @@
+# Example module listing
+#  use this as a reference to see what modules you need
+#  for various services
+
+#
+# You probably dont need to modify anything in this section
+#
+
+# Basic system interfaces
+content/common                  dharma
+playlist/common                 dharma
+datasource/common               dharma
+codec/common                    dharma
+datastream/input                dharma
+datastream/filter               dharma
+datastream/output               dharma
+
+# Essential system components
+core/events                     dharma
+core/mediaplayer                dharma
+core/playmanager                dharma
+codec/codecmanager              dharma
+datastream/filtermanager        dharma
+datastream/outputmanager        dharma
+datasource/datasourcemanager    dharma
+playlist/simpleplaylist         dharma
+datastream/outfilter            dharma
+datastream/waveout              dharma
+datastream/srcfilter            dharma
+
+# System utilities
+util/datastructures             dharma
+util/debug                      dharma
+util/diag                       dharma
+util/eresult                    dharma
+util/eventq                     dharma
+util/ident                      dharma
+util/rbuf                       dharma
+util/registry   	        persistent
+util/tchar                      dharma
+util/timer                      dharma
+test                            dharma
+
+#
+# Customize this section to meet your needs
+#
+
+# Your main module components
+main                            dharma
+main/ecos_support               dharma
+main/ui/common                  dharma
+
+# Device drivers we use
+devs/audio                      record
+devs/keyboard                   dharma
+devs/lcd                        dharma
+devs/storage/ata                hd_slave
+#devs/ir                         dharma
+
+# Codecs we use
+codec/pcm                       dharma
+codec/wav                       dharma
+codec/wma                       dharma
+codec/mp3/arm                   dharma
+codec/mp3/id3v2                 dharma
+
+# Interfaces we use
+io/audio                        dharma
+io/storage                      dharma
+
+# Support for fat filesystems
+#  requires io/storage and devs/storage/ata
+fs/fat                          dharma
+datastream/fatfile              dharma
+datasource/fatdatasource        dharma
+
+#fs/bsdfat                       dharma
+
+io/bio                          dharma
+
+# Support for ISO9660 and CDDA CDs
+#  requires io/storage and devs/storage/ata
+fs/iso                          dharma
+datastream/cddafile             dharma
+datastream/isofile              dharma
+datasource/cddatasource         dharma
+
+# Support for freedb lookups on CDDA CDs
+content/freedb                  dharma
+
+# Support for line in as a stream
+datastream/lineinput            dharma
+datasource/lineindatasource     dharma
+
+# Support for network streams
+datastream/netstream            dharma
+datasource/netdatasource        dharma
+
+# Support for a serial user interface
+main/ui/serial                  dharma
+
+# or, support for a simple GUI
+#main/ui/simplegui               dharma
+#gui/simplegui/common            dharma
+#gui/simplegui/show              dharma
+#gui/simplegui/font              dharma
+#gui/simplegui/screen            dharma
+#gui/simplegui/screenelem/common     dharma
+#gui/simplegui/screenelem/bitmap     dharma
+#gui/simplegui/screenelem/drawregion dharma
+#gui/simplegui/screenelem/textlabel  dharma
+
+# Support for the simple content manager
+#content/simplecontentmanager    dharma
+#content/simplemetadata          dharma
+
+# Support for the metakit content manager
+content/metakitcontentmanager   dharma
+content/metadatatable           dharma
+util/metakit	               	dharma
+
+# Support for playlist formats
+playlist/plformat/common	    dharma
+playlist/plformat/manager	    dharma
+playlist/plformat/dpl		    dharma
+
+# Support for SRS audio post processing
+#datastream/srsfilter            dharma
+
+# Support for QSound audio post processing
+#datastream/qsoundfilter         dharma
+
+# Support for PEM MP3 encoding
+#datastream/pempipe              dharma
+#codec/mp3/pem                   dharma
+#util/thread                     dharma

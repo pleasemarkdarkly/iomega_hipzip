@@ -1,0 +1,24 @@
+# functionality testing module file for DJ35
+
+test/emi/current                     default
+main/ecos_support                       default
+
+# hardware specific modules
+devs/audio/current                      cs42l50
+devs/storage/ata/current                dj
+devs/ir                                 uei
+
+# LCD/GUI support
+devs/lcd/current                        HP24516RBU-LYO
+
+devs/keyboard/current                   dharma
+
+util/eresult/v1_0                       dharma
+util/datastructures/current             dharma
+util/debug/current                      dharma
+util/eventq/v1_0                        dharma
+util/timer/current                      dharma
+util/thread/current                     dharma
+io/storage/v1_01                        dharma
+core/events/v1_02                       dharma
+main/ecos_support                       default

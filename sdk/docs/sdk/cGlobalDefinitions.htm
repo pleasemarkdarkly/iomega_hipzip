@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Global Definitions</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="cDemo3.htm" title='Demo 3: Streaming technologies'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="cAbstractClasses.htm" title='Dharma Abstract Classes'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h1
+><a name='cGlobalDefinitions'>Global Definitions</a></h1
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">This section describes definitions, macros, and types used globally in the Dharma SDK. Take advantage of them to simplify your client application development. The list includes:
+</p>
+<ul>
+<li>Data types</li>
+<ul>
+	<li>ERESULT</li>
+	<li>TCHAR</li>
+</ul>
+<li>Containers</li>
+
+<ul>
+	<li>Simple List</li>
+	<li>Simple Vector</li>
+	<li>Simple Map</li>
+</ul>
+
+<li>Macros</li>
+<ul>
+	<li>Debugging system</li>
+	<li>Events</li>
+	<li>Registry</li>
+	<li>System Timer</li>
+</ul>
+
+</ul>
+</td></tr>
+<tr><td colspan=2><h2><a name='cDataTypes'>Data Types</a></h2></td></tr>
+				<tr><td width=50>&nbsp;</td><td>
+</td></tr>
+<tr valign='top'><td><h3><a name='cERESULT'>ERESULT</a></h3></td>
+				<td><p class="Body1">
+An <a href="JavaScript:OpenView('doxy/eresult_8h-source.html#doxy/eresult_8h-source');">ERESULT</a> is a 32-bit code divided into Severity (8 bits), Zone (8 bits), and Code (16 bits). To use ERESULT in your own code, you will need to define a unique zone and include the <span class="Code">util/eresult/eresult.h</span> header. You can then define any integer as a return code.
+</p>
+
+<p class="Body1">
+ERESULT is a standard return data type used extensively in the SDK. It provides a way of quickly evaluating whether an operation completed successfully, and if not, what the problem was.
+</p>
+<p class="Body1">
+You can simply check <span class="Code">succeeded()</span> or <span class="Code">failed()</span> on the ERESULT to quickly determine whether the call was successful. These methods return boolean values.
+</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name='cTCHAR'>TCHAR</a></h3></td>
+				<td>
+<p class="Body1">
+The <a href="JavaScript:OpenView('doxy/group__tchar.html#doxy/group__tchar');">TCHAR</a> data type is a double-byte character encoding, basically a wide text format.
+</p>
+
+</td></tr>
+<tr><td colspan=2><h2><a name='cContainers'>Containers</a></h2></td></tr>
+				<tr><td width=50>&nbsp;</td><td>
+</td></tr>
+<tr valign='top'><td><h3><a name='cSimpleList'>Simple List</a></h3></td>
+				<td><p class="Body1">
+The <a href="JavaScript:OpenView('doxy/classSimpleList.html#doxy/classSimpleList');">Simple List</a> container is a double-linked list. Each element in the container contains a data item and two pointers: one to the previous item, and one to the next item. 
+</p>
+<p class="Body1">
+To use the Simple List container, include the <span class="Code">util/datastructures/include/SimpleList.h</span> file.
+</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name='cSimpleVector'>Simple Vector</a></h3></td>
+				<td><p class="Body1">
+The <a href="JavaScript:OpenView('doxy/classSimpleVector.html#doxy/classSimpleVector');">Simple Vector</a> container is a basic indexed array. It has functions for adding, removing, and inserting values using an index value.
+</p>
+<p class="Body1">
+To use the Simple Vector container, include the <span class="Code">util/datastructures/include/SimpleVector.h</span> file.
+</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name='cSimpleMap'>Simple Map</a></h3></td>
+				<td><p class="Body1">
+The <a href="JavaScript:OpenView('doxy/classSimpleMap.html#doxy/classSimpleMap');">Simple Map</a> container is an associative array. You can store and retrieve data associated with a key value.
+</p>
+<p class="Body1">
+To use the Simple Map container, include the <span class="Code">util/datastructures/include/SimpleMap.h</span> file.
+</p>
+
+</td></tr>
+<tr><td colspan=2><h2><a name='cMacros'>Macros</a></h2></td></tr>
+				<tr><td width=50>&nbsp;</td><td>
+
+</td></tr>
+<tr valign='top'><td><h3><a name='cDebugSystem'>Debugging System</a></h3></td>
+				<td>
+<p class="Body1">
+The SDK includes <a href="JavaScript:OpenView('doxy/debug_8h-source.html#doxy/debug_8h-source');">debugging macros</a>. You will mostly use three functions to provide debugging information:
+</p>
+<ol>
+	<li>DEBUG_MODULE() &ndash; use to specify a module for debugging. You should define your own modules using this function.</li>
+	<li>DEBUG_USE_MODULE() &ndash; use this to specify an existing module to send the messages to.</li>
+	<li>DEBUG() &ndash; use this function to send a message of a specified severity to the debug log.</li>
+</ol>
+
+<p class="Body1">
+Debugging can be turned on or off by module, and you can use a single switch at compile time to turn off all debugging. Each message has a severity level, and for each module, you can specify what level of messages you want debugged.
+</p>
+<p class="Body1">
+The macro is in <span class="Code">util/debug/include/debug.h</span>.
+</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name='cEvents'>Event Queue</a></h3></td>
+				<td><p class="Body1">
+All events are handled by the Event Queue API. To use this API, include the <span class="Code"><a href="JavaScript:OpenView('doxy/EventQueueAPI_8h-source.html#doxy/EventQueueAPI_8h-source');">util/eventq/include/EventQueueAPI.h</a></span> file in your header. This header defines methods for both C and C++ code.
+</p>
+
+<p class="Body1">
+To send an event to the Event Queue, you simply provide an ID and data to the PutEvent() method.
+</p>
+
+
+</td></tr>
+<tr valign='top'><td><h3><a name='cRegistry'>Registry</a></h3></td>
+				<td><p class="Body1">
+The Registry is a place where you can store data you want to be persistent. 
+Your application should restore the registry on startup, and save it on shutdown 
+<!-- If your device does not store the Registry in flash, your application will need to write the registry  -->
+to a FAT device, or provide another data source type capable of storing it.
+</p>
+<p class="Body1">
+The Registry provides a simple key/value database system. To use it, include the <span class="Code"><a href="JavaScript:OpenView('doxy/Registry_8h-source.html#doxy/Registry_8h-source');">util/registry/include/Registry.h</a></span> file.
+</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name='cTimer'>System Timer</a></h3></td>
+				<td><p class="Body1">
+The System Timer provides a way to execute functions at specific intervals. The timer uses a tick interval of 100 ms, or 1/10th of a second. To use it, you include the <span class="Code"><a href="JavaScript:OpenView('doxy/Timer_8h-source.html#doxy/Timer_8h-source');">util/timer/include/Timer.h</a></span> file, and register a function with the interval and number of iterations.
+</p>
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="cDemo3.htm" title='Demo 3: Streaming technologies'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="cAbstractClasses.htm" title='Dharma Abstract Classes'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 31, 2001 1:14 pm
+</p>
+</body>
+
+</html>

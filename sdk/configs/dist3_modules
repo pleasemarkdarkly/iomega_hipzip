@@ -1,0 +1,5 @@
+devs/storage/ata/v1_0        cd_only
+# the following are here to satisfy dcl deps
+io/storage/v1_0              default
+util/debug/v1_0              default
+

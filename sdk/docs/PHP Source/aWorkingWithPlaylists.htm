@@ -1,0 +1,45 @@
+<?php
+
+$pagetitle = "Working With Playlists";
+include("startpage.php");
+?>
+
+
+
+
+<p class="Body1"><span class="Module">Playlists</span> are defined as separate objects, but they are tightly integrated with the <span class="Module">Content Manager</span>. 
+</p>
+<p class="Body1">
+Before you can create a playlist, the <span class="Module">Content Manager</span> must have a complete list of available tracks (see <?= crossref("aContentEnumeration", "Content Enumeration"); ?>). This list is stored as a collection of <em>Media Content Records</em>.
+</p>
+
+<p class="Body1">Then, before the media player can play any tracks, you need to create a playlist. You will probably want to get some sort of user input to determine what tracks to add to the playlist, and in what sequence.
+</p>
+<p class="Body1">
+The purpose of separating the media content records from the playlist is so that your users can play their music in any sequence. They can play a single track multiple times, or omit available tracks entirely.
+</p>
+
+<?= picture("PlaylistEntries.gif", "Playlist Entries link to Media Content Records"); ?>
+
+
+<p class="Body1">When you've populated the media records and playlist records, you pass a pointer for the playlist, and another for the <span class="Module">Content Manager</span>, into the <span class="Module">Play Manager</span> if you haven't already. You can also set a Playlist Mode, from among the following options:
+</p>
+<ul>
+	<li>NORMAL: Play the entire list from start to finish, and then stop.</li>
+	<li>RANDOM: Play each track once, in random order.</li>
+	<li>REPEAT_ALL: Play the entire list from start to finish, and then restart.</li>
+	<li>REPEAT_RANDOM: Play a random track, and then play another random track, until the user intervenes…</li>
+	<li>REPEAT_TRACK: Keep playing the current track until you run out of power…</li>
+	
+</ul>
+
+
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

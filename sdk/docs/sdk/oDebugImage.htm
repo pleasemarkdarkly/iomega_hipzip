@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Download and Debug the Image with gdb</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="oDownloadImage.htm" title='Download an Image'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="oBurnToFlash.htm" title='Download an Image to Flash'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='oDebugImage'>Download and Debug the Image</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+
+ 
+<p class="Body1">
+Once a gdb stub has been installed on the board, it is possible to use <span class="Code">gdb</span> to load and debug an image. Since our image has been cross compiled, we need to use a cross debugger. Assuming you have built the target 'simple', you can perform the following steps to debug the image:
+
+</p> 
+
+<ol>
+<li>Open a bash shell and <span class="Code">cd</span> into the build directory:
+<p class="CodeBlock">cd /c/iobjects/dadio/builds/simple</p>
+</li> 
+<li>Prepare the Dharma(tm) board by powering it on, waiting one second, then hitting the WAKEUP button.
+</li> 
+<li>At the shell, load gdb:
+<p class="CodeBlock">arm-elf-gdb simple.exe</p>
+ 
+This should bring you to the <span class="Code">(gdb)</span> prompt.
+</li> 
+<li>Configure <span class="Code">gdb</span> for the remote target:
+ 
+<p class="CodeBlock">(gdb) set height 0<br>
+(gdb) set remotebaud 115200<br>
+(gdb) target remote com1<br>
+</p> 
+<p class="Body1">
+The <strong>height</strong> variable controls the pager &ndash; setting it to 0 disables the pager. The <strong>remotebaud</strong> variable controls the baud rate of the serial target. <strong>target remote com1 </strong>indicates that <span class="Code">gdb</span> should attach to a remote target on <span class="Code">com1</span> &ndash; if you are using a different serial port, you should specify <span class="Code">com<em>X</em></span> where <em>X</em> is your serial port number.
+
+</p> 
+<p class="Body1">
+At this point <span class="Code">gdb</span> will try to connect to the Dharma board. If the Dharma board is not properly connected or does not have a debug stub on it, <span class="Code">gdb</span> on the desktop side will hang. You can interrupt <span class="Code">gdb</span> by pressing CTRL-C, and then type "quit" to exit the console. After the board has been properly connected and set up, repeat steps 3-4 to attach the debugger.
+
+</p> 
+
+
+<p class="Note">
+<strong>Note:</strong> <span class="Code">gdb</span> will look for and execute a startup script if one is available. This allows highly repetitive commands, such as the three listed above, to be executed automatically. To use a startup script, create a file named <span class="Code">gdb.ini</span> in the same directory as your image, and put the commands in that file exactly as you would type them at the <span class="Code">gdb</span> prompt.
+
+</p></li> 
+
+
+<li>Transfer the image from the host to the device:
+<p class="CodeBlock">(gdb) load</p>
+ 
+This may take a while, depending on the size of the image. <span class="Code">gdb</span> will provide feedback describing which section is currently transfering. When the transfer is complete, it will return to the <span class="Code">(gdb)</span> prompt.
+ 
+</li>
+
+<li>Set any breakpoints you may have:
+<p class="CodeBlock">(gdb) break cyg_user_start<br>
+
+(gdb) break main/demos/simple/src/main.cpp:84
+</p> 
+<span class="Code">gdb</span> will come back with the line number and file associated with the breakpoint and a breakpoint number. You can disable or delete this breakpoint using the <strong>disable</strong> and <strong>delete</strong> commands.
+</li> 
+<li>Execute the image:
+<p class="CodeBlock">(gdb) continue</p>
+</li> </ol>
+
+<p class="Body1">
+Most of our demo applications provide some level of feedback over the serial port. Most images will attempt to draw to the lcd, or access peripherals on the board. This should give you feedback about the execution of the application. If you have breakpoints set, <span class="Code">gdb</span> will return you to the <span class="Code">(gdb)</span> prompt and indicate the breakpoint that has been hit.
+
+</p> 
+<p class="Body1">
+Complete documentation regarding <span class="Code">gdb</span> syntax and features is available at:
+
+</p> 
+<p class="Body2">
+<a href="http://www.gnu.org/manual/gdb-4.17/gdb.html" target="_blank">http://www.gnu.org/manual/gdb-4.17/gdb.html</a></p>
+ 
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="oDownloadImage.htm" title='Download an Image'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="oBurnToFlash.htm" title='Download an Image to Flash'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Nov 1, 2001 12:20 pm
+</p>
+</body>
+
+</html>

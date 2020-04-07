@@ -1,0 +1,359 @@
+; DJ35 Beta 1 Automated test script
+; temancl@fullplaymedia.com
+
+; --- MAIN ---
+
+; teraterm setup
+setsync 1
+
+pass = 1
+
+call ledtest
+call keytest
+call perftest
+;call serialtest
+call irtest
+call nettest
+call lcdtest
+call dactest
+call adctest
+call atatest
+
+
+:end
+if pass = 0 then
+    messagebox 'DJ Tests Failure' 'Error'
+else
+    messagebox 'DJ Tests Pass' 'Pass'
+endif
+
+end
+
+; -------------- HELPER ROUTINES ------------------
+
+:testfail
+pass = 0
+strconcat StatusString ' FAIL'
+messagebox StatusString 'Error'
+return
+
+:testpass
+strconcat StatusString ' OK'
+closesbox
+statusbox StatusString 'Status'
+pause 1
+return
+
+:starttest
+timeout = 0
+sendln
+wait '> '
+closesbox
+statusbox StatusString 'Status'
+sendln CmdString
+return
+
+;---------------------- TESTS ----------------------
+
+; - test format -
+; set status string
+; set command string
+; wait for user ok?
+; call test start
+; wait for success or failure criteria
+; pass displays to status window
+; fail pops up a dialog box
+
+;-----------------------------
+:atatest
+
+StatusString = 'ATA Test'
+CmdString = 'ata'
+call starttest
+timeout=45
+wait 'drive failed' 'C/H/S: 16383/16/63'
+
+if result<2 then
+   call testfail
+else
+   call testpass
+endif
+   
+CmdString = 'eject'
+call starttest
+messagebox 'Verify the tray opened' 'Request'
+
+
+CmdString = 'gpio d 1 0 0'
+call starttest
+pause 1
+
+CmdString = 'gpio d 1 0 1'
+call starttest
+
+wait '> '
+yesnobox 'Did the tray close?' 'Query'
+
+; fail if user answers no
+if result=0 then
+    messagebox 'ATA reset mod test failed - close the tray manually' 'Error'
+    pass = 0
+endif
+   
+return
+;-----------------------------
+:serialtest
+StatusString = 'Serial Test'
+CmdString = 'serial'
+call starttest
+timeout=100
+wait 'return val = 0' 'return val = -1'
+if result>1 then
+	call testfail
+else
+	call testpass
+endif
+return
+
+;-----------------------------
+:dactest
+StatusString = 'DAC Test'
+CmdString = 'dac'
+messagebox 'Press OK to start DAC test' 'Notification'
+call starttest
+wait 'DAC Test'
+wait '> '
+yesnobox 'Did you hear tones?' 'Query'
+
+; fail if user answers no
+if result=0 then
+    pass = 0
+endif
+
+return
+;-----------------------------
+:adctest
+StatusString = 'ADC Test'
+CmdString = 'adc a'
+messagebox 'Press OK to start ADC test' 'Notification'
+call starttest
+wait 'ADC Test'
+wait '> '
+yesnobox 'Did you hear audio?' 'Query'
+
+; fail if user answers no
+if result=0 then
+    pass = 0
+endif
+return
+
+;-----------------------------
+:lcdtest
+StatusString = 'LCD Test'
+CmdString = 'lcd'
+messagebox 'Press OK to start LCD test' 'Notification'
+call starttest
+wait 'LCD Test'
+wait '> '
+yesnobox 'Did the LCD turn on and off correctly?' 'Query'
+
+; fail if user answers no
+if result=0 then
+    pass = 0
+endif
+return
+;-----------------------------
+:nettest
+StatusString = 'Ethernet Test'
+CmdString = 'net'
+call starttest
+timeout=10
+wait 'error' 'CS8900 - 00 06 d4'
+if result<2 then
+   call testfail
+else
+   call testpass
+endif
+return
+;-----------------------------
+:irtest
+StatusString = 'IR Test'
+
+; wait for 1 ir event, power
+keyval = '20'
+call irhelper
+
+closesbox
+statusbox 'IR Test Done' 'Status'
+pause 1
+
+return
+;-----------------------------
+:keytest
+StatusString = 'Keypad Test'
+
+keyval = '1'
+call keyhelper
+keyval = '2'
+call keyhelper
+keyval = '3'
+call keyhelper
+keyval = '4'
+call keyhelper
+keyval = '5'
+call keyhelper
+keyval = '6'
+call keyhelper
+keyval = '7'
+call keyhelper
+keyval = '8'
+call keyhelper
+keyval = '9'
+call keyhelper
+keyval = '10'
+call keyhelper
+keyval = '11'
+call keyhelper
+keyval = '12'
+call keyhelper
+keyval = '13'
+call keyhelper
+closesbox
+statusbox 'Key Test Done' 'Status'
+pause 1
+
+return
+
+
+:keyhelper
+
+CmdString = 'key ' 
+strconcat CmdString keyval
+call starttest
+waitln 'Waiting for key '
+; save key name
+
+strscan inputstr '-'
+strcopy inputstr result 10 keyname
+StatusString = 'Waiting for key '
+strconcat StatusString keyname
+closesbox
+statusbox StatusString 'Press'
+wait 'return val = 0' 'return val = -1'
+if result>1 then
+	call testfail
+else
+	call testpass
+endif
+
+return
+
+:irhelper
+
+CmdString = 'ir ' 
+strconcat CmdString keyval
+call starttest
+StatusString = 'Waiting for IR event '
+strconcat StatusString keyval
+wait StatusString
+closesbox
+statusbox StatusString 'Press'
+wait 'return val = 0' 'return val = -1'
+if result>1 then
+	call testfail
+else
+	call testpass
+endif
+
+return
+
+
+;-----------------------------
+
+:ledtest
+StatusString = 'LED Test'
+CmdString = 'gpio b 2 1 1'
+call starttest
+wait '> '
+
+yesnobox 'Is only the red LED on?' 'Query'
+
+; fail if user answers no
+if result=0 then
+    pass = 0
+endif
+
+CmdString = 'gpio b 2 1 0'
+call starttest
+wait '> '
+
+CmdString = 'gpio b 3 1 1'
+call starttest
+wait '> '
+
+yesnobox 'Is only the green LED on?' 'Query'
+
+; fail if user answers no
+if result=0 then
+    pass = 0
+endif
+
+CmdString = 'gpio b 3 1 0'
+call starttest
+wait '> '
+
+return
+;-----------------------------
+:perftest
+StatusString = 'Network Performance Test'
+CmdString = 'slave'
+call starttest
+timeout=30
+; wait for my ip: string
+waitln 'my IP:'
+; save my ip
+strcopy inputstr 17 15 ipstr
+wait 'Start test for eth0'
+strcommand = 'c:\netmst.bat '
+strconcat strcommand ipstr
+; messagebox strcommand 'cmd' 
+; exec 'netmaster ip'
+exec strcommand
+wait 'test complete'
+
+; ask user to check results
+yesnobox 'Is send ~550KB/S and recv ~620KB/S ?' 'Query'
+
+
+; fail if user answers no
+if result=0 then
+    pass = 0
+endif
+
+; wait for cmd prompt (TODO: timeout here)
+;wait '> '
+
+return
+;-----------------------------
+:stresstest
+StatusString = 'Stress Test'
+CmdString = 'stress'
+call starttest
+timeout=0
+wait 'error' 'STRESS ERROR' 'stress test pass'
+if result<3 then
+   call testfail
+else
+   call testpass
+endif
+
+return
+;-----------------------------
+:removecd
+StatusString = 'Remove CD'
+CmdString = 'eject'
+call starttest
+messagebox 'Remove the Audio CD' 'Request'
+CmdString = 'eject'
+call starttest
+return

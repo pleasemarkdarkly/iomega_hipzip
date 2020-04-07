@@ -1,0 +1,179 @@
+# ====================================================================
+#
+#      usbs_dharma_pdiusbd12.cdl
+#
+#      Dharma PDIUSBD12 USB support.
+#
+# ====================================================================
+#####COPYRIGHTBEGIN####
+#                                                                          
+#                                                                          
+#####COPYRIGHTEND####
+# ====================================================================
+######DESCRIPTIONBEGIN####
+#
+# Author(s):      toddm@iobjects.com
+# Original data:  bartv
+# Contributors:
+# Date:           2001-02-14
+#
+#####DESCRIPTIONEND####
+# ====================================================================
+
+cdl_package CYGPKG_DEVS_USB_DHARMA_PDIUSBD12 {
+    display     "Dharma PDIUSBD12 USB Device Driver"
+    include_dir "cyg/io/usb"
+    parent      CYGPKG_USB
+    implements  CYGHWR_IO_USB_SLAVE
+    doc         devs-usb-dharma-pdiusbd12.html
+
+    # Make sure that we are running on the right hardware.
+    requires CYGPKG_HAL_ARM
+    requires CYGPKG_HAL_ARM_EDB7XXX
+
+    
+    description "
+        ."
+
+
+    cdl_option CYGFUN_DEVS_USB_DHARMA_PDIUSBD12_EP0 {
+	display       "Support the control endpoint 0"
+	default_value CYGINT_IO_USB_SLAVE_CLIENTS
+	# And the USB support packages
+	requires      CYGPKG_IO_USB CYGPKG_IO_USB_SLAVE
+	compile       usbs_pdiusbd12.c
+	compile       -library=libextras.a usbs_pdiusbd12_data.cxx
+	description "
+	    Enable support for endpoint 0. If this support is disabled
+	    then the entire USB port is unusable."
+    }
+    
+    cdl_option CYGVAR_DEVS_USB_DHARMA_PDIUSBD12_EP0_DEVTAB_ENTRY {
+	display       "Provide a devtab entry for endpoint 0"
+	default_value CYGGLO_IO_USB_SLAVE_PROVIDE_DEVTAB_ENTRIES
+	requires      CYGPKG_IO
+	description "
+	    If endpoint 0 will only be accessed via the low-level
+	    USB-specific calls then there is no need for an entry
+ 	    in the device table, saving some memory. If the
+	    application intends to access the endpoint by means
+	    of open and ioctl calls then a devtab entry is needed.
+	"
+    }
+    
+    cdl_component CYGPKG_DEVS_USB_DHARMA_PDIUSBD12_EP4 {
+	display       "Support endpoint 4, used for host->slave communications"
+	implements    CYGHWR_IO_USB_SLAVE_OUT_ENDPOINTS
+	requires      CYGFUN_DEVS_USB_DHARMA_PDIUSBD12_EP0
+	default_value CYGFUN_DEVS_USB_DHARMA_PDIUSBD12_EP0
+	description "
+            In the Dharma PDIUSBD12 USB implementation endpoint 4 can only be
+            used for host->slave communication. If the intended application
+	    only involves slave->host transfers then the support for
+	    endpoint 4 can be disabled. Note that this does not affect
+	    control messages which always go via endpoint 0."
+
+	cdl_option CYGVAR_DEVS_USB_DHARMA_PDIUSBD12_EP4_DEVTAB_ENTRY {
+	    display       "Provide a devtab entry for endpoint 4"
+	    default_value CYGGLO_IO_USB_SLAVE_PROVIDE_DEVTAB_ENTRIES
+            requires      CYGPKG_IO 
+	    description "
+	        If endpoint 4 will only be accessed via the low-level
+	        USB-specific calls then there is no need for an entry
+ 	        in the device table, saving some memory. If the
+	        application intends to access the endpoint by means
+	        of open and read calls then a devtab entry is needed.
+	    "
+	}
+    }
+
+    cdl_component CYGPKG_DEVS_USB_DHARMA_PDIUSBD12_EP5 {
+	display       "Support endpoint 5, used for slave->host communications"
+	implements CYGHWR_IO_USB_SLAVE_IN_ENDPOINTS
+	requires      CYGFUN_DEVS_USB_DHARMA_PDIUSBD12_EP0
+	default_value CYGFUN_DEVS_USB_DHARMA_PDIUSBD12_EP0
+	description "
+            In the Dharma PDIUSBD12 USB implementation endpoint 5 can only be
+            used for slave->host communication. If the intended application
+	    only involves host->slave transfers then the support for
+	    endpoint 5 can be disabled. Note that this does not affect
+	    control messages which always go via endpoint 0."
+
+	cdl_option CYGVAR_DEVS_USB_DHARMA_PDIUSBD12_EP5_DEVTAB_ENTRY {
+	    display       "Provide a devtab entry for endpoint 5"
+	    default_value CYGGLO_IO_USB_SLAVE_PROVIDE_DEVTAB_ENTRIES
+            requires      CYGPKG_IO
+	    description "
+	        If endpoint 5 will only be accessed via the low-level
+	        USB-specific calls then there is no need for an entry
+ 	        in the device table, saving some memory. If the
+	        application intends to access the endpoint by means
+	        of open and write calls then a devtab entry is needed.
+	    "
+	}
+    }
+
+    cdl_option CYGDAT_DEVS_USB_DHARMA_PDIUSBD12_DEVTAB_BASENAME {
+	display       "Base name for devtab entries"
+	flavor        data
+	active_if     { CYGVAR_DEVS_USB_DHARMA_PDIUSBD12_EP0_DEVTAB_ENTRY ||
+	                CYGVAR_DEVS_USB_DHARMA_PDIUSBD12_EP4_DEVTAB_ENTRY ||
+	                CYGVAR_DEVS_USB_DHARMA_PDIUSBD12_EP5_DEVTAB_ENTRY
+        }
+	default_value { "\"/dev/usbs\"" }
+	description "
+            If the Dharma PDIUSBD12 USB device driver package provides devtab
+	    entries for any of the endpoints then this option gives
+            control over the names of these entries. By default the
+	    endpoints will be called \"/dev/usbs0c\", \"/dev/usbs4r\"
+	    and \"/dev/usbs5w\" (assuming all three endpoints are
+	    enabled. The common part \"/dev/usbs\" is determined
+	    by this configuration option. It may be necessary to
+	    change this if there are multiple USB slave-side
+	    devices on the target hardware to prevent a name clash.
+	"
+    }
+
+    cdl_component CYGPKG_DEVS_USB_DHARMA_PDIUSBD12_OPTIONS {
+        display "Dharma PDIUSBD12 build options"
+        flavor  none
+        description   "
+	    Package specific build options including control over
+	    compiler flags used only in building this package,
+	    and details of which tests are built."
+
+
+        cdl_option CYGPKG_DEVS_USB_DHARMA_PDIUSBD12_CFLAGS_ADD {
+            display "Additional compiler flags"
+            flavor  data
+            no_define
+            default_value { "" }
+            description   "
+                This option modifies the set of compiler flags for
+                building the driver. These flags are used in addition
+                to the set of global flags."
+        }
+
+        cdl_option CYGPKG_DEVS_USB_DHARMA_PDIUSBD12_CFLAGS_REMOVE {
+            display "Suppressed compiler flags"
+            flavor  data
+            no_define
+            default_value { "" }
+            description   "
+                This option modifies the set of compiler flags for
+                building the driver. These flags are removed from
+                the set of global flags if present."
+        }
+
+        cdl_option CYGPKG_DEVS_USB_DHARMA_PDIUSBD12_TESTS {
+            display "Dharma PDIUSBD12 tests"
+            flavor  data
+            no_define
+            calculated { 
+		"tests/usbs_mass_storage_test"
+            }
+            description   "
+                This option specifies the set of tests for the Dharma PDIUSBD12 package."
+        }
+    }
+}

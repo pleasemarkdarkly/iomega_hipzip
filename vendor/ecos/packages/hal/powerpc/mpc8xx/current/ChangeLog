@@ -1,0 +1,176 @@
+2001-08-22  Gary Thomas  <gthomas@redhat.com>
+
+	* src/mpc8xxrev.c: Don't use printf(), but rather diag_printf().
+
+2001-06-29  Jesper Skov  <jskov@redhat.com>
+
+	* src/var_intr.c: Include new arbiter header.
+
+2001-06-28  Jesper Skov  <jskov@redhat.com>
+
+	* src/var_intr.c: Moved hal_call_isr to hal_misc.h in common HAL.
+
+2001-01-31  Jesper Skov  <jskov@redhat.com>
+
+	* cdl/hal_powerpc_mpc8xx.cdl: Get rid of
+	CYGDBG_HAL_DIAG_DISABLE_GDB_PROTOCOL options. They are replaced by
+	the CYGSEM_HAL_DIAG_MANGLER option.
+
+2000-11-04  Gary Thomas  <gthomas@redhat.com>
+
+	* include/var_intr.h: Export symbols used in assembly code.
+
+2000-06-19  Jesper Skov  <jskov@redhat.com>
+
+	* include/var_regs.h: 
+	* include/variant.inc: 
+	* src/var_misc.c:
+	Make caches default to off when the MMU is disabled.
+
+2000-06-16  Jesper Skov  <jskov@redhat.com>
+
+	* src/var_intr.c (hal_call_isr): Use driver API definitions.
+
+2000-06-14  Jesper Skov  <jskov@redhat.com>
+
+	* cdl/hal_powerpc_mpc8xx.cdl: Proper ROM_MONITOR hack.
+
+2000-06-13  Jesper Skov  <jskov@redhat.com>
+
+	* include/var_intr.h: Include quicc definitions for ctrlc
+	support.
+
+2000-04-14  Jesper Skov  <jskov@redhat.com>
+
+	* src/var_misc.c (hal_variant_init): Moved serialization disable
+	code to here.
+	* src/var_misc.c (hal_variant_idle_thread_action): Added.
+
+2000-04-11  Jesper Skov  <jskov@redhat.com>
+
+	* cdl/hal_powerpc_mpc8xx.cdl: Define VSR table location.
+
+2000-03-02  Jesper Skov  <jskov@redhat.com>
+
+	* cdl/hal_powerpc_mpc8xx.cdl: Further restrictions on
+	CYGSEM_HAL_USE_ROM_MONITOR.
+
+	* cdl/hal_powerpc_mpc8xx.cdl: 
+	* include/pkgconf/hal_powerpc_mpc8xx.h: 
+	Add config options for MPC823 and MPC850.
+
+2000-03-01  Jonathan Larmour  <jlarmour@redhat.co.uk>
+
+	* cdl/hal_powerpc_mpc8xx.cdl (CYGSEM_HAL_USE_ROM_MONITOR): Default to
+	0 if CYGSEM_HAL_POWERPC_COPY_VECTORS enabled
+
+2000-03-01  Gary Thomas  <gthomas@cygnus.co.uk>
+
+	* cdl/hal_powerpc_mpc8xx.cdl: 
+	Implement CYGINT_HAL_DIAG_DISABLE_GDB_PROTOCOL_SUPPORTED
+
+2000-03-01  Jesper Skov  <jskov@redhat.com>
+
+	* cdl/hal_powerpc_mpc8xx.cdl: CYGSEM_HAL_POWERPC_COPY_VECTORS
+	precludes CYGSEM_HAL_USE_ROM_MONITOR.
+
+	* include/variant.inc: Forgot conditionals on vector copy in last
+	checkin.
+
+2000-02-29  Gary Thomas  <gthomas@cygnus.co.uk>
+
+	* src/var_intr.c (hal_variant_IRQ_init): Fix spelling of option
+	which controls CPM initialization.
+
+2000-02-28  Jesper Skov  <jskov@redhat.com>
+
+	* include/variant.inc: Only copy vectors when required.
+
+2000-02-24  Jesper Skov  <jskov@redhat.com>
+
+	* cdl/hal_powerpc_mpc8xx.cdl: 
+	* src/mpc8xxrev.c: 
+	Added revnum dump tool.
+
+2000-02-21  Jesper Skov  <jskov@redhat.com>
+
+	* src/variant.S: 
+	* include/variant.inc: use arch.inc instead of ppc.inc
+	Added empty variant save macros. Rely on mk_defs to provide
+	definitions.
+
+2000-02-18  Jonathan Larmour  <jlarmour@redhat.co.uk>
+
+	* include/pkgconf/hal_powerpc_mpc8xx.h: Fix nesting of
+	CYGSEM_HAL_POWERPC_MPC860_CPM_ENABLE option
+	paernt -> parent
+	CYGSEM_HAL_POWERPC_MPC860_CPM_LVL -> CYGHWR_HAL_POWERPC_MPC860_CPM_LVL
+	which also doesn't need to be a component, only an option
+	* cdl/hal_powerpc_mpc8xx.cdl: Similarly treat
+	CYGSEM_HAL_POWERPC_MPC860_CPM_LVL here
+
+2000-02-14  Jesper Skov  <jskov@redhat.com>
+
+	* include/pkgconf/hal_powerpc_mpc8xx.h: Added simple config for
+	1st level arbiter.
+
+2000-02-14  Jesper Skov  <jskov@redhat.com>
+
+	* cdl/hal_powerpc_mpc8xx.cdl: legal range uses 'to' not '-'
+
+2000-02-11  Jesper Skov  <jskov@redhat.com>
+
+	* src/var_misc.c: Moved MMU functions here.
+
+	* src/var_intr.c (Cyg_InterruptHANDLED): Mask out CALL_DSR flag
+	before return.
+
+	* tests/intr0.c: Moved here from arch.
+
+	* cdl/hal_powerpc_mpc8xx.cdl: Added simple config for 1st level
+	arbiter. Fix description.
+	* src/var_intr.c: 
+	* src/PKGconf.mak:
+	Move 860 arbiters to variant sources.
+	
+2000-02-11  John Dallaway  <jld@cygnus.co.uk>
+
+	* cdl/hal_powerpc_mpc8xx.cdl:
+
+	Tidy display strings.
+
+2000-02-10  Jesper Skov  <jskov@redhat.com>
+
+	* include/var_intr.h: Bad undef/define order fixed.
+
+	* include/variant.inc: Renamed default VSR handlers.
+
+2000-02-07  Jesper Skov  <jskov@redhat.com>
+
+	* Created.
+
+//===========================================================================
+//####COPYRIGHTBEGIN####
+//                                                                          
+// -------------------------------------------                              
+// The contents of this file are subject to the Red Hat eCos Public License 
+// Version 1.1 (the "License"); you may not use this file except in         
+// compliance with the License.  You may obtain a copy of the License at    
+// http://www.redhat.com/                                                   
+//                                                                          
+// Software distributed under the License is distributed on an "AS IS"      
+// basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See the 
+// License for the specific language governing rights and limitations under 
+// the License.                                                             
+//                                                                          
+// The Original Code is eCos - Embedded Configurable Operating System,      
+// released September 30, 1998.                                             
+//                                                                          
+// The Initial Developer of the Original Code is Red Hat.                   
+// Portions created by Red Hat are                                          
+// Copyright (C) 1998, 1999, 2000, 2001 Red Hat, Inc.                             
+// All Rights Reserved.                                                     
+// -------------------------------------------                              
+//                                                                          
+//####COPYRIGHTEND####
+//===========================================================================

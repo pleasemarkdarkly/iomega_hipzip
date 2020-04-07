@@ -1,0 +1,47 @@
+<?php
+
+$pagetitle = "Play Manager";
+include("startpage.php");
+
+?>
+
+<p class="Body1">The <span class="Module">Play Manager</span> is the core interface for the SDK, and includes the default event handler. You can pass events into the <span class="Module">Play Manager</span> and it will handle them with the appropriate methods. Or, you can intercept whatever events you like, and call the <span class="Module">Play Manager</span> to execute the appropriate code. The <span class="Code">HandleEvent(<em>key</em>,<em>data</em>)</span> method is designed to send events that bubble up from other threads to the appropriate handlers. </p>
+<?= head("","Events supported by the Play Manager",4); ?>
+<p class="Body1">These events include:</p>
+<ul>
+	<li>New media inserted</li>
+	<li>Media removed</li>
+	<li>Change of Media Player state</li>
+	<li>Content enumeration completed</li>
+	<li>Metadata update loaded</li>
+
+</ul>
+<p class="Body1">You will need to create your own event handlers to handle button presses, and any other event you want to handle differently than the default.
+</p>
+<?= head("","Objects not controlled by the Play Manager",4); ?>
+<p class="Body1">Generally, your client code will call on the <span class="Module">Play Manager</span> to control the <span class="Module">Media Player</span>, and to interact with data sources. Your client code will interact with the following objects directly:</p>
+<ul>
+	<li>Playlists</li>
+	<li>Content Managers</li>
+	<li>Volume Control</li>
+	<li>Playlist Format Manager.</li>
+</ul>
+
+<p class="Body1">The <span class="Module">Play Manager</span> offers some fairly sophisticated features.</p>
+<ol>
+	<li>Automatic handling of media removal. When <span class="Module">Play Manager</span> receives a "Media Removed" event, or if the <span class="Code">NotifyMediaRemoved()</span> method is called, it removes the data source from the <span class="Module">Data Source Manager</span>, removes all of the media content records for that data source, and removes all playlist entries for the data source. If the current track is on that media, it stops playback and attempts to start the next track.</li>
+	<li>Automatic handling of media insertion. When the <span class="Code">NotifyMediaInserted()</span> method is called, the <span class="Module">Play Manager</span> asks the <span class="Module">Data Source Manager</span> to enumerate the content of that data source.</li>
+	<li>Content enumeration. The <span class="Module">Data Source Manager</span> sends event messages containing the contents to create a media content record. If these events are passed into the event handler in the <span class="Module">Play Manager</span>, the <span class="Module">Play Manager</span> will add them to the <span class="Module">Content Manager</span>.</li>
+	<li>Search for missing playlist entries. If the <span class="Module">Media Player</span> cannot resolve a playlist entry, it calls the <span class="Code">SetStatus()</span> method on the <span class="Module">Playlist Entry</span>, setting it to whatever the result was. The <span class="Module">Play Manager</span> then searches for a valid playlist entry, trying tracks one at a time until it finds one that works. When attempting to get a valid track, the <span class="Module">Play Manager</span> first searches forward in the list from the current track, and then searches backwards. Only if no entry in the entire playlist is present will the <span class="Module">Play Manager</span> return an error.</li>
+	<li>Caching of current settings for the <span class="Module">Media Player</span>. The <span class="Module">Play Manager</span> tracks the current playlist mode, and maintains pointers to the current <span class="Module">Playlist</span> and <span class="Module">Content Manager</span> objects. Your client code can call methods such as <span class="Code">Play()</span> and <span class="Code">NextTrack()</span> without sending any arguments, and the <span class="Module">Play Manager</span> will know what to do.</li>
+</ol>
+
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

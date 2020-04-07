@@ -1,0 +1,20 @@
+<?php
+
+$pagetitle = "Dharma Hardware";
+$type = "TOC";
+include("startpage.php");
+
+?>
+
+
+<p>This section links to hardware specifications, mostly in PDF format.</p>
+<ul>
+<?php 
+showTOC($toc);
+echo ("</ul><p>&nbsp;</p>");
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>USB Test Application</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="oDebugFlash.htm" title='Debug an Image in Flash'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="JavaScript:OpenView('hardwareInformation.htm');" title='Hardware Information'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h1
+><a name='oUSB'>USB Test Application</a></h1
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">
+
+The Dharma SDK comes with a test application that demonstrates USB
+bulk storage functionality. This test program works for the hard drive
+and for compact flash cards, but must be compiled specifically for
+each target. The bulk storage driver has been configured for single
+Logical Unit Number (LUN) only. The purpose of this test app is to allow developers to
+transfer content via USB from the host to the device. The driver has
+not been fully tested against all hosts, and may not be suitable for
+shipping products.
+</p>
+
+<p class="Body1">
+
+Althought USB bulk storage is a standardized protocol, not all
+operating systems come with driver support for it. Internally we have
+only used Windows 2000 Professional with this driver, although it
+should work with Windows ME and XP.
+
+</p>
+
+
+</td></tr>
+<tr valign='top'><td><h3><a name=''>Loading the pre-built USB test app</a></h3></td>
+				<td>
+
+<p class="Body1">
+The RedBoot stub image should contain two versions of the USB test
+app: one for transfering files to a compact flash card, and one for
+transfering files to the hard drive. The hard drive based image
+assumes the hard drive is jumpered as a slave. Before loading the
+application, make sure the usb module is present on the board, and the
+USB cable is unplugged from the device.
+
+</p>
+<p class="Body1">
+To load the pre-built USB test app, refer to the section titled
+<a href="oBurnToFlash.htm#oBurnToFlash">Transfering the image to the device</a>. At the
+RedBoot> prompt, enter the following command:
+
+</p>
+<p class="CodeBlock">RedBoot> fis list</p>
+
+<p class="Body1">
+This should print a list of available images in the flash. To load the
+hard drive test app, enter the following command:
+
+</p>
+<p class="CodeBlock">RedBoot> fis load usb_hd
+</p>
+<p class="Body1">
+Or, for the compact flash test app, use the following:
+</p>
+
+<p class="CodeBlock">RedBoot> fis load usb_cf</p>
+
+<p class="Body1">
+To start executing the device side of the code, use the "go" command:
+</p>
+
+<p class="CodeBlock">RedBoot> go</p>
+
+<p class="Body1">
+At this point the device will be ready to initialize itself on the USB
+bus. Make sure the host end of your usb cable is plugged into your
+computer, and connect the device end into the Dharma board. The
+host should enumerate the hard drive, which may take some time
+depending on the drive capacity. The device should show up as a
+"Removable Disk" under "My Computer" on Windows machines.
+
+</p>
+<p class="Body1">
+When you are done transferring files to the device, be sure to stop the
+device and unplug it prior to resetting the board.
+
+</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name=''>Building your own USB test app</a></h3></td>
+				<td>
+<p class="Body1">
+To build your own USB test app, you must configure a product build
+tree to link against the USB enabled kernel. You can modify an
+existing product configuration, or generate a new one specifically for
+USB enabled software. This step simply requires modifying the
+ECOS_BUILD_NAME value in the file <span class="Code">configs/&lt;target>.mk</span> to read
+
+</p>
+<p class="CodeBlock">ECOS_BUILD_NAME := usb-ram</p>
+
+<p class="Body1">
+and rebuilding your image against the new kernel according to the
+documentation in the section <a href="oCreateImage.htm#oCreateImage">Building the image</a>. Multiple
+variations of the ATA driver have been packaged, allowing USB to
+access various physical layouts. In the event that an ATA
+configuration supporting both the hard drive and compact flash
+interfaces is used, the USB test will default to the hard drive
+interface.
+
+</p>
+<p class="Body1">
+Once you have recreated the build tree against the USB enabled kernel,
+rebuild the USB test app by going to the build directory:
+
+</p>
+<p class="CodeBlock">cd builds/simple</p>
+
+<p class="Body1">
+And issuing the following "make" command:
+</p>
+
+<p class="CodeBlock">make ata_storage_tests</p>
+
+<p class="Body1">
+This will build all the available ATA tests, one of which is the usb
+test. The tests will be put in the ATA module directory under the
+build directory, <span class="Code">devs/storage/ata/&lt;version>/tests/*</span>. The generated
+image can be loaded via gdb, or transfered through RedBoot and
+burned to the device.
+
+</p>
+
+
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="oDebugFlash.htm" title='Debug an Image in Flash'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="JavaScript:OpenView('hardwareInformation.htm');" title='Hardware Information'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Nov 1, 2001 5:04 pm
+</p>
+</body>
+
+</html>

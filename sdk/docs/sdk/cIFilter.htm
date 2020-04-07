@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Abstract Classes: IFilter</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="cICodec.htm" title='ICodec'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="cIMetadata.htm" title='IMetadata'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='cIFilter'>IFilter</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">
+<span class="Module">Filters </span>provide access to the current PCM playback stream. <span class="Module">Filters</span> have the ability to analyze and modify the PCM data, and can even resize the amount of data being passed through the system. Examples of filters would be a sample rate converter, a PCM disk writer, or a wrapper for a PCM enhancement library. Filters are chained together, so it is possible to have multiple instances of such filters. The chain is terminated by a special filter called the <span class="Module">OutFilter</span>. The <span class="Module">OutFilter</span> reads all its input data and writes it to an <span class="Module">Output Stream</span>, typically the <span class="Code">CWaveOutputStream </span>for audio playback.
+
+</p>
+<p class="Body1">
+Filters are chained together through RBUFs, a special type of ring buffer that provides write and read handles (see <a href="JavaScript:OpenView('aControllingMediaPlayer.htm#aControllingMediaPlayer');">Controlling the Media Player</a>). A given filter writes data to its write handle, which maps down to a ring buffer. The next filter in the chain has a read handle which maps to the previously stated ring buffer, giving it access to the generated audio data. In this way, RBUFs are fairly similar to pipes, with a few exceptions and some special properties and considerations.
+
+</p>
+<p class="Body1">
+The chaining between codec -> filters -> outfilter is managed by the MediaPlayer, which sets up the appropriate components on track changes. When it is creating items in the playstream, it queries each object for its unit sizes. Since filters read and write data to the stream, they are asked for input and output unit sizes. At the moment, these unit sizes are used only to ensure that the buffers are large enough to support the reader and the writer of a given RBUF. Hence, filters are expected to return the minimal amount of input data and output space required for them to perform work.
+
+</p>
+<p class="Body1">
+Filters that need special configuration can implement custom routines through an <span class="Code">Ioctl()</span> interface. The <span class="Code">ioctl </span>interface provides a generic method to query data from the filter and set custom parameters. Other components in the system can then issue <span class="Code">ioctls </span>to the filter through the mediaplayer, which will locate the instance of the filter and apply the appropriate settings.
+
+</p>
+<p class="Body1">
+Filters are loaded abstractly based on their unique ID. This ID is passed to the filter manager, which then instantiates the requested filter and passes back a pointer to it. This allows customization of standard components, such as the OutFilter or the sample rate converter. Filters must register with the system registry at startup to be available to the media player. See <a href="JavaScript:OpenView('aFilters.htm#aFilterManager');">Filter Manager</a> for more about filter management.
+
+</p>
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="cICodec.htm" title='ICodec'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="cIMetadata.htm" title='IMetadata'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 8, 2001 11:39 pm
+</p>
+</body>
+
+</html>

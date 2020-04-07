@@ -1,0 +1,88 @@
+<?php
+
+$pagetitle = "Playlists";
+include("startpage.php");
+?>
+
+<p class="Body1">A Playlist is an object representing a sequence of tracks. There are actually two sequences in each playlist: the normal indexed sequence, and the random sequence. When the Play Manager requests the next track from the Playlist object, it specifies a Playlist Mode that indicates whether to get the next track in the series, or the next random track.</p>
+<p class="Body1">The Playlist Mode may be one of the following:</p>
+<ul>
+	<li>NORMAL &ndash; use the normal sequence when determining the next track.</li>
+	<li>RANDOM &ndash; use the random sequence when determining the next track.</li>
+	<li>REPEAT_ALL &ndash; use the normal sequence when determining the next track. When the current track is the last playlist entry, the next track becomes the first playlist entry.</li>
+	<li>REPEAT_RANDOM &ndash; use the random sequence when determining the next track. If the current track is the last entry in the random sequence, use the first entry in the random sequence as the next track.</li>
+	<li>REPEAT_TRACK &ndash; use the current track as the next track.</li>
+</ul>
+
+<?= picture("image010.gif", "Playlist Behavior"); ?>
+
+<?= head("aPlaylistFormatManager","Playlist Format Manager",3); ?>
+
+
+
+<p class="Body1">The CPlaylistFormatManager class 
+
+maintains a list of registered playlist formats available in the system, and
+provides functions for saving and loading playlists to and from data streams.
+New playlist formats can be added through a registration interface.
+Two playlist formats come with the SDK: the Dadio playlist format (DPL)
+and Winamp's M3U format.
+</p>
+
+<?= head("","Loading and saving playlists",4); ?>
+<p class="Body1">
+To load or save a playlist, at least three pieces of information are needed:
+the playlist format ID, the URL to save/load the playlist to/from, and a
+pointer to the IPlaylist to save/load.  The playlist format ID can be found
+by either calling the FindPlaylistFormat function, which will return an ID
+based on filename extension, or by using the playlist format ID stored in a
+content manager's playlist content record.
+
+</p>
+<p class="Body1">
+The entries found in a playlist file are generally checked against the content
+manager before being added to the playlist; however, this check can be disabled
+by setting the bVerifyContent parameter of the LoadPlaylist function to false.
+In this case, entries in the playlist file that aren't already in the content
+manager will be added automatically.  This is useful for quickly grabbing a
+playlist before doing a lengthy content update.
+
+</p>
+<?= head("","Adding playlist formats",4); ?>
+
+<p class="Body1">
+New playlist formats can be added through the use of the REGISTER_PLAYLIST_FORMAT macro.  Each playlist format must provide a unique format ID, a list of supported file extentions, and functions for loading and saving.
+
+</p>
+
+<?= head("","Loading a playlist",4); ?>
+<p class="Body1">
+In general, your playlist function should follow these steps:
+</p>
+
+<ol>
+	<li>Open the URL for reading.  This is easiest done by calling the data source manager's OpenInputStream function.</li>
+	<li>Add entries.  Generate a URL and call the content manager's <span class="Code">GetMediaRecord()</span> function to get a pointer to the content record to add to the playlist.  If no record exists and <span class="Code">bVerifyContent</span> is false, then populate a <span class="Code">media_record_info_t</span> structure and pass it to the content manager's <span class="Code">AddMediaRecord()</span> function.</li>
+	<li>Close the stream.</li>
+</ol>
+
+<?= head("","Saving a playlist",4); ?>
+
+<p class="Body1">
+In general, the save playlist function should follow these steps:
+</p>
+
+<ol>
+	<li>Open the URL for writing.  This is easiest done by calling the data source manager's <span class="Code">OpenOutputStream</span> function.</li>
+	<li>Traverse the playlist, saving each entry to file.</li>
+	<li>Close the stream.</li>
+</ol>
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

@@ -1,0 +1,83 @@
+<?php
+
+$pagetitle = "Abstract Classes: ICodec";
+include("startpage.php");
+
+?>
+
+<p class="Body1">The <span class="Module">ICodec</span> class is a wrapper class for your actual codecs. The SDK includes full codecs for the WMA and PCM formats, and pre-compiled object code for the ARM MP3 codec.</p>
+<p class="Note"><strong>Note:</strong> The included MP3 codec is licensed from ARM, Inc. <!-- Interactive Objects is permitted to distribute object code for this codec only. If you need source code, contact Advanced RISC Machines directly. --></p>
+<p class="Body1">You can add a new codec by simply writing a new wrapper object that extends the <span class="Module">ICodec</span> class, calling the appropriate methods on the codec from the wrapper.</p>
+
+
+<p class="Body1">
+See the <?= crossref("/Codec_8h-source", "Codec.h"); ?> file for the specific structures and methods for the <span class="Module">ICodec</span> class.
+</p>
+
+<?= head("cCodecRegistration","Codec Registration System",3); ?>
+
+<p class="Body1">
+Dharma provides an abstract way for codecs to be available to the
+playback system through codec registration. The actual registration
+process has been simplified to a pair of easy to use macros, which
+take care of the actual work.
+
+</p>
+
+
+<?= head("","DEFINE_CODEC Macro",4); ?>
+
+
+<p class="Body1">
+        Fills out the codec class definition with additional members
+        necessary for codecs to work in Dharma. This
+        satisfies the underlying requirements of the ident
+        (IIdentifiableObject) baseclass.
+
+</p>
+<?= head("","Arguments",0); ?>
+
+<table>
+	<tr><td>        codecname   </td><td>  A string name for the codec</td></tr>
+	<tr><td>        codecID     </td><td>     A unique identifier for the codec</td></tr>
+	<tr><td>        can_probe    </td><td>    Either true or false indicating whether the system can probe bitstreams against this   codec. In the case of PCM and similar pass   through codecs, this should be false   
+</td></tr>
+	<tr><td>  
+   extensions... </td><td> 
+   A variable length list of strings that indicate which extensions are supported by this codec. This is case insensitive.</td></tr>
+
+</table>
+<?= head("","Example usage",0); ?>
+
+<p class="CodeBlock">
+        DEFINE_CODEC( "iObjects MP3 Codec", 783, true, "mp3" )<br>
+		DEFINE_CODEC( "iObjects PCM Codec", 784, false, "pcm", "raw" )
+</p>
+
+
+
+<?= head("","REGISTER_CODEC Macro",4); ?>
+
+       <p class="Body1">
+ To be used in your implementation file. This macro defines helper data
+        structures and has function implementations necessary for your
+        codec to be registered with Dharma.
+
+</p>
+<?= head("","Arguments",0); ?>
+
+<table>
+	<tr><td>        classname   </td><td> The name of your class, such as 'CMP3Codec'</td></tr>
+	<tr><td>        codecID    </td><td>  The same codecID used in the DEFINE_CODEC macro</td></tr>
+
+</table>
+
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

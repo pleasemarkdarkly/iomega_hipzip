@@ -1,0 +1,137 @@
+<?php
+
+$pagetitle = "Abstract Classes: IDataSource";
+include("startpage.php");
+
+?>
+
+<p class="Body1"><span class="Module">Data Source</span> objects represent physical data sources, including: CD-ROM drives, hard drives, compact flash cards, and network locations. The Data Source object is a wrapper that provides a standard interface for accessing media that uses different drivers. </p>
+
+<p class="Body1">
+The Dharma SDK includes data source objects for all hardware devices supported by the Dharma board. However, if you want to add a new device that does not use the same format as an existing data source, you will need to create a new <span class="Module">Data Source</span> class.
+</p>
+<p class="Body1">
+The basic role of the Data Source object is three-fold: provide a unique URL for every media track available on the object; provide an input or output stream in response to a request for a particular track; and collect metadata from specific tracks on request. For the actual device, you will also need to consider how to intercept an event such as media removal.
+</p>
+<p class="Body1">
+See <?= crossref("doxy/classIDataSource", "IDataSource"); ?> in the API reference for more information.
+</p>
+
+<?= head("","Data Source URLs",3); ?>
+<p class="Body1">
+Content records from a data source must be identified by a URL that is unique across the system. The URL has three parts: a prefix, an identifier for the specific data source, and a name for the stream.
+</p>
+<p class="Body1">
+The only rigid criterion for the URL is that it must be unique across the entire system, and the <span class="Module">Data Source Manager </span>must know what <span class="Module">Data Source </span>to forward the request to. To simplify this, Interactive Objects recommends using URLs that have the same structure as normal Internet URLs. So while the prefix looks like a profile, it is really only a pattern identifying what <span class="Module">Data Source </span>object to route the request to.
+</p>
+
+<p class="Body1">
+For example, the CFatDataSource object prefixes its URLs with <span class="Code">file://</span>.
+
+</p>
+
+<p class="Body1">
+The rest of the URL is up to you to define, but if your <span class="Module">Data Source</span> class handles multiple objects, you will want to define a unique path to each one. For example, the FAT data source uses filenames to identify each stream. So the file <span class="Code">a:\bach.mp3</span> has a complete URL of <span class="Code">file://a:\bach.mp3</span>.
+</p>
+
+<?= head("","Enumerating URLs",3); ?>
+<p class="Body1">
+The <span class="Module">Data Source Manager</span> calls the <span class="Code">IDataSource::ListAllEntries()</span> method to update the list of available tracks. When you implement this method, you will need to observe the following sequence to provide the events and memory management the Data Source Manager and Content Manager are expecting:
+</p>
+
+<ol>
+	<li><span class="Code">put_event(EVENT_CONTENT_UPDATE_BEGIN, (void*)GetInstanceID());</span> to indicate that you have begun processing a content update.</li>
+	<li>Create a new <span class="Code">content_record_update_t</span> struct using <span class="Code">new</span>. This object will be destroyed by the default event handler. Set the <span class="Code">iDataSourceID</span> to your instance ID and the <span class="Code">bTwoPass</span> field to TRUE if in DSR_TWO_PASS mode or FALSE otherwise.</li>
+	<li>Loop through the available media tracks and playlists on the device, until the count of tracks equals the batch size provided in <span class="Code">iUpdateChunkSize</span>. For each track/playlist, add a media content record or playlist content record (see below).</li>
+	<li>Send an EVENT_CONTENT_UPDATE event with a pointer to the content_record_update_t struct, and repeat at step 2 until you're out of tracks and playlists.</li>
+	<li><span class="Code">put_event(EVENT_CONTENT_UPDATE_END, (void*)GetInstanceID());</span> to notify that you're done, and return.</li>
+	
+</ol>
+<p class="Body1">
+If at any point you get an unrecoverable error, send <span class="Code">put_event(EVENT_CONTENT_UPDATE_ERROR, (void*)GetInstanceID());</span> before terminating.
+</p>
+<p class="Body1">
+If <span class="Code">iUpdateChunkSize</span> is zero, you are to return all records in a single <span class="Code">content_record_update_t</span> struct.
+</p>
+
+<?= head("","Adding Media Content Records",4); ?>
+<p class="Body1">This section describes how to add a media content record to the content_record_update_t struct, while going through the loop described above.
+</p>
+<ol>
+	<li>For a file system, check to see if the file extension is recognized by the <span class="Module">Codec Manager</span>.</li>
+	
+	<li>Populate a <span class="Code">media_record_info_t</span> struct for each record to be added. You will push this object on to the <span class="Code">content_record_update_t</span> struct at the end of the loop.</li>
+	<li>Use <span class="Code">malloc</span> to allocate space for the URL. This space will be freed by the Content Manager.</li>
+	<li>Set <span class="Code">szURL </span>to a unique URL.</li>
+	<li>Set <span class="Code">iDataSourceID </span>to your instance ID.</li>
+	<li>Set <span class="Code">bVerified </span>to TRUE. By definition, records coming from a data source are verified. This field is FALSE when media content records are restored from other sources.</li>
+	<li>Set <span class="Code">iCodecID </span>to the value returned by the <span class="Module">Codec Manager</span>'s <span class="Code">FindCodecID()</span> function. If set to zero, the <span class="Module">Media Player </span>will determine the codec during playback.</li>
+	<li>If the refresh mode is DSR_ONE_PASS_WITH_METADATA, call <span class="Code">CreateMetadataRecord()</span> on the current <span class="Module">Content Manager</span> (<span class="Code">CPlayManager::GetContentManager()</span>). If the Content Manager returns zero, no metadata retrieval is necessary (though if the application is properly coded, we shouldn't be in DSR_ONE_PASS_WITH_METADATA). Otherwise, set values on the <span class="Module">Metadata </span>object of any attributes your data source can find, then open an input stream and pass it to the appropriate codec's <span class="Code">GetMetadata()</span> function.</li>
+
+	<li>Call <span class="Code">PushBack()</span> on the <span class="Code">content_record_update_t</span> struct's media field to add the record to the list.</li>
+</ol>
+
+<?= head("","Adding Playlist Content Records",4); ?>
+<p class="Body1">This section describes how to add a playlist content record to the content_record_update_t struct, while going through the loop described above.
+</p>
+<ol>
+	<li>For a file system, check to see if the file extension is recognized by the <span class="Module">Playlist Format Manager</span>.</li>
+	
+	<li>Create a <span class="Code">playlist_record_t</span> struct for each record to be added. You will push a copy of this object on to the <span class="Code">content_record_update_t</span> struct at the end of the loop, so this is a local object you will need to destroy. </li>
+	<li>Use <span class="Code">malloc</span> to allocate space for the URL. This space will be freed by the Content Manager.</li>
+	<li>Set <span class="Code">szURL </span>to a unique URL.</li>
+	<li>Set <span class="Code">iDataSourceID </span>to your instance ID.</li>
+	<li>Set <span class="Code">bVerified </span>to TRUE. By definition, records coming from a data source are verified. This field is FALSE when playlist content records are restored from other sources.</li>
+	<li>Set <span class="Code">iPlaylistFormatID </span>to the value returned by the <span class="Module">Playlist Format Manager</span>'s <span class="Code">FindPlaylistFormat()</span> function. </li>
+
+	<li>Call <span class="Code">PushBack()</span> on the <span class="Code">content_record_update_t</span> struct's media field to add the record to the list.</li>
+</ol>
+
+
+<?= head("","Getting Content Metadata",3); ?>
+
+<p class="Body1">
+If the refresh mode is DSR_TWO_PASS, then some records may be sent to the <span class="Code">GetContentMetadata()</span> method for the second pass.
+</p>
+<p class="Body1">
+All content enumeration happens using a single thread. Events are queued seperately to the Play Manager thread and the Data Refresh thread. So in two-pass mode, you will have already sent all of the batches of media content records to the event queue before this method gets called.
+</p>
+<p class="Body1">
+At the beginning of the second pass, the <span class="Module">Data Source </span>must send an EVENT_CONTENT_METADATA_UPDATE_BEGIN message, sending the instance ID of the data source as the data parameter. When the metadata update is complete, the system will automatically send an EVENT_CONTENT_METADATA_UPDATE_END message.
+</p>
+<p class="Body1">
+Meanwhile, on the Play Manager thread, the Content Manager receives each <span class="Code">content_record_update_t</span>, merges the media content records with its current set, removes media content records that it already has metadata for, and then sends the remaining media content records, in the same <span class="Code">content_record_update_t</span> struct to the data refresh queue for metadata collection.
+</p>
+<p class="Body1">
+So the <span class="Code">GetContentMetadata()</span> function will get a pointer to a variable-length <span class="Code">content_record_update_t</span> struct. For each content recored in the struct, you need to collect metadata.
+</p>
+<p class="Body1">
+	To do so, call <span class="Code">CreateMetadataRecord()</span> on the current <span class="Module">Content Manager</span> (<span class="Code">CPlayManager::GetContentManager()</span>). If the Content Manager returns zero, no metadata retrieval is necessary (though if the application is properly coded, we shouldn't be in DSR_TWO_PASS). Otherwise, set values on the <span class="Module">Metadata </span>object of any attributes your data source can find, then open an input stream and pass it to the appropriate codec's <span class="Code">GetMetadata()</span> function.
+</p>
+<?= head("","Providing Streams",3); ?>
+<p class="Body1">
+Data is retrieved from (and sometimes sent to) the data source through input and output streams. The <span class="Module">Data Source</span> is responsible for creating streams appropriate to the content type. You need to implement the <span class="Code">OpenInputStream()</span> and <span class="Code">OpenOutputStream()</span> functions to provide this ability. Both functions accept a URL argument and return a pointer to the input stream or output stream for the content. If the URL cannot be opened for whatever reason, return a zero.
+</p>
+<?= head("","Capturing Events",3); ?>
+<p class="Body1">
+If the device your data source represents does anything unusual (such as having a removable media system like a CD-ROM or compact flash), you need to provide a way to send and handle an appropriate event.
+</p>
+<p class="Body1">
+Your driver system may provide a mechanism for sending such an event. You might also choose to register a function in the system timer (see <?= crossref("cTimer", "System Timer"); ?>) that polls the media at regular intervals to see if it is still present.
+</p>
+<p class="Body1">
+However you detect a media change, you can send an EVENT_MEDIA_REMOVED or an EVENT_MEDIA_INSERTED event to the Event Queue and the default handler will either remove all entries in the content manager that came from that data source, or trigger the <span class="Code">ListAllEntries()</span> function on the data source using the default update mode for the data source.
+</p>
+<p class="Body1">
+For other behavior, or other types of events, you will need to create your own event handler.
+</p>
+
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

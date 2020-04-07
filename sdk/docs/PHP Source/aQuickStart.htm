@@ -1,0 +1,81 @@
+<?php
+
+$pagetitle = "Quick Start";
+include("startpage.php");
+
+?>
+
+<p class="Body1">
+This section describes how to quickly get the Dharma Board up and running.
+</p>
+
+<?= head("aSystemRequirements","System Requirements",2); ?>
+
+<p class="Body1">
+Before starting, make sure you have the minimum system requirements listed below:
+</p>
+<ul>
+	<li>PII-class processor (or better)</li>
+	<li>Windows 2000 or later</li>
+	<li>At least 600 MB of free disk space </li>
+	<li>Available serial (COM) port</li>
+
+</ul>
+
+<p class="Body1">
+The SDK installs the full Cygwin UNIX environment for Windows 2000, version 1.3.2, and uses several packages bundled into the SDK installer. <strong>Interactive Objects strongly recommends that you install the package on the CD-ROM without modifying any of the options.</strong> The SDK has only been tested with the bundled version of Cygwin &ndash; newer versions may not work correctly.
+</p>
+<?= head("aDocOverview","Documentation Overview",2); ?>
+<p class="Body1">
+There are two versions of the documentation: printed and online. All of the SDK documentation is available in both forms.
+</p>
+<p class="Body1">
+The online documentation is installed on your system when you run the installer, and is accessible from your Start -> Programs menu.
+</p>
+<p class="Body1">
+The printed documentation is in the Documentation directory on the CD-ROM.
+</p>
+
+<p class="Body1">
+The readme.txt file contains this page only, in the root directory. The QuickStart.pdf file contains this page and the Operation Guide which describes building an image and transferring the image to the device.
+</p>
+<?= head("aHardwareSetup","Hardware Setup",2); ?>
+
+<p class="Body1">
+Setting up the hardware is easy. Follow the steps below:
+</p>
+
+<ol>
+	<li>Carefully unpack the Dharma board and put it on a flat surface.</li>
+	<li>Connect a null-modem cable between the serial port on the device and an available COM port on your computer.</li>
+	<li>Connect the power supply to the board.</li>
+</ol>
+
+<?= head("oSoftwareSetup","Software Setup",2); ?>
+
+<p class="Body1">
+The software setup is similarly simple:
+</p>
+
+<ol>
+	<li>Read the ReleaseNotes.txt file on the CD-ROM for specific information about this release.</li>
+	<li>Double-click the <strong>IObjects-sdk-current.exe</strong> on the CD-ROM.</li>
+	<li>When prompted to install Cygwin, click <strong>Yes</strong>.</li>
+	<li>When given the choice of where to install Cygwin from, click Install from Local Directory.</li>
+	<li>You can specify different locations for the install, and where to put shortcuts, but otherwise, accept all of the other default settings.</li>
+</ol>
+
+<p class="Body1">
+You now have the Cygwin environment set up, and the SDK installed. The next step is to build an image, and download it to the device. See the <?= crossref("oInstallationGuide", "Operation Guide"); ?> to continue.
+</p>
+
+
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

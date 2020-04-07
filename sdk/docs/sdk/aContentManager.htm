@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Content Manager</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="aMetadata.htm" title='Metadata'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aPlaylists.htm" title='Playlists'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='aContentManager'>Content Manager</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">
+The <span class="Module">Content Manager</span> tracks all of the media content records from all of the data sources, and manages playlists. Of all of the SDK objects, the <span class="Module">Content Manager</span> and its children are the objects you may want to customize.
+</p>
+
+<p class="Body1">All <span class="Module">Content Manager</span> objects must extend the <span class="Code">IContentManager</span> class. The <span class="Module">Play Manager</span> calls several of these methods to determine what track to play next, and handle numerous other events. </p>
+
+</td></tr>
+<tr><td colspan=2><p class='PictureWide'><img src='images/IContentManagerClass.gif' alt='IContentManager Class Diagram' width="624" height="360"></p></td></tr>
+				<tr><td></td><td>
+
+
+<p class="Body1">
+<span class="Module">Content Manager</span> objects track all active content objects. Content objects include both playlist files and individual tracks. 
+</p>
+<p class="Body1">
+The <span class="Module">Content Manager</span> manages a set of media content records. The <span class="Module">Play Manager</span> notifies the <span class="Module">Content Manager</span> when new media is available, when new Metadata has been retrieved, if a track was unplayable, or several other conditions. Your client application handles creating the <span class="Module">Content Manager</span> and passing the pointer to the <span class="Module">Play Manager</span>, as well as storing the serialized state.
+</p>
+</td></tr>
+<tr valign='top'><td><h3><a name='aQueryableContentManager'>Queryable Content Manager</a></h3></td>
+				<td>
+<p class="Body1">
+The <span class="Code">CSimpleContentManager</span> class is a simple implementation of <span class="Code">IContentManager</span>. If you want to scan the list of content records using any metadata (by Artist, for example), you will probably want to use a class that derives from <span class="Code">IQueryableContentManager</span>. The <span class="Code">CMetakitContentManager</span> extends this class, allowing you to query it for lists of Artists, Albums, Genres, or everything.
+</p>
+
+<p class="Body1">
+The Queryable Content Manager class provides ways of filtering tracks based on metadata. Other than the demo applications, the SDK does not require you to use this class.
+</p>
+
+</td></tr>
+<tr valign='top'><td><h3><a name='aContentRecord'>Content Records</a></h3></td>
+				<td><p class="Body1">
+A generic content record represents an individual file on a data source.  <span class="Code">IContentRecord</span> is an abstract class that is extended by both <span class="Code">IMediaContentRecord</span> and <span class="Code">IPlaylistContentRecord</span>. 
+</p>
+
+<p class="Body1">
+The <span class="Code">IPlaylistContentRecord</span> abstract class is primarily provided as a standard interface to save and load playlists to media. See <a href="aPlaylists.htm#aPlaylistFormatManager">Playlist Format Manager</a> for more about saving Playlists. A Playlist Content Record simply contains a URL corresponding to a data source and file location of a playlist file. 
+</p>
+
+<p class="Body1">A Media Content Record, in addition to containing a URL pointing to the file on the data source (the implementation of IContentRecord), contains properties representing metadata of the track.</p>
+
+
+
+<p class="Body1">See <a href="JavaScript:OpenView('cIContentManager.htm#cIContentManager');">Content Manager class</a> for more information about <span class="Module">Content Managers</span>.</p>
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="aMetadata.htm" title='Metadata'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aPlaylists.htm" title='Playlists'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 29, 2001 3:17 pm
+</p>
+</body>
+
+</html>

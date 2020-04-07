@@ -1,0 +1,133 @@
+<?php
+
+$pagetitle = "Global Definitions";
+include("startpage.php");
+
+?>
+
+<p class="Body1">This section describes definitions, macros, and types used globally in the Dharma SDK. Take advantage of them to simplify your client application development. The list includes:
+</p>
+<ul>
+<li>Data types</li>
+<ul>
+	<li>ERESULT</li>
+	<li>TCHAR</li>
+</ul>
+<li>Containers</li>
+
+<ul>
+	<li>Simple List</li>
+	<li>Simple Vector</li>
+	<li>Simple Map</li>
+</ul>
+
+<li>Macros</li>
+<ul>
+	<li>Debugging system</li>
+	<li>Events</li>
+	<li>Registry</li>
+	<li>System Timer</li>
+</ul>
+
+</ul>
+<?= head("cDataTypes","Data Types",2); ?>
+
+<?= head("cERESULT","ERESULT",3); ?>
+<p class="Body1">
+An <?= crossref("doxy/eresult_8h-source.html", "ERESULT"); ?> is a 32-bit code divided into Severity (8 bits), Zone (8 bits), and Code (16 bits). To use ERESULT in your own code, you will need to define a unique zone and include the <span class="Code">util/eresult/eresult.h</span> header. You can then define any integer as a return code.
+</p>
+
+<p class="Body1">
+ERESULT is a standard return data type used extensively in the SDK. It provides a way of quickly evaluating whether an operation completed successfully, and if not, what the problem was.
+</p>
+<p class="Body1">
+You can simply check <span class="Code">succeeded()</span> or <span class="Code">failed()</span> on the ERESULT to quickly determine whether the call was successful. These methods return boolean values.
+</p>
+
+<?= head("cTCHAR","TCHAR",3); ?>
+
+<p class="Body1">
+The <?= crossref("doxy/group__tchar.html", "TCHAR"); ?> data type is a double-byte character encoding, basically a wide text format.
+</p>
+
+<?= head("cContainers","Containers",2); ?>
+
+<?= head("cSimpleList","Simple List",3); ?>
+<p class="Body1">
+The <?= crossref("doxy/classSimpleList.html", "Simple List"); ?> container is a double-linked list. Each element in the container contains a data item and two pointers: one to the previous item, and one to the next item. 
+</p>
+<p class="Body1">
+To use the Simple List container, include the <span class="Code">util/datastructures/include/SimpleList.h</span> file.
+</p>
+
+<?= head("cSimpleVector","Simple Vector",3); ?>
+<p class="Body1">
+The <?= crossref("doxy/classSimpleVector.html", "Simple Vector"); ?> container is a basic indexed array. It has functions for adding, removing, and inserting values using an index value.
+</p>
+<p class="Body1">
+To use the Simple Vector container, include the <span class="Code">util/datastructures/include/SimpleVector.h</span> file.
+</p>
+
+<?= head("cSimpleMap","Simple Map",3); ?>
+<p class="Body1">
+The <?= crossref("doxy/classSimpleMap.html", "Simple Map"); ?> container is an associative array. You can store and retrieve data associated with a key value.
+</p>
+<p class="Body1">
+To use the Simple Map container, include the <span class="Code">util/datastructures/include/SimpleMap.h</span> file.
+</p>
+
+<?= head("cMacros","Macros",2); ?>
+
+
+<?= head("cDebugSystem","Debugging System",3); ?>
+
+<p class="Body1">
+The SDK includes <?= crossref("doxy/debug_8h-source.html", "debugging macros"); ?>. You will mostly use three functions to provide debugging information:
+</p>
+<ol>
+	<li>DEBUG_MODULE() &ndash; use to specify a module for debugging. You should define your own modules using this function.</li>
+	<li>DEBUG_USE_MODULE() &ndash; use this to specify an existing module to send the messages to.</li>
+	<li>DEBUG() &ndash; use this function to send a message of a specified severity to the debug log.</li>
+</ol>
+
+<p class="Body1">
+Debugging can be turned on or off by module, and you can use a single switch at compile time to turn off all debugging. Each message has a severity level, and for each module, you can specify what level of messages you want debugged.
+</p>
+<p class="Body1">
+The macro is in <span class="Code">util/debug/include/debug.h</span>.
+</p>
+
+<?= head("cEvents","Event Queue",3); ?>
+<p class="Body1">
+All events are handled by the Event Queue API. To use this API, include the <span class="Code"><?= crossref("doxy/EventQueueAPI_8h-source.html", "util/eventq/include/EventQueueAPI.h"); ?></span> file in your header. This header defines methods for both C and C++ code.
+</p>
+
+<p class="Body1">
+To send an event to the Event Queue, you simply provide an ID and data to the PutEvent() method.
+</p>
+
+
+<?= head("cRegistry","Registry",3); ?>
+<p class="Body1">
+The Registry is a place where you can store data you want to be persistent. 
+Your application should restore the registry on startup, and save it on shutdown 
+<!-- If your device does not store the Registry in flash, your application will need to write the registry  -->
+to a FAT device, or provide another data source type capable of storing it.
+</p>
+<p class="Body1">
+The Registry provides a simple key/value database system. To use it, include the <span class="Code"><?= crossref("doxy/Registry_8h-source.html", "util/registry/include/Registry.h"); ?></span> file.
+</p>
+
+<?= head("cTimer","System Timer",3); ?>
+<p class="Body1">
+The System Timer provides a way to execute functions at specific intervals. The timer uses a tick interval of 100 ms, or 1/10th of a second. To use it, you include the <span class="Code"><?= crossref("doxy/Timer_8h-source.html", "util/timer/include/Timer.h"); ?></span> file, and register a function with the interval and number of iterations.
+</p>
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

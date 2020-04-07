@@ -1,0 +1,275 @@
+<?php
+
+$pagetitle = "Title";
+include("startpage.php");
+
+?>
+
+
+<p class="Body1">
+As described earlier, the configuration system uses three types of files that you must edit to create a configuration:
+</p>
+
+<ul>
+	<li><em>&lt;target></em>.mk</li>
+	<li><em>&lt;target></em>_modules</li>
+	<li>*.dcl</li>
+
+</ul>
+
+<p class="Body1">
+The first two define a target configuration, listing all included modules and setting up the environment. The last is a configuration file associated with each individual module, and must be set up in the source tree. This section describes the format of each of these files.
+</p>
+
+<?= head("odotmkFile","Configuration .mk Files",3); ?>
+<p class="Body1">
+The target makefile include specifies a handful of parameters and
+extra configuration that is independent of any given module. This file
+uses standard makefile syntax, and is included into other makefiles
+during the build process. Although many options can be configured in
+this file, the standard options are as follows:
+
+</p>
+<?= spantablerow(); ?>
+<table border="1" cellspacing="3" width="100%">
+<tr><td colspan="2"><?= head("oRequiredVariables","Required variables:",0); ?></td></tr>
+
+<tr valign="top"><td><span class="Code">ECOS_BUILD_NAME</span></td> 
+      <td>  The name of the eCos build to link against.</td></tr>
+
+<tr valign="top"><td><span class="Code">MAIN_MODULE </span></td> 
+<td>           The path to the module that <span class="Code">cyg_user_start()</span>
+                        is defined in. This is the entry point from
+                        the eCos bootstrap environment. This module
+                        is excluded from the build when generating
+                        tests, since the <span class="Code">cyg_user_start()</span> symbol would
+                        be defined again during the link step.</td>
+</tr>
+
+<tr valign="top"><td><span class="Code">TARGET_FILE_NAME  </span></td> 
+<td>     The name of the executable image to generate
+                        from this build.</td>
+</tr>
+
+<tr><td colspan="2"><?= head("oOptionalVars","Optional variables:",0); ?></td></tr>
+
+<tr valign="top"><td><span class="Code">COMPILER_FLAGS</span></td>  
+<td>        Additional flags to pass to the compiler.</td></tr>
+
+
+<tr><td colspan="2"><?= head("","Optional macros:",0); ?></td></tr>
+
+<tr valign="top"><td><span class="Code">pre_build_step  </span></td>  
+<td>      A macro to run prior to building sources. This
+                        macro is always executed, even if the target
+                        is up to date.</td>
+</tr>
+<tr valign="top"><td><span class="Code">pre_compile_step </span></td>   
+<td>       A macro to run prior to compiling a
+                        file.</td>
+</tr>
+<tr valign="top"><td><span class="Code">post_compile_step  </span></td> 
+ <td>      A macro to run after compiling a file if the compilation succeeded.</td>
+</tr>
+
+<tr valign="top"><td><span class="Code">pre_link_step </span></td>   
+<td>       A macro to run prior to linking the
+                        sources. This macro is only executed if a
+                        relink is required.</td>
+</tr>
+<tr valign="top"><td><span class="Code">post_link_step  </span></td> 
+ <td>      A macro to run after linking the sources. This
+                        macro is only executed if a relink is required.</td>
+</tr>
+</table>
+<?= resumetablerow(); ?>
+<?= head("BuildExtensions","Build system extensions",4); ?>
+
+<p class="Body1">
+A brief note was made earlier about <span class="Code">pre_build_step</span>, <span class="Code">pre_link_step</span>, 
+<span class="Code">post_link_step</span>, <span class="Code">pre_compile_step</span>, and <span class="Code">post_compile_step</span>. These macros can optionally be defined to perform
+steps at certain parts of the build sequence. The syntax of these
+macros is best left to make documentation, such as that available for
+GNU make:
+
+</p>
+<p class="Body2">
+<?= crossref("http://www.gnu.org/manual/make-3.79.1/html_mono/make.html", "http://www.gnu.org/manual/make-3.79.1/html_mono/make.html"); ?>
+</p>
+
+
+
+<?= head("oModulesFile","Configuration _modules Files",3); ?>
+
+<p class="Body1">
+Module lists associate a target with a list of modules and module configurations. A module list is simply a flat text file with 2 columns, delimited by whitespace. The left column indicates the path to the module that should be built in; the right column indicates the name of the configuration to use when generating a build tree for this target. If the specified configuration script is not found, the configuration "default.dcl" will be searched for. If that configuration script is not found, then the module will be excluded from the build. 
+
+</p>
+<p class="Body1">
+It is possible to comment out a line in a module list by starting the line with the '#' character. When the list is processed, all text after the '#' character will be ignored. 
+
+</p>
+<?= head("","Path Column",4); ?>
+<p class="Body1">
+The left column of this file is a search path for the module, and begins in the "player/" directory. There is a special convention used for versioning in this path: if the last directory in the path is either "current" or matches "v[0-9]_[0-9]" (representing a version number in the format "v#_#" where each "#" is a single digit), then the search path includes both the specified directory and its parent. See <?= crossref("oModuleVersion", "Module Versioning"); ?> for more information about this system.
+</p>
+
+<?= head("","File Column",4); ?>
+<p class="Body1">
+The right column of this file is the name of the .dcl file to load. ".dcl" is automatically appended to this name. If this file is not found in the search path in the left column, the parser looks for a file called "default.dcl". If this file doesn't exist, the module will be omitted.
+</p>
+<p class="Body1">
+This system allows you to create different configurations for each module in the source tree, and specify which one to build in the target configuration.
+</p>
+
+
+<?= head("oDCLFiles","Configuration .dcl Files",3); ?>
+
+
+
+
+
+<p class="Body1">
+Configuration files are written in DCL. DCL is a very simple language.
+commented lines begin with the # character. The text for any directive
+must fit on a single line. Blank lines are ignored. 
+</p>
+
+<p class="Body1">
+There are a few main keywords in DCL:
+
+</p><?= spantablerow(); ?>
+<table cellspacing="5" border="1" width="100%">
+<tr valign="top"><td><span class="Code">name <em>&lt;module_name></em></span></td>
+
+<td>Specifies a name for this module. Other modules can then explicitly use
+this module as a dependency using the name/type pair.
+</td></tr>
+<tr valign="top"><td><span class="Code">type <em>&lt;module_type></em></span></td>
+
+<td>Specifies a type for this module. The currently allowed types are:
+
+<table>
+	<tr valign="top"><td>	  <span class="Code">storage</span>    </td><td>Storage (block) device</td></tr>
+	<tr valign="top"><td>	  <span class="Code">net</span>	    </td><td> Network device</td></tr>
+	<tr valign="top"><td>	  <span class="Code">dev</span>	   </td><td>  Generic device</td></tr>
+	<tr valign="top"><td>	  <span class="Code">input</span>	    </td><td> Input wrapper</td></tr>
+	<tr valign="top"><td>	  <span class="Code">output</span>    </td><td> Output wrapper</td></tr>
+	<tr valign="top"><td>	  <span class="Code">filter</span>    </td><td> Filter/codec wrapper</td></tr>
+	<tr valign="top"><td>	  <span class="Code">fs</span>	    </td><td> Filesystem</td></tr>
+	<tr valign="top"><td>	  <span class="Code">playlist</span>  </td><td> Playlist</td></tr>
+	<tr valign="top"><td>	  <span class="Code">other</span>	    </td><td> Unspecified type</td></tr>
+
+</table>
+</td></tr>
+
+<tr valign="top"><td><span class="Code">requires <em>&lt;packagename></em></span></td>
+<td>
+Specifies that this module needs the package &lt;packagename> to be built
+in order to function. &lt;packagename> can either be a specific package,
+or a wildcard. An example is that a fat module (of type fs) would
+require a module of type any_storage to be built in. An iso9660 module
+would require a module of type ata_storage be built (since the ata
+module includes the atapi support for CD drives).
+
+</td></tr>
+
+<tr valign="top"><td><span class="Code">include  <em>&lt;dcl list></em></span></td>
+<td>
+Include the specified dcl file(s) into the current one. This allows a single module to have a base configuration file with features common to all configurations of that module, and for individual configurations to be limited to their custom information. 
+</td></tr>
+
+
+<tr valign="top"><td><span class="Code">build_flags <em>&lt;build options></em></span></td>
+<td>
+A string to be added to the build line for gcc and g++.
+</td>
+</tr>
+<tr valign="top"><td><span class="Code">link_flags <em>&lt;link options></em></span></td>
+
+<td>A string to be added to the final link step.</td>
+</tr>
+
+<tr valign="top"><td><span class="Code">tests <em>&lt;file list></em></span></td>
+
+<td>Specifies test targets that can be built for this module.
+</td></tr>
+
+<tr valign="top"><td><span class="Code">export <em>&lt;file list></em></span></td>
+
+<td>Specifies the headers in this module that should be exported to the
+build tree. Headers not listed in the export list will not be
+accessible to other modules.
+</td></tr>
+
+<tr valign="top"><td><span class="Code">compile <em>&lt;file list></em></span></td>
+
+<td>Specifies the source files in this module that must be compiled for
+the module to function. 
+</td>
+</tr>
+<tr valign="top"><td><span class="Code">link <em>&lt;file list></em></span></td>
+
+<td>Specifies objects or libraries to be linked at the final link step.</td>
+</tr>
+
+
+<tr valign="top"><td><span class="Code">arch <em>&lt;object list></em></span></td>
+
+<td>Specifies a list of object files to archive into a library.</td>
+</tr>
+
+<tr valign="top"><td><span class="Code">header <em>&lt;headername> &lt;start | end></em></span></td>
+
+<td>Specifies the start (or end) of a block of text to be generated and
+deposited into the header file specified by &lt;headername>. This header
+exists in the build tree under the directory for this module.
+<p class="Body1">
+An example of this would be as follows:
+
+</p>
+<p class="CodeBlock">header hw_cfg.h start<br>
+#include &lt;cyg/hal/hal_edb7xxx.h><br>
+#define HW_TARGET_NAME "dharma"<br>
+#define HW_GPIO PDDR<br>
+#define HW_RESET 0x04<br>
+header hw_cfg.h end<br>
+</p>
+<p class="Body1">
+This would generate the header hw_cfg.h in the build tree, with the
+following contents:
+
+</p>
+<p class="CodeBlock">// generated file, do not edit !!<br>
+#ifndef __HW_CFG_H__<br>
+#define __HW_CFG_H__<br>
+<br>
+#include &lt;cyg/hal/hal_edb7xxx.h><br>
+#define HW_TARGET_NAME "dharma"<br>
+#define HW_GPIO PDDR<br>
+#define HW_RESET 0x04<br>
+<br>
+#endif // __HW_CFG_H__<br>
+</p>
+</td></tr>
+</table> 
+<?= resumetablerow(); ?>
+
+
+<p class="Body1">
+The most basic DCL file must have a name and a type specified, but
+does not need to use any other directives. The simplest sensible DCL
+file would have at least one file that it compiled, or at least one
+header that it exported.
+</p>
+
+
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

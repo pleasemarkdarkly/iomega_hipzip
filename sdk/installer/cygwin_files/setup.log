@@ -1,0 +1,127 @@
+2001/07/31 15:54:50 Starting cygwin install, version 2.78.2.3
+Current Directory: C:\Documents and Settings\erict\Desktop
+source: download
+Selected local directory: C:\Documents and Settings\erict\My Documents\sdk\installer\cygwin_files
+net: Direct
+site: ftp://planetmirror.com/pub/sourceware/cygwin
+Downloaded latest/ash/ash-20010425.tar.gz
+Downloaded latest/autoconf/autoconf-2.52-1.tar.bz2
+Downloaded latest/automake/automake-1.4-4.tar.gz
+Downloaded latest/bash/bash-2.05-6.tar.gz
+Downloaded latest/bash/bash-2.05-6-src.tar.gz
+Downloaded latest/binutils/binutils-20010425-2.tar.gz
+Downloaded latest/bison/bison-1.28-1.tar.gz
+Downloaded latest/byacc/byacc.tar.gz
+Downloaded latest/bzip2/bzip2-1.0.1-6.tar.gz
+Downloaded latest/bzip2/bzip2-1.0.1-6-src.tar.gz
+Downloaded latest/clear/clear-1.0.tar.gz
+Downloaded latest/clear/clear-1.0-src.tar.gz
+Downloaded latest/cpio/cpio-2.4.2.tar.gz
+Downloaded contrib/cron/cron-3.0.1-4.tar.bz2
+Downloaded latest/crypt/crypt-1.0-1.tar.gz
+Downloaded latest/ctags/ctags-5.0.1-1.tar.gz
+Downloaded contrib/cvs/cvs-1.11.0-1.tar.gz
+Downloaded latest/cygrunsrv/cygrunsrv-0.94-1.tar.bz2
+Downloaded latest/cygwin/cygwin-1.3.2-1.tar.gz
+Downloaded latest/dejagnu/dejagnu-20010117-1.tar.gz
+Downloaded latest/diff/diff.tar.gz
+Downloaded latest/diff/diff-src.tar.gz
+Downloaded latest/expect/expect-20010117-1.tar.gz
+Downloaded latest/file/file-3.33-1.tar.gz
+Downloaded latest/fileutils/fileutils-4.1-1.tar.bz2
+Downloaded latest/findutils/findutils.tar.gz
+Downloaded latest/flex/flex-2.5.4-1.tar.gz
+Downloaded latest/gawk/gawk-3.0.4-1.tar.gz
+Downloaded latest/gawk/gawk-3.0.4-1-src.tar.gz
+Downloaded latest/gcc/gcc-2.95.3-5.tar.bz2
+Downloaded latest/gdb/gdb-20010428-1.tar.gz
+Downloaded contrib/gdbm/gdbm-1.8.0-3.tar.gz
+Downloaded contrib/gettext/gettext-0.10.38-2.tar.bz2
+Downloaded contrib/ghostscript/ghostscript-6.51-1.tar.bz2
+Downloaded latest/gperf/gperf.tar.gz
+Downloaded latest/grep/grep-2.4.2-1.tar.gz
+Downloaded latest/grep/grep-2.4.2-1-src.tar.gz
+Downloaded latest/groff/groff-1.16.1-1.tar.gz
+Downloaded latest/groff/groff-1.16.1-1-src.tar.gz
+Downloaded latest/gzip/gzip-1.3-1.tar.gz
+Downloaded latest/gzip/gzip-1.3-1-src.tar.gz
+Downloaded latest/inetutils/inetutils-1.3.2-14.tar.gz
+Downloaded contrib/irc/irc-20010101-1.tar.gz
+Downloaded contrib/jbigkit/jbigkit-1.2-4.tar.bz2
+Downloaded contrib/jpeg/jpeg-6b-4.tar.gz
+Downloaded latest/less/less-358-3.tar.gz
+Downloaded latest/less/less-358-3-src.tar.gz
+Downloaded contrib/libpng/libpng-1.0.11-1.tar.gz
+Downloaded latest/login/login-1.4-2.tar.gz
+Downloaded contrib/lynx/lynx-2.8.3-1.tar.gz
+Downloaded latest/m4/m4.tar.gz
+Downloaded latest/make/make-3.79.1-4.tar.bz2
+Downloaded latest/make/make-3.79.1-4-src.tar.bz2
+Downloaded latest/man/man-1.5g-2.tar.gz
+Downloaded latest/man/man-1.5g-2-src.tar.gz
+Downloaded latest/mingw/mingw-20010424-1.tar.gz
+Downloaded latest/mt/mt-1.9.2-1.tar.bz2
+Downloaded contrib/mutt/mutt-1.2.5i-2.tar.gz
+Downloaded contrib/ncftp/ncftp-3.0.2-2.tar.gz
+Downloaded contrib/ncftp/ncftp-3.0.2-2-src.tar.gz
+Downloaded latest/ncurses/ncurses-5.2-5.tar.gz
+Downloaded latest/ncurses/ncurses-5.2-5-src.tar.gz
+Downloaded latest/cygwin/newlib-man-20001118.tar.gz
+Downloaded latest/opengl/opengl-1.1.0-5.tar.gz
+Downloaded latest/openssh/openssh-2.9p2-3.tar.bz2
+Downloaded latest/openssl/openssl-0.9.6b-1.tar.bz2
+Downloaded latest/patch/patch-2.5-2.tar.gz
+Downloaded latest/patch/patch-2.5-2-src.tar.gz
+Downloaded latest/pcre/pcre-3.4-2.tar.gz
+Downloaded contrib/perl/perl-5.6.1-1.tar.gz
+Downloaded contrib/perl/perl-5.6.1-1-src.tar.gz
+Downloaded contrib/popt/popt-1.6.1-1.tar.gz
+Downloaded contrib/postgresql/postgresql-7.1.2-3.tar.bz2
+Downloaded contrib/python/python-2.1-1.tar.gz
+Downloaded contrib/readline/readline-4.2-3.tar.bz2
+Downloaded contrib/readline/readline-4.2-3-src.tar.bz2
+Downloaded latest/regex/regex-4.4.tar.gz
+Downloaded latest/regex/regex-4.4-src.tar.gz
+Downloaded contrib/rsync/rsync-2.4.6-2.tar.bz2
+Downloaded contrib/rxvt/rxvt-2.7.2-6.tar.gz
+Downloaded latest/sed/sed-3.02-1.tar.gz
+Downloaded latest/sed/sed-3.02-1-src.tar.gz
+Downloaded latest/sh-utils/sh-utils-2.0-2.tar.gz
+Downloaded latest/sh-utils/sh-utils-2.0-2-src.tar.gz
+Downloaded contrib/squid/squid-2.4-STABLE20010508.tar.gz
+Downloaded contrib/ssmtp/ssmtp-2.38.7-2.tar.gz
+Downloaded latest/tar/tar-1.13.19-1.tar.gz
+Downloaded latest/tar/tar-1.13.19-1-src.tar.gz
+Downloaded latest/tcltk/tcltk-20001125-1.tar.gz
+Downloaded contrib/tcsh/tcsh-6.10.00-3.tar.gz
+Downloaded latest/termcap/termcap-20001216-1.tar.gz
+Downloaded contrib/tetex/tetex-beta-20001218-1.tar.gz
+Downloaded latest/texinfo/texinfo-4.0-4.tar.gz
+Downloaded latest/textutils/textutils-2.0-2.tar.bz2
+Downloaded latest/textutils/textutils-2.0-2-src.tar.bz2
+Downloaded contrib/tiff/tiff-3.5.6beta-2.tar.gz
+Downloaded latest/time/time.tar.gz
+Downloaded latest/time/time-src.tar.gz
+Downloaded contrib/unzip/unzip-5.41-1.tar.gz
+Downloaded contrib/unzip/unzip-5.41-1-src.tar.gz
+Downloaded latest/vim/vim-5.8-2.tar.gz
+Downloaded latest/vim/vim-5.8-2-src.tar.gz
+Downloaded latest/w32api/w32api-20010520-1.tar.gz
+Downloaded latest/w32api/w32api-20010520-1-src.tar.gz
+Downloaded contrib/wget/wget-1.6-1.tar.gz
+Downloaded contrib/wget/wget-1.6-1-src.tar.gz
+Downloaded latest/which/which-1.4.tar.gz
+Downloaded contrib/xpm-nox/xpm-nox-4.1.0-1.tar.bz2
+Downloaded contrib/zip/zip-2.3-1.tar.gz
+Downloaded contrib/zip/zip-2.3-1-src.tar.gz
+Downloaded latest/zlib/zlib-1.1.3-6.tar.gz
+Downloaded latest/zlib/zlib-1.1.3-6-src.tar.gz
+mbox note: Download Complete
+2001/07/31 16:25:20 Ending cygwin install
+2001/10/30 01:47:44 Starting cygwin install, version 2.78.2.3
+Current Directory: e:\dadio\sdk\installer\cygwin_files
+source: network install
+2001/10/30 01:47:48 Ending cygwin install
+2001/10/30 01:47:52 Starting cygwin install, version 2.78.2.3
+Current Directory: e:\dadio\sdk\installer\cygwin_files
+2001/10/30 01:47:57 Ending cygwin install

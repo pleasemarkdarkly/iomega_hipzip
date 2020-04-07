@@ -1,0 +1,114 @@
+<?php
+
+$pagetitle = "";
+include("startpage.php");
+
+?>
+
+
+
+
+
+
+<p class="Body1">
+The hard drive demo highlights several features of a simple digital audio device such as a Jukebox or a portable player.  You can access, navigate and play content with limited user interface and player controls from a spinning media storage device, and get an idea of the capabilities and flexibility of the Dharma platform with Dharma SDK.  This demo focuses on player controls and the user interface.  
+</p>
+<?= head("","Features",4); ?>
+<p class="Body1">
+Demo #1 supports the following features:
+</p>
+
+<ul>
+	<li><strong>Play files from a hard drive.</strong> Access a drive and create a file database that allows the media player to navigate and play tracks from the drive.</li>
+	<li><strong>Simple UI.</strong> Display player functions; File name or Track ID and Artist name and album name for the playing track, Volume level, Bass level, Treble level, Play-pause-stop mode, playlist mode, Time code for track.</li>
+	<li><strong>Save and load device state information.</strong> Save and load the current settings of the device (Volume level, bass level, and treble level). The last saved state of these settings are loaded from a settings file at startup.</li>
+	<li><strong>Automatic playback.</strong> At start-up, this demo scans the contents of the hard drive and builds a simple playlist. It then automatically starts playing the first track.</li>
+	<li><strong>Support button events.</strong> Play-Pause/Stop/Next track/Previous track/ Volume up/ Volume down/ Bass up/ Bass down/ Treble up/ Treble down/ Save device state/ Playlist mode.</li>
+	<li><strong>Playlist mode.</strong> Support normal, random, repeat, random repeat, and repeat track modes for playlists.</li>
+	
+</ul>
+
+<?= head("","Demo button configuration and description",4); ?>
+
+<p class="Body1">
+The Dharma bard has 16 buttons for user input to control the demos.  Once loaded and running the demo will respond to input from button array.
+
+</p>
+<?= picture("DharmaButtons.gif", "Dharma Buttons"); ?>
+ 
+<p class="Body1">
+The hard drive demo supports the following button functions:
+</p>
+
+<?= spantablerow(); ?>
+<table border="1" cellspacing="3">
+	<tr><td>Button #</td><td>	Function	</td><td>Notes</td></tr>
+	<tr valign="top"><td>1	</td><td>Play / Pause	</td><td>
+	The play/pause button toggles between playing the next cued track and pausing currently playing track.  The UI displays the play, pause, and stop icons on the main play mode screen depending on what state the player is in.
+</td></tr>
+	<tr valign="top"><td>2	</td><td>Previous track</td><td>The previous track button operates in two modes depending on where you are in the currently playing track.  If the current track is playing and is in the first five seconds of play, pressing the button will navigate to the previous track. If the player is at the beginning of the playlist and not in a repeat mode, this button has no effect. <br>
+<br>
+If the playing track has played longer then the first five seconds pressing the previous track button will navigate to the start of the current track.	</td></tr>
+	<tr valign="top"><td>3	</td><td>Volume Up	</td><td>The volume up and down buttons have 21 volume steps.<br>
+<br>
+
+
+Pressing the volume up/down button will increase/decrease the volume on the device from its current step location one step per press until it's at the maximum or minimum level.  The UI displays "Volume" and a numerical level number between 0 and 20. <br>
+<br>
+
+Pressing and holding the volume buttons will increase/decrease a step every second until the maximum or minimum level is reached.
+</td></tr>
+	<tr valign="top"><td>4	</td><td>Bass up	</td><td>
+	The bass up and down buttons have 12 bass steps.<br>
+	<br>
+	
+Pressing the bass up/down button will increase/decrease the bass on the device from its current step location one step per press until it's at the maximum or minimum level.  The UI displays "Bass" and a numerical level number between 0 and 11.<br>
+<br>
+
+Pressing and holding the bass buttons will increase/decrease a step every second until the maximum or minimum level is reached.
+
+	</td></tr>
+	<tr valign="top"><td>5	</td><td>Treble up	</td><td>	The treble up and down buttons have 12 treble steps.<br>
+	<br>
+	
+Pressing the treble up/down button will increase/decrease the treble on the device from its current step location one step per press until it's at the maximum or minimum level.  The UI displays "Treble" and a numerical level number between 0 and 11.<br>
+<br>
+
+Pressing and holding the treble buttons will increase/decrease a step every second until the maximum or minimum level is reached.</td></tr>
+	<tr valign="top"><td>6  	</td><td>Playlist Mode	</td><td>
+		The playlist mode button modifies the behavior of the current playlist.  There are five modes: Repeat All, Repeat Random, Repeat Track, Normal, and Random. The UI displays the words "Playlist Mode" and the current mode. Each time you press the button, the next mode appears on the UI, rolling through the modes in the above order. 
+
+</td></tr>	
+
+
+
+
+	<tr valign="top"><td>7	</td><td>Not used	</td><td></td></tr>
+	<tr valign="top"><td>8	</td><td>Save Device State	</td><td>
+	The Save Device State saves the current volume, bass and treble settings for the device.  This feature shows how a device state file is saved and loaded next time the power is cycled.  After pushing this button the demo status line displays "Saving State" followed by "Saved State" if the operation is successful.
+
+</td></tr>
+	<tr valign="top"><td>9	</td><td>Stop	</td><td>The stop button stops the playing of the current track.  The track will not restart until play is pushed.  This button changes the User Interface in the main play mode by replacing the "play" icon with the "stop" icon.</td></tr>
+	<tr valign="top"><td>10	</td><td>Next track	</td><td>
+	The Next Track button navigates to the next track in the system.  If the device is at the end of the playlist and not in a repeat mode, this button will do nothing. 
+</td></tr>
+	<tr valign="top"><td>11	</td><td>Volume Down	</td><td>See Volume Up (button #3).</td></tr>
+	<tr valign="top"><td>12	</td><td>Bass down	</td><td>See Bass Up (button #4).</td></tr>
+	<tr valign="top"><td>13	</td><td>Treble down	</td><td>See Treble Up (button #5).</td></tr>
+	<tr valign="top"><td>14	</td><td>Query drive-refresh content DB</td><td>	Pressing this button causes the unit to spider the hard drive and create a content database of all tracks found on all media types active.  When finished, the status line will display "Content update finished", and then start playing the first track in the database.  If there was an error, the status line will read "Error updating content."
+</td></tr>
+	<tr valign="top"><td>15	</td><td>Not used	</td><td></td></tr>
+	<tr valign="top"><td>16	</td><td>Load Device State	</td><td>
+	This button loads the previously saved volume, bass, and treble settings. 
+	</td></tr>
+	
+</table>
+<?= resumetablerow(); ?>
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

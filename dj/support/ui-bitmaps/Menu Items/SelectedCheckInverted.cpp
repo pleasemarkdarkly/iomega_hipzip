@@ -1,0 +1,9 @@
+
+#include "peg.hpp"
+/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+
+ROMDATA UCHAR ucSelectedCheckInvertedBitmap[22] = {
+0x08,0x00,0x1c,0x00,0x3e,0x00,0x78,0x00,0xe0,0x00,0xf8,0x00,0x3e,0x00,0x0f,0x80,0x03,0xf0,0x01,0xe0,0x00,0xc0,};
+PegBitmap gbSelectedCheckInvertedBitmap = { 0x04, 1, 11, 13, 0x000000ff, (UCHAR *) ucSelectedCheckInvertedBitmap};
+

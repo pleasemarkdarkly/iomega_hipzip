@@ -1,0 +1,11 @@
+test/bringup			default
+devs/storage/ata/current     	hd_slave
+devs/audio/current                 cs42l50
+devs/lcd/v1_0                  	HP24516RBU-LYO
+devs/keyboard/current                   dharma
+util/datastructures/current             dharma
+util/debug/v1_0                      dharma
+util/eventq/v1_0                     dharma
+io/storage/v1_01                     dharma
+core/events/v1_0                     dharma
+devs/ir					uei

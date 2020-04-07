@@ -1,0 +1,8 @@
+// dns.h: interface to dns routines
+// danc@iobjects.com 08/12/01
+// (c) Interactive Objects
+
+#ifndef __DNS_H__
+#define __DNS_H__
+
+#endif // __DNS_H__

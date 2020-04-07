@@ -1,0 +1,52 @@
+<?php
+
+$pagetitle = "Demo Apps";
+include("startpage.php");
+
+?>
+
+<p class="Body1">
+The Dharma SDK includes three demo applications you can use to model your application. These demos are completely functional, and all of the source code is provided so you can build off of existing work.
+</p>
+<p class="Body1">
+Each demo is available in both compiled and source forms.
+</p>
+
+
+<?= head("","Demo User Interface",3); ?>
+
+
+<p class="Body1">
+All of the demos share a very simple user interface (UI). There are icons for Play, Pause, and Stop. All other functions display a simple text message to indicate their status.
+</p>
+<p class="Body1">
+The UI consists of an 11-line text display. When the Dharma Board is operating, it displays a banner indicating which demo is playing, the play state and track time of the current track, the title, artist, album, and genre of the current track, the Playlist Mode, the Volume, Bass, and Treble settings, and a status message.
+
+</p>
+
+
+
+
+
+<?= head("","Demo Excluded Features",3); ?>
+
+<p class="Body1">
+
+Due to time and developer constraints several features are not supported in the demo applications. The following features are not demonstrated: 
+
+</p>
+
+<ul>
+	
+<li><strong>Track seek</strong> &ndash; Seeking within a track is not demonstrated in the demo applications.</li>
+
+<li><strong>Power management</strong> &ndash; No power management features are used in the demo applications.</li>	
+</ul>
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

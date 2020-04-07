@@ -1,0 +1,11 @@
+bootloader/grl/current          dharma
+util/debug/current              dharma
+util/datastructures/current     dharma
+fs/flash/current                dharma
+devs/storage/ata/current        dj
+devs/lcd/current                HP24516RBU-LYO
+io/storage/v1_01                dharma
+fs/fat/current                  bootloader
+main/util/update/current        dharma
+util/utils/current              dharma
+main/ecos_support               dharma

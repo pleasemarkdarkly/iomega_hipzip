@@ -1,0 +1,98 @@
+<?php
+
+$pagetitle = "Codec";
+include("startpage.php");
+
+?>
+
+
+<p class="Body1">
+The Dharma OS provide an abstract interface to codecs (typically
+decoders). Arbitrary codecs can be linked in with the library and
+be automatically available to applications. Codecs are associated with
+a range of file extensions, and can optionally be probed to determine
+if they can decode a given bitstream. Codecs are dynamically created
+and released.
+</p>
+<?= head("","Components",3); ?>
+
+<p class="Body1">
+There are 3 basic pieces to the Dharma(tm) codec system, each of which
+are covered in more detail later:
+</p>
+
+<ol>
+<li><?= crossref("cICodec", "ICodec interface"); ?><br>
+
+   (<span class="Code">./player/codec/common/include/Codec.h</span>)<br>
+   
+        The ICodec interfaces describes the necessary APIs that a codec
+   must implement to operate in the Dharma environment.</li>
+
+<li><?= crossref("aCodecManager", "CCodecManager class"); ?><br>
+
+   (<span class="Code">./player/codec/codecmanager/include/CodecManager.h</span>)<br>
+
+        The CCodecManager class provides a mechanism for locating a
+   given codec by file extensions it supports (such as ".mp3"), by a
+   specific codec ID in situations where the type of codec is well
+   known (as is the case with CD audio), and also by probing available
+   codecs to determine if they can decode the bitstream.</li>
+
+<li><?= crossref("cCodecRegistration", "Registration interface"); ?><br>
+
+   (<span class="Code">./player/codec/common/include/Codec.h</span>)<br>
+   
+        The registration interface provides a way for arbitrary
+   objects to make themselves globally visible to Dharma(tm). The Codec
+   interface defines the necessary macros to register your class and
+   define certain basic routines needed for the CCodecManager class to
+   properly work with your codec.</li>
+</ol>
+<?= head("","Program flow",3); ?>
+
+<p class="Body1">
+During startup, all codecs register themselves with the system
+(specifically, with the system registry). Later on, during player
+initialization, the CCodecManager singleton is instantiated, and it
+builds a list of supported file extensions based on the registered
+codec list. At this point the CCodecManager is available to fulfill
+the system's codec needs.
+
+</p>
+
+<p class="Body1">
+The goal of the codec system is to allow third party codec writers to
+easily integrate their codec into the Dharma(tm) OS. This is
+accomplished by providing a single interface (ICodec) to write to, and
+a registration system to incorporate their codec into the main
+system. 
+
+</p>
+
+
+<?= head("aCodecManager","Codec Manager",3); ?>
+<p class="Body1">
+The <span class="Module">Codec Manager</span> is a singleton object that the system can use to
+access available codecs. It keeps a list of supported extensions, in
+addition to table of pointers to creation routines for the available
+codecs. The assembly of this list is facilitated through the
+registration interface.
+
+</p>
+<p class="Body1"> When the <span class="Module">Media Player</span> gets an input stream, it passes the codec ID stored in the media content record to the <span class="Module">Codec Manager</span> to get a codec.</p>
+<p class="Body1">If the codec cannot decode the input stream, or the codec ID is missing or invalid, the <span class="Module">Codec Manager</span> first attempts to load a codec associated with the file extension. If that doesn't work, the <span class="Module">Codec Manager</span> will step through all of the registered codecs to find one that works. If none work, the <span class="Module">Media Player</span> returns an error.</p>
+
+
+
+<p class="Body1">
+For more information about the <span class="Module">Codec Manager</span>, see the <?= crossref("/CodecManager_8h-source", "CodecManager.h"); ?> file.
+</p>
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

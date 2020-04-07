@@ -1,0 +1,7 @@
+bootloader/pogo			dharma
+bootloader/main/current		dharma
+util/debug/v1_0			dharma
+io/storage/v1_01              	dharma
+devs/storage/ata/v1_04          hd_only
+fs/fat/current                  bootloader
+util/datastructures/current     dharma

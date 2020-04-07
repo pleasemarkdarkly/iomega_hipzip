@@ -1,0 +1,27 @@
+CmdPrompt = '> '
+
+sendln
+
+wait   CmdPrompt
+sendln 'rem ata hard reset test'
+wait   CmdPrompt
+sendln 'rem tray should open, 5 seconds later, it should close'
+
+wait   CmdPrompt
+sendln 'ata'
+
+
+
+wait   CmdPrompt
+sendln 'eject'
+
+pause 5
+
+wait   CmdPrompt
+sendln 'gpio d 1 0 0'
+
+pause 1
+
+wait   CmdPrompt
+sendln 'gpio d 1 0 1'
+

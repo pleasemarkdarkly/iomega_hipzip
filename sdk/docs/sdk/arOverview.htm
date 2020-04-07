@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Architectural Overview</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="aQuickStart.htm" title='Quick Start Guide'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aMainApplication.htm" title='Main Application'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h1
+><a name='arOverview'>Architectural Overview</a></h1
+><table cellpadding=5>
+<tr><td></td><td>
+
+
+
+
+<p class="Body1">The Dharma SDK provides an object-oriented framework to help you quickly build the firmware for your media player.</p>
+<p class="Body1">This document describes the architecture of the objects provided as part of the software development kit, and gives you what you need to know to jump-start your development.
+</p>
+<p class="Body1">The Dharma SDK comes with working code with basic functionality. You will want to build on the set of features to make the device dance.
+</p>
+<p class="Body1">At the highest level, the client application controls the user interface, including the display, buttons, and connections to devices and media. The Dharma SDK includes the low-level drivers for many devices, but your client application must define which ones are being used. The main event handling routines are all in your client code. Your client code interacts almost exclusively with the <span class="Module">Play Manager</span>, which routes requests to other appropriate modules:
+</p>
+</td></tr>
+<tr><td colspan=2><p class='PictureWide'><img src='images/image003.gif' alt='Interacting with the Play Manager for all tasks' width="576" height="401"></p></td></tr>
+				<tr><td></td><td>
+
+<p class="Body1">The SDK provides several abstract classes. You may extend these classes as necessary to add functionality to the device. These abstract classes include: <a href="JavaScript:OpenView('cIContentManager.htm#cIContentManager');">Content Manager</a>, <a href="JavaScript:OpenView('cIPlaylist.htm#cIPlaylist');">Playlist</a>, <a href="JavaScript:OpenView('cIMetadata.htm#cIMetadata');">Metadata</a>, <a href="JavaScript:OpenView('cIDataSource.htm#cIDataSource');">Data Source</a>, <a href="JavaScript:OpenView('cDataStreams.htm#cDataStreams');">Data Streams</a>, <a href="JavaScript:OpenView('cICodec.htm#cICodec');">Codec</a>, and <a href="JavaScript:OpenView('cIFilter.htm#cIFilter');">Filter</a>. Follow the links for more detailed information about each of these abstract classes.</p>
+
+
+
+</td></tr>
+<tr><td colspan=2><h2><a name='aEventLoop'>Event Loop</a></h2></td></tr>
+				<tr><td width=50>&nbsp;</td><td>
+<p class="Body1">The first task for your new application will be to create an event loop. The example event loop simply grabs the oldest event off the queue and passes to the default event handler in the <span class="Module">Play Manager</span>. 
+</p>
+<p class="Body1">Events are triggered by all of the user interface elements: buttons, switches, jog dials, media insertion/removal, etc. In addition, the SDK objects generate events such as:
+</p>
+<ul>
+	<li><span class="Module">Media Player</span> track progress</li>
+	<li>Content Enumeration information</li>
+	<li>Errors.</li>
+</ul>
+<p class="Body1">Your main event loop can pass all events to the default event handler in the <span class="Module">Play Manager</span>, but you will probably want to intercept certain events and add your own handler.
+</p>
+
+
+
+
+
+</td></tr>
+<tr><td colspan=2><h2><a name='aUserInterface'>User Interface</a></h2></td></tr>
+				<tr><td width=50>&nbsp;</td><td>
+<p class="Body1">The demo applications provide examples of two user interfaces: a serial text-based interface, and a simple bit-mapped interface. To make a more sophisticated interface, you might want to use a GUI toolkit, such as <a href="http://www.swellsoftware.com/PEG.html" target="_blank">PEG</a>, <a href="http://www.mojodesigns.com/eyelet_gui/index.html" target="_blank">Eyelet</a>, or <a href="http://www.microwindows.org/" target="_blank">MicroWindows</a>. These are available from individual vendors.</p>
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="aQuickStart.htm" title='Quick Start Guide'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aMainApplication.htm" title='Main Application'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 24, 2001 3:36 pm
+</p>
+</body>
+
+</html>

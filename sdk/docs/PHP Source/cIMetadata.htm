@@ -1,0 +1,53 @@
+<?php
+
+$pagetitle = "Abstract Classes: IMetadata";
+include("startpage.php");
+
+?>
+
+
+<p class="Body1">
+The SDK includes two concrete Metadata classes:
+</p>
+
+<ul>
+	<li><span class="Code">CSimpleMetadata</span> &ndash; provides simple methods for accessing Title, Artist, Album, and Genre only.</li>
+	<li><span class="Code">CConfigurableMetadata</span> &ndash; tracks whatever metadata you add to the attribute list.</li>
+</ul>
+
+
+
+<?= head("CSimpleMetadata","Simple Metadata",4); ?>
+<p class="Body1">If you only need Artist, Album, Genre, and Title information, use the <span class="Code">CSimpleMetadata</span> class.
+This class, in addition to the <span class="Code">IMetadata</span> interface, provides direct methods for accessing these data: <span class="Code">GetTitle()</span>, <span class="Code">GetArtist()</span>, <span class="Code">GetAlbum()</span>, and <span class="Code">GetGenre()</span>. All other metadata associated with the track is ignored.
+</p>
+
+<?= head("CConfigurableMetadata","Configurable Metadata",4); ?>
+<p class="Body1">This object contains no set metadata properties; it must be configured with all properties you wish to track. You can use the <span class="Code">AddAttribute()</span> method to add each type of metadata you want to track to the object as an attribute. When you add an attribute to any <span class="Code">CConfigurableMetadata</span> object, it is added to all instances of the object.
+</p>
+<p class="Body1">
+Attributes are identified using an integer ID. The <?= crossref("/Metadata_8h-source", "Metadata.h"); ?> file defines all metadata types currently known to all codecs in the SDK. You can use these metadata types with no further work.
+</p>
+<p class="Body1">
+However, if you want to define other metadata types that are not populated directly from the track, you need to define it in your header and register it in the Metadata Table using <span class="Code">CMetadataTable::AddMetadataAttribute()</span>. You also need to provide the data type, which may be an integer or a <?= crossref("cTCHAR", "TCHAR"); ?>.
+</p>
+
+<?= head("","Custom Metadata Objects",4); ?>
+<p class="Body1">
+If you want a clean, optimized Metadata object with only a small set of metadata types, and the Simple Metadata Object does not meet your needs, you can define your own. The Configurable Metadata Object is capable of handling any metadata, but you may be able to improve performance by hard-coding the specific metadata types you need.
+</p>
+<p class="Body1">
+Like the Configurable Metadata object, if you want to define your own type of metadata, you need to register it in the Metadata Table. Otherwise, implementing your own Metadata object is straightforward. See the code for the existing Metadata objects for ideas.
+</p>
+<p class="Body1">
+See <?= crossref("aMetadata", "Metadata"); ?> for more information about <span class="Module">Metadata</span> objects.
+</p>
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

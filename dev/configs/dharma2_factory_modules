@@ -1,0 +1,19 @@
+test factory
+devs/lcd default
+devs/storage/ata 		allv2
+io/storage default
+util/debug default
+devs/audio record
+gui/simplegui/common            dharma
+gui/simplegui/font              dharma
+gui/simplegui/screen            dharma
+gui/simplegui/screenelem/bitmap dharma
+gui/simplegui/screenelem/common dharma
+gui/simplegui/screenelem/drawregion dharma
+gui/simplegui/screenelem/textlabel  dharma
+gui/simplegui/show              dharma
+util/datastructures dharma
+util/eventq dharma
+devs/keyboard dharma
+core/events
+io/storage

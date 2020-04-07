@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Abstract Classes: IMetadata</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="cIFilter.htm" title='IFilter'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="cIDataSource.htm" title='IDataSource'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='cIMetadata'>IMetadata</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+
+<p class="Body1">
+The SDK includes two concrete Metadata classes:
+</p>
+
+<ul>
+	<li><span class="Code">CSimpleMetadata</span> &ndash; provides simple methods for accessing Title, Artist, Album, and Genre only.</li>
+	<li><span class="Code">CConfigurableMetadata</span> &ndash; tracks whatever metadata you add to the attribute list.</li>
+</ul>
+
+
+
+</td></tr>
+<tr valign='top'><td><h4><a name='CSimpleMetadata'>Simple Metadata</a></h4></td>
+				<td><p class="Body1">If you only need Artist, Album, Genre, and Title information, use the <span class="Code">CSimpleMetadata</span> class.
+This class, in addition to the <span class="Code">IMetadata</span> interface, provides direct methods for accessing these data: <span class="Code">GetTitle()</span>, <span class="Code">GetArtist()</span>, <span class="Code">GetAlbum()</span>, and <span class="Code">GetGenre()</span>. All other metadata associated with the track is ignored.
+</p>
+
+</td></tr>
+<tr valign='top'><td><h4><a name='CConfigurableMetadata'>Configurable Metadata</a></h4></td>
+				<td><p class="Body1">This object contains no set metadata properties; it must be configured with all properties you wish to track. You can use the <span class="Code">AddAttribute()</span> method to add each type of metadata you want to track to the object as an attribute. When you add an attribute to any <span class="Code">CConfigurableMetadata</span> object, it is added to all instances of the object.
+</p>
+<p class="Body1">
+Attributes are identified using an integer ID. The <a href="JavaScript:OpenView('doxy/Metadata_8h-source.html#doxy/Metadata_8h-source');">Metadata.h</a> file defines all metadata types currently known to all codecs in the SDK. You can use these metadata types with no further work.
+</p>
+<p class="Body1">
+However, if you want to define other metadata types that are not populated directly from the track, you need to define it in your header and register it in the Metadata Table using <span class="Code">CMetadataTable::AddMetadataAttribute()</span>. You also need to provide the data type, which may be an integer or a <a href="cGlobalDefinitions.htm#cTCHAR">TCHAR</a>.
+</p>
+
+</td></tr>
+<tr valign='top'><td><h4><a name=''>Custom Metadata Objects</a></h4></td>
+				<td><p class="Body1">
+If you want a clean, optimized Metadata object with only a small set of metadata types, and the Simple Metadata Object does not meet your needs, you can define your own. The Configurable Metadata Object is capable of handling any metadata, but you may be able to improve performance by hard-coding the specific metadata types you need.
+</p>
+<p class="Body1">
+Like the Configurable Metadata object, if you want to define your own type of metadata, you need to register it in the Metadata Table. Otherwise, implementing your own Metadata object is straightforward. See the code for the existing Metadata objects for ideas.
+</p>
+<p class="Body1">
+See <a href="JavaScript:OpenView('aMetadata.htm#aMetadata');">Metadata</a> for more information about <span class="Module">Metadata</span> objects.
+</p>
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="cIFilter.htm" title='IFilter'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="cIDataSource.htm" title='IDataSource'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 29, 2001 2:55 am
+</p>
+</body>
+
+</html>

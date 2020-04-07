@@ -1,0 +1,168 @@
+a:link {  text-decoration: none;  }
+a:active { color: #FF3300; text-decoration: none ; }
+a:visited { text-decoration: none; }
+a:hover { color: #FF9900; text-decoration: underline ;  }
+p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	color: #000000
+}
+.copyright {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: xx-small; color: #000000}
+
+/* Let's use Serif Headers & Sans Serif body */
+h1 {
+	font-family: "Times New Roman", Times, serif;
+	color: #FF9900
+}
+h2 {
+	font-family: "Times New Roman", Times, serif;
+}
+h3 {
+	font-family: "Times New Roman", Times, serif;
+}
+h4 {
+	font-family: "Times New Roman", Times, serif;
+}
+h5 {
+	font-family: "Times New Roman", Times, serif;
+}
+h6 {
+	font-family: "Times New Roman", Times, serif;
+}
+
+li {  font-family: Arial, Helvetica, sans-serif; font-size: small;
+	margin-left:0; margin-top:9pt;}
+ul {  font-family: Arial, Helvetica, sans-serif;
+	}
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size : small;
+}
+
+/* Paragraph Styles with names to match Word template */
+.Body1 {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : small;
+}
+.Body2 {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : small;
+	padding-left : 5em;
+	padding-right: 5em;
+}
+.Body3 {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : x-small;
+	padding-left: 10em;
+	padding-right: 10em;
+}
+.Caption {
+	text-align : center;
+	font-family : "Times New Roman", Times, serif;
+}
+.CodeBlock {
+	font : smaller "Courier New", Courier, monospace;
+	padding-left : 5em;
+	padding-right: 5em;
+}
+.Legal {
+	font : xx-small;
+	padding-bottom : 6pt;
+	padding-left : 5em;
+	padding-right : 5em;
+	text-align: center;
+}
+.Note {
+	border-bottom : thin solid Gray;
+	border-top : thin solid Gray;
+	font : small Arial, Helvetica, sans-serif;
+}
+.Picture {
+	text-align : center;
+	padding-bottom: 6pt;
+}
+.PictureWide {
+	text-align: left;
+	padding-bottom: 6pt;
+}
+.ProcHead {
+	font: bold small;
+	color : #00008B;
+}
+
+th {
+	
+}
+td {
+	
+}
+
+/* Character styles to match Word styles */
+.Code {
+	font : smaller "Courier New", Courier, monospace;
+}
+.Citation {
+	font : italic;
+}
+.Emphasis {
+ font: italic;
+}
+.Module {
+	font: "Times New Roman", Times, serif;
+	color : Olive;
+}
+.Strong {
+	font: bold;
+}
+
+
+/* Online-only elements */
+.toc1 {
+	font : small "Times New Roman", Times, serif;
+	list-style : disc;
+	padding-top: 6pt;
+	margin-left: -10pt;
+	padding-left: 4;
+	margin-top: 0pt;
+
+}
+.toc2 {
+	font : x-small "Times New Roman", Times, serif;
+	list-style : circle outside;
+	padding-top: 3pt;
+	margin-top:0pt;
+
+}
+
+.toc3 {
+	font : xx-small "Times New Roman", Times, serif;
+	list-style : square inside;
+	margin-top:0pt;
+}
+/* Doxygen styles */
+
+A.qindex {}
+A.qindexRef {
+}
+A.el {
+	text-decoration: none;
+	font-weight: bold;
+}
+A.elRef { font-weight: bold }
+A.code { text-decoration: none; font-weight: normal; color: #4444ee }
+A.codeRef { font-weight: normal; color: #4444ee }
+/*A:hover { background-color: #f2f2ff }*/
+DL.el { margin-left: -1cm }
+DIV.fragment { width: 100%; border: none; background-color: #eeeeee }
+DIV.ah { background-color: black; font-weight: bold; color: #ffffff; margin-bottom: 3px; margin-top: 3px }
+TD.md { background-color: #f2f2ff; font-weight: bold; }
+TD.mdname { background-color: #f2f2ff; font-weight: bold; font-style: italic }
+DIV.groupHeader { margin-left: 16px; margin-top: 12px; margin-bottom: 6px; font-weight: bold }
+DIV.groupText { margin-left: 16px; font-style: italic; }/*font-size: smaller*/
+FONT.keyword       { color: #008000 }
+FONT.keywordtype   { color: #604020 }
+FONT.keywordflow   { color: #e08000 }
+FONT.comment       { color: #800000 }
+FONT.preprocessor  { color: #806020 }
+FONT.stringliteral { color: #002080 }
+FONT.charliteral   { color: #008080 }

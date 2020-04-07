@@ -1,0 +1,83 @@
+# fisutil DJ script
+# syntax notes:
+# lines with # at the front are ignored
+# lines with '\n' at the front are ignored (blank lines)
+# all numbers are hexidecimal, without a leading 0x
+# order is important, there is no parse tree, etc.
+# collision detection is pretty minimal, images must be arranged in the
+# order they need to appear, so a forced image must be at about the right place
+# (usually ok, the only forced images should be codecs, and bootloader, which
+# are at the beginning and end of usable space.
+# 0 disables/defaults the entry (fisutil figures it out instead)
+
+# flashbase
+E0000000
+
+# flashsize - 2mb in the DJ
+200000
+
+# blocksize (4k blocks in SST parts)
+1000
+
+# number of images
+4
+
+##### Start Images
+
+##### Image 1
+# file
+dj-90-grl.bin
+# name
+boot
+# ram load
+0
+# ram entry
+0
+# flash force
+E0000000
+
+##### Image 3
+# file
+dj.bin.gz
+# name
+app
+# ram load
+00020000
+# ram entry
+00020040
+# flash force (start at 100k)
+0
+
+##### Image 4
+# file
+ecddb.bin
+# name 
+key
+# ram load
+0
+# ram entry
+0
+# flash force
+E017F000
+
+
+##### Image 5
+# file
+codecs.bin
+# name 
+codecs
+# ram load
+0
+# ram entry
+0
+# flash force
+E0180000
+
+
+
+##### End Images
+
+
+# output image name
+dj_full_image.bin
+

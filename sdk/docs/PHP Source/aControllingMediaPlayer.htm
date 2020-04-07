@@ -1,0 +1,70 @@
+<?php
+
+$pagetitle = "Controlling the Media Player";
+include("startpage.php");
+?>
+
+
+<p class="Body1">The other half of the Dharma SDK is the code for the actual media player. You will probably not need to deal with the <span class="Module">Media Player</span> much at all, unless you need to add a new Codec or output stream. Your application can simply call the <span class="Module">Play Manager</span> with <span class="Code">Play()</span>, <span class="Code">Pause()</span>, <span class="Code">Seek(seconds)</span>, <span class="Code">Stop()</span>, <span class="Code">NextTrack()</span>, or <span class="Code">PreviousTrack()</span>, and the media player will execute, using the current playlist to determine the sequence of tracks.
+</p>
+<p class="Body1">When playback is started, the <span class="Module">Play Manager</span> first determines the current <span class="Module">Playlist Entry</span>. Several methods on the <span class="Module">Playlist</span> object assist by returning a <span class="Module">Playlist Entry</span> object. The <span class="Module">Play Manager</span> then calls <span class="Code">SetSong</span> on the Media Player object with the <span class="Module">Playlist Entry</span>.
+</p>
+<p class="Body1">The Media Player then takes over. The SetSong method gets the media content record from the playlist entry. Then, it creates a data source object associated with the media content record. Finally, the Media Player creates <span class="Module">Codec</span> and <span class="Module">Filter</span> objects, and passes an input stream into the Codec using the <span class="Code">SetSong()</span> method.
+</p>
+
+
+
+<?= picture("RBufFlow.gif", "Flow of data from input stream to output stream"); ?>
+
+
+
+<p class="Body1">When playback is to start, the <span class="Module">Media Player</span> spawns a separate thread and returns. The new thread calls the <span class="Code">DecodeFrame()</span> method on the <span class="Module">Codec</span>. The <span class="Module">Codec</span> decodes data from the input stream, and writes to an output buffer until either the buffer is full, or the input stream is empty. 
+</p>
+<p class="Body1">The <span class="Module">Media Player</span> then calls each filter, one at a time, using the <span class="Code">DoWork()</span> method. Each filter reads from its input buffer and writes to its output buffer until it's either out of data or the output buffer is full, and returns.
+</p>
+
+<p class="Body1">The <span class="Module">Output Filter</span> writes the raw output to the <span class="Module">Output Stream</span>. When its buffer is full, the <span class="Module">Media Player</span> starts the cycle again, sending another <span class="Code">DecodeFrame()</span> call to the <span class="Module">Codec</span>.
+</p>
+
+
+
+<?= head("aFilters", "Applying and adjusting filters", 3); ?>
+
+<p class="Body1"><span class="Module">Filters</span> are a way of manipulating raw sound before it reaches the output stream. This SDK does not include any filters, but does provide examples that illustrate how you would write a filter.
+</p>
+<p class="Body1"><span class="Module">Filters</span> can be used to change the speed, pitch, or other characteristics of the track before it reaches the output device.
+</p>
+<p class="Body1">Note that volume and treble/bass controls are usually hardware-based. The SDK includes a <span class="Module">VolumeControl</span> object that controls the hardware settings for volume, treble, and bass.
+</p>
+
+
+
+<?= head("aState", "Storing and retrieving state", 3); ?>
+
+<p class="Body1">Most of the objects in the SDK can be reconstructed at startup. For your users' convenience, however, you might want to store the current volume level and tone settings, or the current playlist. 
+</p>
+<p class="Body1">The SDK provides methods to assist storing and retrieving the state of four objects:
+</p>
+
+<ul>
+	<li><span class="Module">Playlists</span></li>
+	<li><span class="Module">Playlist Entries</span></li>
+<!-- 	<li><span class="Module">Content Manager</span></li> -->
+	<li><span class="Module">Volume Control</span></li>
+</ul>
+
+
+<p class="Body1">You can, of course, add similar code to your other objects.
+</p>
+<p class="Body1"> Your client application will need to call the appropriate methods on each object you want to store, and then save them appropriately. The second demo application provides an example of storing and retrieving state.
+</p>
+<p class="Body1"> The SDK provides Input and Output stream objects for reading and writing to FAT-formatted media, simplifying the task. You can also store state information in the registry (which is generally stored to FAT-formatted media). <?= crossref("Demo2", "Demo #2"); ?> provides an example of storing and retrieving the state of the <span class="Module">Content Manager</span>.
+</p>
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

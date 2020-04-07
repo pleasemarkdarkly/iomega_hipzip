@@ -1,0 +1,36 @@
+<?php
+
+$pagetitle = "Abstract Classes: IFilter";
+include("startpage.php");
+
+?>
+
+<p class="Body1">
+<span class="Module">Filters </span>provide access to the current PCM playback stream. <span class="Module">Filters</span> have the ability to analyze and modify the PCM data, and can even resize the amount of data being passed through the system. Examples of filters would be a sample rate converter, a PCM disk writer, or a wrapper for a PCM enhancement library. Filters are chained together, so it is possible to have multiple instances of such filters. The chain is terminated by a special filter called the <span class="Module">OutFilter</span>. The <span class="Module">OutFilter</span> reads all its input data and writes it to an <span class="Module">Output Stream</span>, typically the <span class="Code">CWaveOutputStream </span>for audio playback.
+
+</p>
+<p class="Body1">
+Filters are chained together through RBUFs, a special type of ring buffer that provides write and read handles (see <?= crossref("aControllingMediaPlayer", "Controlling the Media Player"); ?>). A given filter writes data to its write handle, which maps down to a ring buffer. The next filter in the chain has a read handle which maps to the previously stated ring buffer, giving it access to the generated audio data. In this way, RBUFs are fairly similar to pipes, with a few exceptions and some special properties and considerations.
+
+</p>
+<p class="Body1">
+The chaining between codec -> filters -> outfilter is managed by the MediaPlayer, which sets up the appropriate components on track changes. When it is creating items in the playstream, it queries each object for its unit sizes. Since filters read and write data to the stream, they are asked for input and output unit sizes. At the moment, these unit sizes are used only to ensure that the buffers are large enough to support the reader and the writer of a given RBUF. Hence, filters are expected to return the minimal amount of input data and output space required for them to perform work.
+
+</p>
+<p class="Body1">
+Filters that need special configuration can implement custom routines through an <span class="Code">Ioctl()</span> interface. The <span class="Code">ioctl </span>interface provides a generic method to query data from the filter and set custom parameters. Other components in the system can then issue <span class="Code">ioctls </span>to the filter through the mediaplayer, which will locate the instance of the filter and apply the appropriate settings.
+
+</p>
+<p class="Body1">
+Filters are loaded abstractly based on their unique ID. This ID is passed to the filter manager, which then instantiates the requested filter and passes back a pointer to it. This allows customization of standard components, such as the OutFilter or the sample rate converter. Filters must register with the system registry at startup to be available to the media player. See <?= crossref("aFilterManager", "Filter Manager"); ?> for more about filter management.
+
+</p>
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

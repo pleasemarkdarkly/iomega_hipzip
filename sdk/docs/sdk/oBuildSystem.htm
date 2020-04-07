@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Configuration and Build System</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="JavaScript:OpenView('doxy/functions.html');" title='Compound Members'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="oModules.htm" title='The Role of Make'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h1
+><a name='oBuildSystem'>Configuration and Build System</a></h1
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">
+This section describes how to configure and build a target image to download to the Dharma board.
+</p>
+
+
+
+
+<p class="Body1">
+Dharma is designed to be flexible and to maximize reuse of code. To
+that end, we have designed a custom build and configuration system
+suited to our needs. This involves organizing the source code into
+modules and writing custom configuration scripts for each module, in
+addition to parsing configuration scripts and generating appropriate
+build trees. Our build system uses perl, GNU make, and GNU toolchain to create an image using a
+combination of pre-existing and generated makefiles.
+
+</p>
+<p class='ProcHead'><a name=''>Build a Target Image</a></p><p class="Body1">
+To create an already-configured image, all you need to do is:
+</p>
+
+	<p class="CodeBlock">cd /c/iobjects/dadio/<br>
+	make <em>&lt;target></em></p>
+<p class="Body1">
+... where <em>&lt;target></em> is the name of an existing configuration. The SDK comes with three pre-built configurations:
+</p>
+<ul>
+	<li>simple</li>
+	<li>hdcdcf</li>
+	<li>net</li>
+</ul>
+<p class="Body1">
+These correspond to <a href="JavaScript:OpenView('cDemo1.htm#cDemo1');">Demo #1</a>, <a href="JavaScript:OpenView('cDemo2.htm#cDemo2');">Demo #2</a>, and <a href="JavaScript:OpenView('cDemo3.htm#cDemo3');">Demo #3</a> described elsewhere in the documentation.
+</p>
+
+<p class="Body1">
+Invoking <span class="Code">make simple</span> from the "dadio" directory generates the build tree, creates a list of modules, generates make files for each module, and links in a build Makefile. It then switches to the build directory and automatically starts compiling the build. If successful, you should have a finished image ready for downloading in the "builds/simple" directory.
+</p>
+<p class="Body1">
+ To download the image to the Dharma board, see <a href="oDownloadImage.htm#oDownloadImage">Download an Image</a>.
+
+</p>
+
+<p class="Body1">
+Once you have run the top-level Makefile, you have a build tree for the configuration. To rebuild the configuration, you can <span class="Code">cd</span> into the build directory and type <span class="Code">make</span>. If you have updated any of the configuration files, the whole tree will be regenerated. You can clean out existing object dependencies using <span class="Code">make clean</span> or <span class="Code">make depclean</span>.
+
+</p>
+<p class='ProcHead'><a name=''>Create a New Target Configuration</a></p><p class="Body1">
+When you're creating a new configuration, these are the basic steps:
+</p>
+
+<ol>
+	<li>Edit the DCL file in the source directory for each module.</li>
+	<li>In the "config/" tree, create a <span class="Code"><em>&lt;target></em>_modules</span> file listing all of the modules used in your configuration.</li>
+	<li>In the "config/" tree, create a <span class="Code"><em>&lt;target></em>.mk</span> file specifying the name of the target, the eCos Build name, and any environment variables or macros to execute during the build process.</li>
+	<li>Add the target name to the <span class="Code">config/targets</span> file.</li>
+	<li>Perform the build steps as described above.</li>
+</ol>
+
+<p class="Body1">
+These steps are described in greater detail in following sections.
+</p>
+
+
+
+</td></tr>
+<tr><td colspan=2><h2><a name='oSDKFiles'>SDK Product Directory Files</a></h2></td></tr>
+				<tr><td width=50>&nbsp;</td><td><p class="Body1">
+The base for all files in the sdk is the 'dadio' directory. For
+this section, references to full paths assume you
+installed the SDK in "C:\iobjects\dadio", which has a corresponding cygwin path
+of "/c/iobjects/dadio".
+
+</p>
+
+
+<p class="Body1">
+In the 'dadio' directory you will find the following items:
+
+</p>
+<dl>
+<dt>Makefile</dt>
+ <dd> The top level product Makefile. This allows you to create and remove
+  build trees for a specified target.</dd>
+
+
+<dt>configs/</dt>
+<dd>  A directory with files for each target, and a makefile include
+  (targets.mk) which specifies the available targets.</dd>
+
+<dt>images/</dt> 
+<dd>  Pre-built utility and demo images that you can burn onto Dharma and
+  experiment with, including documentation describing how to use them.
+</dd>
+<dt>docs/ </dt>
+<dd>  Documentation for the SDK.</dd>
+
+<dt>ecos/ </dt>
+<dd>  A directory with builds of various kernel configurations.</dd>
+
+<dt>player/ </dt>
+<dd>  All the code and libraries shipped with the SDK.</dd>
+
+<dt>scripts/ </dt>
+<dd>  Support utilities and scripts used by the build and configuration
+  system. You shouldn't need to modify the contents of this
+  directory.
+</dd>
+<dt>support/ </dt>
+<dd>  Various images and utilities for downloading images to and
+  configuring the board.
+</dd>
+</dl>
+
+
+
+<p class="Body1">
+As a general rule, all filenames that start with an underscore ('_')
+are generated automatically. Generated files live only in the build tree.
+
+</p>
+
+
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="JavaScript:OpenView('doxy/functions.html');" title='Compound Members'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="oModules.htm" title='The Role of Make'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Nov 1, 2001 12:22 pm
+</p>
+</body>
+
+</html>

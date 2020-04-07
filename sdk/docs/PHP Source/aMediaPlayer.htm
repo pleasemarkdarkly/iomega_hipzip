@@ -1,0 +1,27 @@
+<?php
+
+$pagetitle = "Media Player";
+include("startpage.php");
+
+?>
+
+<p class="Body1">The Media Player controls the actual playback on your device's speakers. The Play Manager handles all interaction with the Media Player, so you don't need to do anything to get it to work. You can, however, call methods on the Media Player to find out details about the currently playing track, including the length of the track, and how far into the track the media player currently is. </p>
+<p class="Body1">The Media Player has four states: </p>
+<ol>
+	<li>PLAYING</li>
+	<li>PAUSED</li>
+	<li>STOPPED</li>
+	<li>NOT_CONFIGURED.</li>
+</ol>
+<p class="Body1">Before starting the media player, it must be associated with a Playstream, which points to the output device. The media player starts out in the NOT_CONFIGURED state, until a playlist entry has been passed to the <span class="Code">SetSong()</span> method. When this method is called, the Media Player creates an appropriate Codec object and all of the registered filters, and transitions to the STOPPED state.</p>
+<p class="Body1">You can then add or remove filters to the data flow by using the <span class="Code">AddNode()</span> and <span class="Code">RemoveNode()</span> methods, adding as many filters as desired. </p>
+
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

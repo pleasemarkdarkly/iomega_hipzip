@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Data Streams</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="io.js"></SCRIPT>
+<link rel="STYLESHEET" type="text/css" href="iObjectsStyle.css">
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+<table width="100%" >
+<tr><td align="left" width="33%"><a href="aSystemComponents.htm" title='System Components'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aDataSources.htm" title='Data Sources'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><h2
+><a name='aDataStream'>Data Streams</a></h2
+><table cellpadding=5>
+<tr><td></td><td>
+
+<p class="Body1">Dharma includes several different types of data streams, grouped into input streams and output streams. Input streams are readable, while output streams are writable. Input data streams are typically managed and opened by a data source. Output stream objects need to be created and managed directly in your application. 
+</p>
+<p class="Body1">Note that the media player handles the basic output for you, so you only need an output stream to write to other devices or media.
+</p>
+
+
+
+<p class='Picture'><img src='images/image009.gif' alt='Class diagram for Data Stream objects' width="328" height="190"></p>
+
+<p class="Body1">The Ioctl property is a set of key/value pairs that provide direct access to metadata about a particular data stream.</p>
+<p class="Body1">Data streams are used for all access to data sources, for metadata, raw media streams, and any other type of data file you want to use. For example, you can use a Fat file data stream to store and retrieve playlists on a compact flash card, or when serializing objects and saving state.</p>
+<p class="Body1">The following input streams are available:</p>
+<ul>
+	<li><span class="Code">CBufferedInputStream</span> &ndash; a memory buffer that is parsed as a stream.</li>
+	<li><span class="Code">CCDDAInputStream</span> &ndash; a CD metadata stream from a CDDA provider.</li>
+	<li><span class="Code">CFatFileInputStream</span> &ndash; any file stored on a FAT-12 file system.</li>
+	<li><span class="Code">CHTTPInputStream</span> &ndash; any file received from a server using HTTP. Not seekable.</li>
+	<li><span class="Code">CIsoFileInputStream</span> &ndash; a CD image as a single raw file.</li>
+	<li><span class="Code">CLineInputStream</span> &ndash; a digital raw signal. Not seekable. </li>
+</ul>
+<p class="Body1">The following output streams are available:</p>
+<ul>
+	<li><span class="Code">CFatFileOutputStream</span> &ndash; a stream that writes to a file on a FAT-12 file system.</li>
+	<li><span class="Code">CWaveOutputStream</span> &ndash; a stream that writes to the wave output device.</li>
+</ul>
+
+<p class="Body1">You can define your own data streams for other data source types.</p>
+
+
+
+
+
+</td></tr>
+</table>
+
+	<hr><br><table width="100%" >
+<tr><td align="left" width="33%"><a href="aSystemComponents.htm" title='System Components'><img src='images/previous.gif' width=78 height=10 border='0'></a></td><td align="center" width="33%">
+<SCRIPT LANGUAGE="JavaScript">
+   if (parent.frames.length>1){
+       document.write('<A HREF="JavaScript:SwitchView(0);"><img src="images/pagevw.gif" width=49 height=10 border="0"></A>');
+   }else{
+       document.write('<A HREF="JavaScript:SwitchView(1);"><img src="images/normalvw.gif" width=60 height=8 border="0"></A>');
+   }
+</SCRIPT>
+</td><td align="right" width="33%">
+<a href="aDataSources.htm" title='Data Sources'><img src='images/next.gif' width=60 height=10 border='0'></a></td></tr>
+</table><p class="Legal">
+<a href="JavaScript:ShowCopyright();">Copyright &#169; 1998 - 2001</a> Interactive Objects<SUP><FONT SIZE="-3">TM</FONT></SUP>. All rights reserved.
+<br>
+
+ Last Modified on Oct 24, 2001 3:36 pm
+</p>
+</body>
+
+</html>

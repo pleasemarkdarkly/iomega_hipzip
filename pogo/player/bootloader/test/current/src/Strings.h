@@ -1,0 +1,31 @@
+
+#define ROMDATA static
+typedef unsigned char GCHAR;
+typedef unsigned short WORD;
+typedef unsigned char UCHAR;
+
+enum STRING_IDS {
+	SID_DAN_BOLSTAD = 0,
+	SID_FIRMWARE,
+	SID_FIRMWARE_NOT_FOUND,
+	SID_FIRMWARE_UPDATE_FAILED,
+	SID_SEARCHING_FOR_FIRMWARE,
+	SID_DOWNLOADING,
+	SID_PROGRAMMING,
+	SID_VERIFYING,
+	SID_SUCCESSFUL,
+	SID_PLAYER_V,
+	SID_PLAYER_BUILD,
+	SID_INSTALLER_V,
+	SID_SHUTTING_DOWN,
+	SID_LOW_POWER,
+	SID_INTERACTIVE_OBJECTS_C,
+	SID_FULLPLAY_MEDIA_C,
+};
+
+
+char* LookupString(unsigned short wSID);
+
+
+#define LS(a) LookupString(a)
+

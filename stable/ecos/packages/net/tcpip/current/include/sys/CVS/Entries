@@ -1,0 +1,20 @@
+/bsdselect.h/1.1/Sun Jul 29 02:00:10 2001//
+/bsdtypes.h/1.2/Sun Jul 29 02:00:10 2001//
+/cdefs.h/1.1/Tue Jun  6 08:39:41 2000//
+/domain.h/1.1/Tue Jun  6 08:39:41 2000//
+/endian.h/1.1/Tue Jun  6 08:39:41 2000//
+/errno.h/1.1/Tue Jun  6 08:39:41 2000//
+/ioccom.h/1.1/Tue Jun  6 08:39:41 2000//
+/ioctl.h/1.1/Tue Jun  6 08:39:41 2000//
+/kernel.h/1.2/Fri Aug 25 17:33:45 2000//
+/malloc.h/1.1/Tue Jun  6 08:39:41 2000//
+/mbuf.h/1.1/Tue Jun  6 08:39:41 2000//
+/param.h/1.4/Fri Jul 21 21:34:37 2000//
+/protosw.h/1.1/Tue Jun  6 08:39:41 2000//
+/queue.h/1.1/Tue Jun  6 08:39:41 2000//
+/socket.h/1.1/Tue Jun  6 08:39:41 2000//
+/socketvar.h/1.3/Tue Oct  2 18:28:29 2001//
+/sockio.h/1.3/Fri Aug 25 19:18:09 2000//
+/syscallargs.h/1.1/Tue Jun  6 08:39:41 2000//
+/time.h/1.2/Fri Aug 25 17:33:45 2000//
+D

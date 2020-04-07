@@ -1,0 +1,2 @@
+TARGETS := simple net hdcdcf
+

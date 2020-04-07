@@ -1,0 +1,49 @@
+# dj90config.ilf (image layout file)
+# syntax notes:
+# lines with # at the front are ignored
+# lines with '\n' at the front are ignored (blank lines)
+# number of entries in this file
+3
+
+##### Image 1
+# file
+dj-90.bin.gz
+# name
+app
+# ram load
+00020000
+# ram entry
+00020040
+# flash force (start at 100k)
+E0020000
+
+##### Image 2
+# file
+codecs.bin
+# name 
+codecs
+# ram load
+0
+# ram entry
+0
+# flash force
+E0180000
+
+##### Image 3
+# file
+ecddb.bin
+# name
+key
+# ram load
+0
+# ram entry
+0
+# flash force
+E017F000
+
+##### End Images
+
+
+# output image name
+dj-90.img
+

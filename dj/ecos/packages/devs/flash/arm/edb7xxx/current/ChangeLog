@@ -1,0 +1,62 @@
+2001-10-12  Jonathan Larmour  <jlarmour@redhat.com>
+
+	* cdl/flash_edb7xxx.cdl: Move EP72xx flash into separate subcomponent.
+	Clarify package description strings.
+2001-06-11  Gary Thomas  <gthomas@redhat.com>
+
+	* src/edb7xxx_flash.c: Remove dependency on printf() via user functions.
+
+2001-05-23  Jesper Skov  <jskov@redhat.com>
+
+	* cdl/flash_edb7xxx.cdl: Needs IO controller to copy functions to
+	RAM.
+
+2000-12-05  Jonathan Larmour  <jlarmour@redhat.com>
+
+	* src/edb7xxx_flash.c (flash_code_overlaps): Define stext/etext
+	as array types so no assumptions can be made by the compiler about
+	location.
+
+2000-12-04  Gary Thomas  <gthomas@redhat.com>
+
+	* src/edb7xxx_flash.c (flash_hwr_init): Additional debugging
+	(*flash_info.pf) statments - in case this stuff fails in the future.
+
+2000-11-21  Gary Thomas  <gthomas@redhat.com>
+
+	* src/flash_query.c: Increase startup timing - didn't always work.
+
+2000-08-29  Gary Thomas  <gthomas@redhat.com>
+
+	* src/edb7xxx_flash.c: Improve error decoding.
+
+2000-08-15  Gary Thomas  <gthomas@redhat.com>
+
+	* src/edb7xxx_flash.c (flash_code_overlaps): 
+	stext,etext now are _stext,_etext
+
+//===========================================================================
+//####COPYRIGHTBEGIN####
+//                                                                          
+// -------------------------------------------                              
+// The contents of this file are subject to the Red Hat eCos Public License 
+// Version 1.1 (the "License"); you may not use this file except in         
+// compliance with the License.  You may obtain a copy of the License at    
+// http://www.redhat.com/                                                   
+//                                                                          
+// Software distributed under the License is distributed on an "AS IS"      
+// basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See the 
+// License for the specific language governing rights and limitations under 
+// the License.                                                             
+//                                                                          
+// The Original Code is eCos - Embedded Configurable Operating System,      
+// released September 30, 1998.                                             
+//                                                                          
+// The Initial Developer of the Original Code is Red Hat.                   
+// Portions created by Red Hat are                                          
+// Copyright (C) 1998, 1999, 2000 Red Hat, Inc.                             
+// All Rights Reserved.                                                     
+// -------------------------------------------                              
+//                                                                          
+//####COPYRIGHTEND####
+//===========================================================================

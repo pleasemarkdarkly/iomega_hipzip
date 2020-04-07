@@ -1,0 +1,344 @@
+archOverview_toc.htm
+aIntro.htm	Introduction	1
+%aeCos
+aQuickStart.htm	Quick Start Guide	1
+arOverview.htm	Architectural Overview	1
+#aEventLoop	Event Loop	2
+#aUserInterface	User Interface	2
+aMainApplication.htm	Main Application	2
+#aPowerOn	Power On and Initialization	3
+#aAddRemoveMedia	Add or Remove Media	3
+#aContentEnumeration	Content Enumeration	3
+aWorkingWithPlaylists.htm	Working with Playlists	2
+aControllingMediaPlayer.htm	Controlling the Media Player	2
+#aFilters	Applying and Adjusting Filters	3
+#aState	Storing and Retrieving State	3
+aSystemComponents.htm	System Components	1
+aDataStream.htm	Data Streams	2
+aDataSources.htm	Data Sources	2
+aMetadata.htm	Metadata	2
+aContentManager.htm	Content Manager	2
+#aContentRecord	Content Records	3
+#aMediaContentRecord	Media Content Records	3
+aPlaylists.htm	Playlists	2
+#aPlaylistFormatManager	Playlist Format Manager	3
+aPlayManager.htm	Play Manager	2
+aMediaPlayer.htm	Media Player	2
+aCodec.htm	Codecs	2
+#aCodecManager	Codec Manager	3
+aVolumeControl.htm	Volume Control	2
+aFilters.htm	Filters	2
+#aFilterManager	Filter Manager	3
+
+com_toc.htm
+cCreateMediaPlayer.htm	Creating Your Media Player	1
+cDemoApps.htm	Demo Applications	1
+cDemo1.htm	Demo 1: Local playback from a hard drive	2
+cDemo2.htm	Demo 2: Local Playback with Metadata Sorting	2
+cDemo3.htm	Demo 3: Streaming technologies	2
+cGlobalDefinitions.htm	Global Definitions	1
+#cDataTypes	Data Types	2
+#cERESULT	ERESULT	3
+#cTCHAR	TCHAR	3
+#cContainers	Containers	2
+#cSimpleList	Simple List	3
+#cSimpleVector	Simple Vector	3
+#cSimpleMap	Simple Map	3
+#cMacros	Macros	2
+#cDebugSystem	Debugging System	3
+#cEvents	Events/Event Queue	3
+#cRegistry	Registry	3
+#cTimer	System Timer	3
+cAbstractClasses.htm	Dharma Abstract Classes	1
+cICodec.htm	ICodec	2
+#cCodecRegistration	Codec Registration	2
+cIFilter.htm	IFilter	2
+cIMetadata.htm	IMetadata	2
+cIDataSource.htm	IDataSource	2
+cDataStreams.htm	Data Streams	2
+cIContentManager.htm	IContentManager	2
+cIPlaylist.htm	IPlaylist	2
+
+doxy_toc.htm
+doxy/index.html	SDK Main Page	1
+doxy/modules.html	Modules	1
+doxy/group__CodecManager.html	Codec Manager	2
+doxy/group__CodecInterface.html	Codec Interface	2
+doxy/group__CodecRegistration.html	Codec Registration	2
+doxy/group__ContentManager.html	Content Manager	2
+doxy/group__Metadata.html	Metadata	2
+doxy/group__Events.html	Events	2
+doxy/group__MediaPlayer.html	Media Player	2
+doxy/group__PlayManager.html	Play Manager	2
+doxy/group__FilterInterface.html	Filter Interface	2
+doxy/group__FilterRegistration.html	Filter Registration	2
+doxy/group__InputStreams.html	Input Streams	2
+doxy/group__OutputStreams.html	Output Streams	2
+doxy/group__WaveOut.html	Wave Output	2
+doxy/group__CommercialIR.html	Commercial IR	2
+doxy/group__Keyboard.html	Keyboard driver	2
+doxy/group__PlaylistFormat.html	Playlist Format	2
+doxy/group__ObjectIdentification.html	Object Identification	2
+doxy/group__tchar.html	tchar	2
+doxy/hierarchy.html	Class Hierarchy	1
+doxy/classes.html	Class List	1
+doxy/classCCDDAInputStream.html	CCDDAInputStream	2
+doxy/classCCDDAInputStream-members.html	Members	3
+doxy/classCCDDataSource.html	CCDDataSource	2
+doxy/classCCDDataSource-members.html	Members	3
+doxy/classCCodecManager.html	CCodecManager	2
+doxy/classCCodecManager-members.html	Members	3
+doxy/classCConfigurableMetadata.html	CConfigurableMetadata	2
+doxy/classCConfigurableMetadata-members.html	Members	3
+doxy/classCDataSourceManager.html	CDataSourceManager	2
+doxy/classCDataSourceManager-members.html	Members	3
+doxy/classCFatDataSource.html	CFatDataSource	2
+doxy/classCFatDataSource-members.html	Members	3
+doxy/classCFatFile.html	CFatFile	2
+doxy/classCFatFile-members.html	Members	3
+doxy/classCFatFileInputStream.html	CFatFileInputStream	2
+doxy/classCFatFileInputStream-members.html	Members	3
+doxy/classCFatFileOutputStream.html	CFatFileOutputStream	2
+doxy/classCFatFileOutputStream-members.html	Members	3
+doxy/classCFilterManager.html	CFilterManager	2
+doxy/classCFilterManager-members.html	Members	3
+doxy/classCHTTPInputStream.html	CHTTPInputStream	2
+doxy/classCHTTPInputStream-members.html	Members	3
+doxy/classCIR.html	CIR	2
+doxy/classCIR-members.html	Members	3
+doxy/classCIsoFileInputStream.html	CIsoFileInputStream	2
+doxy/classCIsoFileInputStream-members.html	Members	3
+doxy/classCKeyboard.html	CKeyboard	2
+doxy/classCKeyboard-members.html	Members	3
+doxy/classCLineInDataSource.html	CLineInDataSource	2
+doxy/classCLineInDataSource-members.html	Members	3
+doxy/classCLineInputStream.html	CLineInputStream	2
+doxy/classCLineInputStream-members.html	Members	3
+doxy/structcm__key__value__record__t.html	cm_key_value_record_t	2
+doxy/structcm__key__value__record__t-members.html	Members	3
+doxy/classCMediaPlayer.html	CMediaPlayer	2
+doxy/classCMediaPlayer-members.html	Members	3
+doxy/classCMetadataTable.html	CMetadataTable	2
+doxy/classCMetadataTable-members.html	Members	3
+doxy/classCMetakitContentManager.html	CMetakitContentManager	2
+doxy/classCMetakitContentManager-members.html	Members	3
+doxy/classCNetDataSource.html	CNetDataSource	2
+doxy/classCNetDataSource-members.html	Members	3
+doxy/classCNetStream.html	CNetStream	2
+doxy/classCNetStream-members.html	Members	3
+doxy/structCodecFunctionMap__s.html	CodecFunctionMap_s	2
+doxy/structCodecFunctionMap__s-members.html	Members	3
+doxy/structcontent__record__update__s.html	content_record_update_s	2
+doxy/structcontent__record__update__s-members.html	Members	3
+doxy/classCOutputManager.html	COutputManager	2
+doxy/classCOutputManager-members.html	Members	3
+doxy/classCPCMCodec.html	CPCMCodec	2
+doxy/classCPCMCodec-members.html	Members	3
+doxy/classCPlaylistFormatManager.html	CPlaylistFormatManager	2
+doxy/classCPlaylistFormatManager-members.html	Members	3
+doxy/classCPlayManager.html	CPlayManager	2
+doxy/classCPlayManager-members.html	Members	3
+doxy/classCSerialUserInterface.html	CSerialUserInterface	2
+doxy/classCSerialUserInterface-members.html	Members	3
+doxy/classCSimpleContentManager.html	CSimpleContentManager	2
+doxy/classCSimpleContentManager-members.html	Members	3
+doxy/classCSimpleGUIUserInterface.html	CSimpleGUIUserInterface	2
+doxy/classCSimpleGUIUserInterface-members.html	Members	3
+doxy/classCSimpleMediaContentRecord.html	CSimpleMediaContentRecord	2
+doxy/classCSimpleMediaContentRecord-members.html	Members	3
+doxy/classCSimpleMetadata.html	CSimpleMetadata	2
+doxy/classCSimpleMetadata-members.html	Members	3
+doxy/classCSimplePlaylist.html	CSimplePlaylist	2
+doxy/classCSimplePlaylist-members.html	Members	3
+doxy/classCSimplePlaylistEntry.html	CSimplePlaylistEntry	2
+doxy/classCSimplePlaylistEntry-members.html	Members	3
+doxy/classCSimplePlaylistRecord.html	CSimplePlaylistRecord	2
+doxy/classCSimplePlaylistRecord-members.html	Members	3
+doxy/classCVolumeControl.html	CVolumeControl	2
+doxy/classCVolumeControl-members.html	Members	3
+doxy/classCWaveOutStream.html	CWaveOutStream	2
+doxy/classCWaveOutStream-members.html	Members	3
+doxy/structdrive__geometry__s.html	drive_geometry_s	2
+doxy/structdrive__geometry__s-members.html	Members	3
+doxy/classICodec.html	ICodec	2
+doxy/classICodec-members.html	Members	3
+doxy/classIContentManager.html	IContentManager	2
+doxy/classIContentManager-members.html	Members	3
+doxy/classIContentRecord.html	IContentRecord	2
+doxy/classIContentRecord-members.html	Members	3
+doxy/classIDataSource.html	IDataSource	2
+doxy/classIDataSource-members.html	Members	3
+doxy/structIFilter.html	IFilter	2
+doxy/structIFilter-members.html	Members	3
+doxy/structIIdentifiableObject.html	IIdentifiableObject	2
+doxy/structIIdentifiableObject-members.html	Members	3
+doxy/structIInputStream.html	IInputStream	2
+doxy/structIInputStream-members.html	Members	3
+doxy/classIMediaContentRecord.html	IMediaContentRecord	2
+doxy/classIMediaContentRecord-members.html	Members	3
+doxy/classIMetadata.html	IMetadata	2
+doxy/classIMetadata-members.html	Members	3
+doxy/structIOutputStream.html	IOutputStream	2
+doxy/structIOutputStream-members.html	Members	3
+doxy/classIPlaylist.html	IPlaylist	2
+doxy/classIPlaylist-members.html	Members	3
+doxy/classIPlaylistContentRecord.html	IPlaylistContentRecord	2
+doxy/classIPlaylistContentRecord-members.html	Members	3
+doxy/classIPlaylistEntry.html	IPlaylistEntry	2
+doxy/classIPlaylistEntry-members.html	Members	3
+doxy/classIQueryableContentManager.html	IQueryableContentManager	2
+doxy/classIQueryableContentManager-members.html	Members	3
+doxy/structir__map__s.html	ir_map_s	2
+doxy/structir__map__s-members.html	Members	3
+doxy/classIUserInterface.html	IUserInterface	2
+doxy/classIUserInterface-members.html	Members	3
+doxy/structkey__map__s.html	key_map_s	2
+doxy/structkey__map__s-members.html	Members	3
+doxy/structmedia__record__info__s.html	media_record_info_s	2
+doxy/structmedia__record__info__s-members.html	Members	3
+doxy/structplaylist__record__s.html	playlist_record_s	2
+doxy/structplaylist__record__s-members.html	Members	3
+doxy/structplaystream__settings__s.html	playstream_settings_s	2
+doxy/structplaystream__settings__s-members.html	Members	3
+doxy/structset__stream__event__data__s.html	set_stream_event_data_s	2
+doxy/structset__stream__event__data__s-members.html	Members	3
+doxy/classSimpleList.html	SimpleList	2
+doxy/classSimpleList-members.html	Members	3
+doxy/classSimpleListIterator.html	SimpleListIterator	2
+doxy/classSimpleListIterator-members.html	Members	3
+doxy/classSimpleMap.html	SimpleMap	2
+doxy/classSimpleMap-members.html	Members	3
+doxy/classSimpleVector.html	SimpleVector	2
+doxy/classSimpleVector-members.html	Members	3
+doxy/structstream__info__s.html	stream_info_s	2
+doxy/structstream__info__s-members.html	Members	3
+doxy/annotated.html	Compound List	1
+doxy/files.html	File List	1
+doxy/battery_8h-source.html	battery.h	2
+doxy/blk__dev_8h-source.html	blk_dev.h	2
+doxy/CDDAInputStream_8h-source.html	CDDAInputStream.h	2
+doxy/CDDataSource_8h-source.html	CDDataSource.h	2
+doxy/Codec_8h-source.html	Codec.h	2
+doxy/codec__vects_8h-source.html	codec_vects.h	2
+doxy/CodecManager_8h-source.html	CodecManager.h	2
+doxy/ConfigurableMetadata_8h-source.html	ConfigurableMetadata.h	2
+doxy/ContentManager_8h-source.html	ContentManager.h	2
+doxy/cs4340_8h-source.html	cs4340.h	2
+doxy/cs4341_8h-source.html	cs4341.h	2
+doxy/cs4342_8h-source.html	cs4342.h	2
+doxy/cs4343_8h-source.html	cs4343.h	2
+doxy/cs5332_8h-source.html	cs5332.h	2
+doxy/dai_8h-source.html	dai.h	2
+doxy/DataSource_8h-source.html	DataSource.h	2
+doxy/DataSourceManager_8h-source.html	DataSourceManager.h	2
+doxy/debug_8h-source.html	debug.h	2
+doxy/drives_8h-source.html	drives.h	2
+doxy/eresult_8h-source.html	eresult.h	2
+doxy/EventQueueAPI_8h-source.html	EventQueue.h	2
+doxy/FatDataSource_8h-source.html	FatDataSource.h	2
+doxy/FatFile_8h-source.html	FatFile.h	2
+doxy/FileInputStream_8h-source.html	FileInputStream.h	2
+doxy/FileOutputStream_8h-source.html	FileOutputStream.h	2
+doxy/Filter_8h-source.html	Filter.h	2
+doxy/FilterManager_8h-source.html	FilterManager.h	2
+doxy/HTTPInputStream_8h-source.html	HTTPInputStream.h	2
+doxy/IdentifiableObject_8h-source.html	IdentifiableObject.h	2
+doxy/InputStream_8h-source.html	InputStream.h	2
+doxy/IR_8h-source.html	IR.h	2
+doxy/IsoFileInputStream_8h-source.html	IsoFileInputStream.h	2
+doxy/Keyboard_8h-source.html	Keyboard.h	2
+doxy/lcd_8h-source.html	lcd.h	2
+doxy/LineInDataSource_8h-source.html	LineInDataSource.h	2
+doxy/LineInputStream_8h-source.html	LineInputStream.h	2
+doxy/MediaPlayer_8h-source.html	MediaPlayer.h	2
+doxy/MessageQueue_8h-source.html	MessageQueue.h	2
+doxy/Metadata_8h-source.html	Metadata.h	2
+doxy/MetadataTable_8h-source.html	MetadataTable.h	2
+doxy/MetakitContentManager_8h-source.html	MetakitContentManager.h	2
+doxy/NetDataSource_8h-source.html	NetDataSource.h	2
+doxy/NetStream_8h-source.html	NetStream.h	2
+doxy/OutFilterKeys_8h-source.html	OutFilterKeys.h	2
+doxy/OutputManager_8h-source.html	OutputManager.h	2
+doxy/OutputStream_8h-source.html	OutputStream.h	2
+doxy/PCMCodec_8h-source.html	PCMCodec.h	2
+doxy/Playlist_8h-source.html	Playlist.h	2
+doxy/PlaylistFormat_8h-source.html	PlaylistFormat.h	2
+doxy/PlaylistFormatManager_8h-source.html	PlaylistFormatManager.h	2
+doxy/PlayManager_8h-source.html	PlayManager.h	2
+doxy/QSoundFilterKeys_8h-source.html	QSoundFilterKeys.h	2
+doxy/QueryableContentManager_8h-source.html	QueryableContentManager.h	2
+doxy/rbuf_8h-source.html	rbuf.h	2
+doxy/Registry_8h-source.html	Registry.h	2
+doxy/SerialUserInterface_8h-source.html	SerialUserInterface.h	2
+doxy/SimpleContentManager_8h-source.html	SimpleContentManager.h	2
+doxy/SimpleGUIUserInterface_8h-source.html	SimpleGUIUserInterface.h	2
+doxy/SimpleList_8h-source.html	SimpleList.h	2
+doxy/SimpleMap_8h-source.html	SimpleMap.h	2
+doxy/SimpleMetadata_8h-source.html	SimpleMetadata.h	2
+doxy/SimplePlaylist_8h-source.html	SimplePlaylist.h	2
+doxy/SimpleVector_8h-source.html	SimpleVector.h	2
+doxy/SRCFilterKeys_8h-source.html	SRCFilterKeys.h	2
+doxy/SystemEvents_8h-source.html	SystemEvents.h	2
+doxy/tchar_8h-source.html	tchar.h	2
+doxy/Timer_8h-source.html	Timer.h	2
+doxy/usb_8h-source.html	usb.h	2
+doxy/UserInterface_8h-source.html	UserInterface.h	2
+doxy/VolumeControl_8h-source.html	VolumeControl.h	2
+doxy/WaveOut_8h-source.html	WaveOut.h	2
+doxy/WaveOutKeys_8h-source.html	WaveOutKeys.h	2
+doxy/functions.html	Compound Members	1
+
+obj_toc.htm
+oBuildSystem.htm	Configuration and Build System	1
+#oSDKFiles	SDK Product Directory Files	2
+oModules.htm	The Role of Make	2
+#oConfigMake	Configuration Make	3
+#oBuildMake	Build Make	3
+oConfigSystem.htm	Configuration System	2
+#odotmkFile	Configuration .mk Files	3
+%oOptionalVars
+#oModulesFile	Configuration _modules Files	3
+#oDCLFiles	Configuration .dcl Files	3
+oModuleVersion.htm	Module Versioning	2
+oInstallationGuide.htm	Dharma Operation Guide	1
+oBootLoader.htm	Install the Boot Loader	2
+oCreateImage.htm	Create an Image	2
+oDownloadImage.htm	Download an Image	2
+oDebugImage.htm	Download and Debug the Image	2
+oBurnToFlash.htm	Download an Image to Flash	2
+oDebugFlash.htm	Debug an Image in Flash	2
+oUSB.htm	USB Test Application	1
+
+hw_toc.htm
+hardwareInformation.htm	Hardware Information	1
+hw/Dharma_BOM.pdf	Bill Of Materials	2
+hw/Dharma_2_IO_rev3.pdf	GPIO Listings for Peripherals	2
+hw/Jumper_Header.pdf	Jumper Header Descriptions	2
+hw/Dharma_2_Memory_Map.pdf	Memory Map	2
+#hSchematics	Schematics and Hardware Databases	2
+#hGerbers	Gerbers	2
+#hHardwareReleaseNotes	Hardware Release Notes	2
+#hBoardOverview	Hardware Board Overview	2
+hw/7312/ep7312dk-1.pdf	Development Kit Product Bulletin	3
+hw/DAC/an18.pdf	Layout Application Notes	3
+#h7312	7312 Processor Documentation	2
+hw/7312/ep7312pb-1.pdf	Product Bulletin	3
+hw/7312/ep7312-1.pdf	Data Sheet	3
+hw/7312/ep7312um-1.pdf	User Manual	3
+hw/7312/er474a3.pdf	Errata	3
+#hADC	ADC Documentation	2
+hw/ADC/cs53l32a-1.pdf	ADC Data Sheet	3
+hw/ADC/cs53l32aeb-2.pdf	ADC Evaluation Board	3
+#hDAC	DAC Documentation	2
+hw/DAC/cs43L43.pdf	DAC Data Sheet	3
+hw/DAC/er479a1.pdf	Errata	3
+#hEthernet	CS8900a Ethernet Chip	2
+hw/Ethernet/8900api_1.pdf	Features	3
+hw/Ethernet/8900a.pdf	Data Sheet	3
+hw/Ethernet/8900_er271a1.pdf	Errata	3
+#hPLD	Programmable Logic Device (PLD)	2
+hw/IDE/PLD/38-03007.pdf	User Manual	3
+#hUSB	USB Documentation	2
+hw/USB/Philips/PDIUSBD12_5.pdf	PDIUSBD12 Data Sheet	3
+hw/USB/Philips/PDIUSBD12_FIRMWARE_PROGRAMMING_GUIDE.pdf	Programmers Guide	3
+

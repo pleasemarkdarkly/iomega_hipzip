@@ -1,0 +1,10 @@
+# build_configs
+# listing of available targets to build. format:
+# tabs are nice here but probably aren't required
+# target_name   	product config 			target
+sdk_simpledemo          sdk	simple          all
+sdk_netdemo             sdk	net             all
+sdk_hdcdcfdemo          sdk	hdcdcf          all
+pogo                    pogo	pogo,pogo_dbg   all
+sdk_dist                sdk 	_dist1,_dist2,_dist3,_dist4,_dist5,_dist6,dist9	archives dist
+dj                      dj      dj-90,dj    all

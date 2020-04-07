@@ -1,0 +1,70 @@
+2001-03-20  Jesper Skov  <jskov@redhat.com>
+
+	* src/wallclock_sh3.cxx: Don't include kernel config.
+
+2000-05-26  Jesper Skov  <jskov@redhat.com>
+
+	* cdl/wallclock_sh3.cdl: CYGSEM_WALLCLOCK_SET_GET_MODE moved to IO
+	package.
+
+	* src/wallclock_sh3.cxx: Get helpers from new file.
+
+2000-04-06  Jesper Skov  <jskov@redhat.com>
+
+	* cdl/wallclock_sh3.cdl: Only active when wallclock is.
+
+2000-04-05  John Dallaway  <jld@cygnus.co.uk>
+
+	* cdl/wallclock_sh3.cdl: 
+
+	Provide hardware wallclock implementation as a radio button.
+
+2000-04-05  Jesper Skov  <jskov@redhat.com>
+
+	* src/wallclock_sh3.cxx: 
+	Moved from devs/wallclock/current to here.
+	Get API from io/wallclock.
+	Deleted all non-SH3 changelog entries
+
+2000-03-29  Jesper Skov  <jskov@redhat.com>
+
+	* tests/wallclock2.cxx:
+	* include/wallclock.hxx:
+	* src/sh3.cxx: 
+	* src/wallclock.cxx: 
+	* cdl/wallclock.cdl:
+	Reworked WallClock API. It should now be simpler to add new
+	wallclock drivers. Added a simple test to print out the current
+	wallclock value so a human can verify battery backup works.
+
+2000-03-17  Jesper Skov  <jskov@redhat.com>
+
+	* cdl/wallclock.cdl: 
+	* src/sh3.cxx: 
+	Added wallclock driver for SH3 RTC module.
+
+//####COPYRIGHTBEGIN####
+//                                                                          
+// -------------------------------------------                              
+// The contents of this file are subject to the Red Hat eCos Public License 
+// Version 1.1 (the "License"); you may not use this file except in         
+// compliance with the License.  You may obtain a copy of the License at    
+// http://www.redhat.com/                                                   
+//                                                                          
+// Software distributed under the License is distributed on an "AS IS"      
+// basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See the 
+// License for the specific language governing rights and limitations under 
+// the License.                                                             
+//                                                                          
+// The Original Code is eCos - Embedded Configurable Operating System,      
+// released September 30, 1998.                                             
+//                                                                          
+// The Initial Developer of the Original Code is Red Hat.                   
+// Portions created by Red Hat are                                          
+// Copyright (C) 1998, 1999, 2000 Red Hat, Inc.                             
+// All Rights Reserved.                                                     
+// -------------------------------------------                              
+//                                                                          
+//####COPYRIGHTEND####
+
+

@@ -1,0 +1,19 @@
+file parsing notes, pretend this is a spec.
+ignore leading and trailing spaces
+passed a buffer and a size
+everything parsed as strings, atoi'd at a app level
+ignore blank newlines
+* preface variables (not legal in filenames)
+everything else is a 'file'
+
+group
+variables
+file list
+
+[group]
+*var1=val1
+*var2=val2
+file1
+file2
+file 3
+file56

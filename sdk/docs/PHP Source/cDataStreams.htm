@@ -1,0 +1,80 @@
+<?php
+
+$pagetitle = "Abstract Classes: Data Streams";
+include("startpage.php");
+
+?>
+
+
+<p class="Body1">
+Dharma provides interfaces for generic input and output of data in
+the form of <span class="Module">IInputStream</span> and <span class="Module">IOutputStream</span> classes. Implementations of
+these classes are required for playback: specifically, an IInputStream
+derived class is used to read input data into the playstream, and an
+IOutputStream derived class is used to write audio out to a
+destination. In terms of actual implementation, the difference between the two is that <span class="Module">IInputStream</span> has a <span class="Code">Read()</span> routine,
+and <span class="Module">IOutputStream</span> has a <span class="Code">Write()</span> routine.
+</p>
+<p class="Body1">
+Input and Output Streams can also be used to read or write any other type of data. For example, the <span class="Module">Playlist Format Manager</span> writes playlists to FAT media using an output stream, and <span class="Module">Content Managers</span> load playlists from input streams.
+</p>
+<p class="Body1">
+The following Input Streams are provided:
+</p>
+<ul>
+	<li><span class="Code">CCDDAInputStream</span> &ndash; Tracks on a music CD</li>
+	<li><span class="Code">CFatFileInputStream</span> &ndash; Files on FAT media</li>
+	<li><span class="Code">CHTTPInputStream</span> &ndash; Files received over http</li>
+	<li><span class="Code">CIsoFileInputStream</span> &ndash; Files on a CD-ROM</li>
+	<li><span class="Code">CLineInputStream</span> &ndash; Wave input over an analog line-in port</li>
+<?php
+/* 	<li><span class="Code">CDPInputStream</span> (in development) &ndash; Files on a DP device.</li>
+ */
+ ?></ul>
+
+<p class="Body1">
+The following Output Streams are provided:
+</p>
+<ul>
+	<li><span class="Code">CFatFileOutputStream</span> &ndash; File handle on a FAT media</li>
+	<li><span class="Code">CWaveOutStream</span> &ndash; Output device such as a speaker.</li>
+</ul>
+
+<p class="Body1">
+If you need to send data to another device, or read it from an unsupported device, you will need to write your own data stream.
+</p>
+
+<p class="Body1">
+Although these are labeled as streams, there are two routines
+implemented for seek support: <span class="Code">Seek()</span> and <span class="Code">CanSeek()</span>. Calling <span class="Code">CanSeek()</span>
+will indicate if the current stream supports the seek operation, and
+<span class="Code">Seek()</span> will actually seek in the stream (if seeking is supported). 
+
+</p>
+<p class="Body1">
+Input streams are typically created through data sources. A URL can be
+passed into the data source manager, which will locate the appropriate
+data source to open the input stream. Input streams are closely bound
+with data sources, but can be instantiated directly. Output streams
+must be instantiated directly.
+
+</p>
+<p class="Body1">
+In situations where a stream can be both input and output, it may
+prove useful to implement a wrapper class and have <span class="Code">IInputStream</span> and
+<span class="Code">IOutputStream</span> derived classes that use the wrapper instead of the
+underlying API. This will help ensure a consistent usage of the
+underlying API, and will also allow programs that need simultaneous
+read/write access to instantiate a class tailored to their needs.
+
+</p>
+
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

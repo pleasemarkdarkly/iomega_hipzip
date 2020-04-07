@@ -1,0 +1,22 @@
+/bsdstring.cxx/1.1/Fri Nov 30 13:09:29 2001//
+/memchr.cxx/1.2/Fri Aug 10 19:27:58 2001//
+/memcmp.cxx/1.2/Fri Aug 10 19:27:58 2001//
+/memmove.cxx/1.2/Fri Aug 10 19:27:58 2001//
+/strcat.cxx/1.1/Fri Aug 25 17:33:41 2000//
+/strchr.cxx/1.1/Fri Aug 25 17:33:41 2000//
+/strcmp.cxx/1.1/Fri Aug 25 17:33:41 2000//
+/strcoll.cxx/1.1/Fri Aug 25 17:33:42 2000//
+/strcpy.cxx/1.1/Fri Aug 25 17:33:42 2000//
+/strcspn.cxx/1.1/Fri Aug 25 17:33:42 2000//
+/strlen.cxx/1.1/Fri Aug 25 17:33:42 2000//
+/strncat.cxx/1.2/Fri Aug 10 19:27:58 2001//
+/strncmp.cxx/1.2/Fri Aug 10 19:27:58 2001//
+/strncpy.cxx/1.2/Fri Aug 10 19:27:58 2001//
+/strpbrk.cxx/1.1/Fri Aug 25 17:33:42 2000//
+/strrchr.cxx/1.1/Fri Aug 25 17:33:42 2000//
+/strspn.cxx/1.1/Fri Aug 25 17:33:42 2000//
+/strstr.cxx/1.1/Fri Aug 25 17:33:42 2000//
+/strsuppt.cxx/1.1/Fri Aug 25 17:33:42 2000//
+/strtok.cxx/1.1/Fri Aug 25 17:33:42 2000//
+/strxfrm.cxx/1.2/Fri Aug 10 19:27:58 2001//
+D

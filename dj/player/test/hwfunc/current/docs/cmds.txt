@@ -1,0 +1,34 @@
+functionality test shell notes
+
+test scripting for mod verification
+
+
+hard reset verification (PD1 low, then high, to reset)
+
+ata
+eject
+REM tray should open
+gpio d 1 0 0
+gpio d 1 0 1
+REM tray should close
+
+mute control verification (PD2 low to mute)
+
+dac on
+REM this beep loud
+tone 1000 44100 1
+gpio d 2 0 0
+REM this beep silent
+tone 1000 44100 1
+gpio d 2 0 1
+REM this beep loud
+tone 1000 44100 1
+
+
+red led test
+gpio b 2 1 1
+gpio b 2 1 0
+
+green led test
+gpio b 3 1 1
+gpio b 3 1 0

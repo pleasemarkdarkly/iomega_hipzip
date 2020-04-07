@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>faceplate</title>
+<base target="main">
+</head>
+  <script language="Javascript">
+   <!-- hide
+    var x = 3;
+    var y = 1;
+    var now;
+  
+    function startClock() {
+     x = x-y;
+     if (x <= 1) reload();
+     timerID = setTimeout("startClock()", 1000);
+    }
+  
+    function reload() {
+     now = new Date();
+     var newdjscreenshot= "/?screenshot.bmp" + "&" + now.getTime();
+     document.djscreenshot.src = newdjscreenshot;
+
+	 var newrecordbutton="/?record_btn.gif" + "&" + now.getTime();
+	 document.record_btn.src = newrecordbutton;
+     x = 3;
+    }
+   // end hide -->
+  </script>
+<body onLoad="startClock()">
+<div align="center">
+  <center>
+  <table border="0" cellspacing="0" cellpadding="0" bgcolor="#777777" width="694">
+    <tr>
+      <td width="740" height="46" colspan="6"><img border="0" src="images/header.gif" width="694" height="46"></td>
+    </tr>
+    <tr>
+      <td width="33" height="154" rowspan="3"><img border="0" src="images/A.gif" width="33" height="154"></td>
+      <td width="55" height="115" rowspan="2"><img border="0" src="images/fp_A.gif" usemap="#fp_left_map" width="55" height="115"></td>
+      <td width="249" height="115" rowspan="2">
+        <table border="0" cellpadding="0" cellspacing="0" width="249" height="115">
+          <tr>
+            <td width="249" height="24"><img border="0" src="images/fp_logo.gif" width="249" height="24"></td>
+          </tr>
+          <tr>
+            <td width="249" height="70" bgcolor="#333333" align="center"><img name="djscreenshot" border="0" src="/?screenshot.bmp" width="240" height="64"></td>
+          </tr>
+          <tr>
+            <td width="249" height="21"><img border="0" src="images/fp_B.gif" width="249" height="21"></td>
+          </tr>
+        </table>
+      </td>
+      <td width="340" height="115" rowspan="2"><img border="0" src="images/fp_C.gif" usemap="#fp_middle_map" width="306" height="115"></td>
+      <td width="40" height="82"><img border="0" src="images/fp_D.gif" usemap="#fp_up_right_map" width="40" height="82"></td>
+      <td width="11" height="154" rowspan="3"><img border="0" src="images/B.gif" width="11" height="154"></td>
+    </tr>
+    <tr>
+      <td width="40" height="33"><img name="record_btn" border="0" src="/?record_btn.gif" usemap="#fp_down_right_map" width="40" height="33"></td>
+    </tr>
+    <tr>
+      <td width="650" height="39" colspan="4">
+        <table border="0" height="39" background="images/navbg.gif" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="115" height="39">&nbsp;</td>
+            <td width="100" height="30"><a href="/?browseGenres" target="content"><img border="0" src="images/b_genre0.gif" width="100" height="30"></a></td>
+            <td width="7" height="30">&nbsp;</td>
+            <td width="100" height="30"><a href="/?browseArtists" target="content"><img border="0" src="images/b_artist0.gif" width="100" height="30"></a></td>
+            <td width="7" height="30">&nbsp;</td>
+            <td width="100" height="30"><a href="/?browseAlbums" target="content"><img border="0" src="images/b_album0.gif" width="100" height="30"></a></td>
+            <td width="7" height="30">&nbsp;</td>
+            <td width="100" height="30"><a href="/?browsePlaylists" target="content"><img border="0" src="images/b_playlist0.gif" width="100" height="30"></a></td>
+            <td width="115" height="39">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<map name="fp_left_map">
+<area shape="circle" href="/?control&amp;action=power" coords="28,21,12" target="right">
+<area shape="circle" href="/?control&amp;action=cancel" coords="28,94,12" target="right">
+</map>
+<map name="fp_middle_map">
+<area shape="circle" href="/?control&amp;action=up" coords="25,21,12" target="right">
+<area shape="circle" href="/?control&amp;action=select" coords="29,58,12" target="right">
+<area shape="circle" href="/?control&amp;action=down" coords="25,94,12" target="right">
+<area shape="circle" href="/?control&amp;action=menu" coords="66,58,12" target="right">
+<area shape="circle" href="/?control&amp;action=eject" coords="186,58,12" target="right">
+<area shape="circle" href="/?control&amp;action=fwd" coords="225,21,12" target="right">
+<area shape="circle" href="/?control&amp;action=play" coords="232,58,12" target="right">
+<area shape="circle" href="/?control&amp;action=rew" coords="225,94,12" target="right">
+<area shape="circle" href="/?control&amp;action=pause" coords="278,58,12" target="right">
+</map>
+<map name="fp_up_right_map">
+<area shape="circle" href="/?control&amp;action=stop" coords="17,58,12" target="right">
+</map>
+<map name="fp_down_right_map">
+<area shape="circle" href="/?control&amp;action=record" coords="12,12,12" target="right">
+</map>
+</body>
+</html>

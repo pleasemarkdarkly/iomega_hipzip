@@ -1,0 +1,9 @@
+
+#include "peg.hpp"
+/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+
+ROMDATA UCHAR ucOverlayFrameLeftBitmap[20] = {
+0xff,0xf0,0x03,0xff,0xc0,0xfc,0x00,0x00,0x0f,0xc0,0x80,0x07,0xf8,0x00,0x40,0x01,0xff,0xff,0xe0,0x00,};
+PegBitmap gbOverlayFrameLeftBitmap = { 0x04, 1, 4, 34, 0x000000ff, (UCHAR *) ucOverlayFrameLeftBitmap};
+

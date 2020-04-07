@@ -1,0 +1,37 @@
+# Module listing for dj-restore
+
+# main module
+bootloader/restore/current		dharma
+
+
+# Various utility modules
+util/datastructures/v1_02               dharma
+util/debug/current                      dharma
+#util/diag/v1_02                         dharma
+util/eventq/v1_0                        dharma
+util/eresult/v1_0                       dharma
+util/ident/v1_0                         dharma
+#util/rbuf/v1_03                         dharma
+util/registry/v1_01                     persistent
+#util/tchar/v1_01                        dharma
+util/thread/v1_02                       dharma
+#util/timer/current                      dharma
+
+# FIS flash file system support
+fs/flash/current			default
+
+# LCD/GUI support
+devs/lcd/current                        HP24516RBU-LYO
+
+# IDE block device support
+devs/storage/ata/current                hd_slave
+io/storage/v1_01                        dharma
+datastream/input/v1_0                   dharma
+datastream/output/v1_0                  dharma
+
+# Fat filesystem
+fs/fat/current                          dharma
+datastream/fatfile/current              dharma
+
+# DJ specific modules
+main/ecos_support                       default

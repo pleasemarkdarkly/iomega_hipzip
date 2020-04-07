@@ -1,0 +1,71 @@
+<?php
+
+$pagetitle = "Install the RedBoot Boot Loader";
+include("startpage.php");
+
+?>
+
+<p class="Body1">
+Running the image requires the use of a gdb stub or a bootstrap environment on the board. Interactive Objects has created a combination gdb stub/bootstrap environment for Dharma using RedBoot<SUP><FONT SIZE="-1">TM</FONT></SUP>, a product from RedHat. The Dharma board you received should have a Redboot stub on it already. You can verify this by connecting the Dharma board, starting up a term program, and configuring it for your serial port and setting it to 115200 8N1. Next, verify that the run/program switch is in the "run" position, power on the dharma board, wait approximately 1 second, and hit the wakeup button (located on the processor mainboard). You should see some status information regarding the flash, a banner, and a prompt:</p>
+<p class="CodeBlock">RedBoot>
+</p> 
+
+ 
+<?= picture("DharmaBoard.jpg", "Dharma Board picture"); ?>
+
+
+ 
+<p class="Body1">
+If you do not see the RedBoot> prompt, you may need to burn a redboot stub to the device. This can be done as follows:
+</p>
+<ol>
+<li>Power on the board.</li>
+ 
+<li>Switch the board into "program" mode.</li>
+ 
+<li>Hit the nPOR button on the board to induce a power-on-reset.</li>
+ 
+<li>On the desktop side, open a bash shell, and cd into the sdk directory:
+<p class="CodeBlock">cd /c/iobjects/dadio/sdk</p>
+</li> 
+
+<li>On the desktop side, start the download application. If your null modem cable is plugged into COM1, the syntax is as follows:
+<p class="CodeBlock">support/downloader.exe images/redboot_stub.bin</p>
+ 
+If you are using a COM port other than 1, you need to specify the port number (X):
+<p class="CodeBlock">support/downloader.exe -pX images/redboot_stub.bin</p>
+ 
+<p class="Body1">
+Once this command has been issued, you should see the text:
+</p>
+ 
+<p class="CodeBlock">Waiting for the board to wakeup...</p>
+</li> 
+<li>At this point you can hit the WAKEUP button on the Dharma processor board, and the download sequence should start.
+ </li>
+<li>When the download has completed, switch the board back into the "run" mode, start your term program as described above, then hit nPOR, wait one second, and hit WAKEUP. you should see a RedBoot> prompt at this point.
+</li></ol>
+ 
+<p class="Body1">
+RedBoot provides an interactive shell with flash management and image handling capabilities. Discussing the exact feature set is beyond the scope of this document, but is well covered at the following location:
+
+</p> 
+<p class="Body2">
+<?= crossref("http://sources.redhat.com/ecos/docs-latest/redboot/redboot.html", "http://sources.redhat.com/ecos/docs-latest/redboot/redboot.html"); ?>
+</p>
+ 
+<p class="Body1">
+For term programs, we highly recommend TeraTerm 2.3 (Win95, 98, NT, 2k compatable), available from the following location:
+
+</p> 
+<p class="Body2">
+<?= crossref("http://hp.vector.co.jp/authors/VA002416/teraterm.html", "http://hp.vector.co.jp/authors/VA002416/teraterm.html"); ?>
+</p>
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

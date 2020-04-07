@@ -1,0 +1,118 @@
+<?php
+
+$pagetitle = "Main Application";
+include("startpage.php");
+?>
+
+
+<p class="Body1">Your main application will mostly consist of handlers for
+the various events. Let’s take a closer look at each type of event, and how you
+can use the SDK to perform the necessary tasks. Here’s a list of the basic
+types of activities the SDK supports:</p>
+
+
+<ul>
+	<li><?= crossref("aPowerOn", "Power on/initialization"); ?></li>
+	<li><?= crossref("aAddRemoveMedia", "Adding/removing media"); ?></li>
+	<li><?= crossref("aContentEnumeration", "Content enumeration"); ?></li>
+	<li><?= crossref("aWorkingWithPlaylists", "Adding/removing/reordering content into playlists"); ?></li>
+	<li><?= crossref("aControllingMediaPlayer", "Starting/stopping/rewinding/skipping tracks on the media player"); ?></li>
+	<li><?= crossref("aFilters", "Applying/adjusting filters"); ?></li>
+	<li><?= crossref("aState", "Storing and retrieving playlists and state"); ?>.</li>
+</ul>
+<p class="Body1">The objects in the SDK, for the most part, track their
+state internally.</p>
+
+<p class="Body1">We will now walk through each of these scenarios.</p>
+
+<?= head("aPowerOn", "Power on and initialization", 3); ?>
+
+<p class="Body1">Your main application will need to create a few objects before using the <span class="Module">Play Manager</span>. The main objects you need to create to pass into the <span class="Module">Play Manager</span> are the <span class="Module">Data Sources</span>, the <span class="Module">Playlist</span>, and the <span class="Module">Content Manager</span>. All available codecs and filters are registered at startup. The SDK includes Data Source objects for the following types of data sources:</p>
+<ul>
+	<li>CD-ROM (ISO 9660)</li>
+	<li>FAT Filesystem &ndash; hard drives, compact flash, etc.</li>
+	<li>Network data &ndash; an Internet or LAN server for streaming media.</li>
+</ul>
+<p class="Body1">Interactive Objects has data source objects for Data Play and Clik media in development. You can define and write other data source objects for new types of media.
+</p>
+
+<p class="Body1">
+For each actual device, you must instantiate a corresponding data source object. Your application must call the <span class="Code">CPlayManager::AddDataSource()</span> method, passing a Data Source object for each data source available to the system.
+
+</p>
+
+<p class="Body1">You must also pass a <span class="Module">Content Manager</span> object to the Play Manager using the <span class="Code">CPlayManager::SetContentManager()</span> method, and a <span class="Module">Playlist</span> using the <span class="Code">CPlayManager::SetPlaylist()</span> method. The SDK provides two <span class="Module">Content Manager</span> objects: </p>
+
+<ol>
+	<li><span class="Code">CSimpleContentManager</span>: A content manager that isn't. This example content manager returns the full content list on all queries.</li>
+	<li><span class="Code">CMetakitContentManager</span>: A more complex content manager that uses the open-source Metakit database to manage each content record. This Content Manager can return a subset of titles by artist, genre, or album.</li>
+</ol>
+
+<p class="Body1">You may want to create your own <span class="Module">Content Manager</span> to add more sophisticated features. The <span class="Module">Play Manager</span> uses the pointer you pass in to access the playlist during playback.
+The SDK provides a single Playlist class, <span class="Code">CSimplePlaylist</span>. 
+</p>
+
+
+
+<p class="Body1">Optional initialization tasks include refreshing the content list from the data sources, or restoring state of your content manager objects and playlists.</p>
+
+
+
+
+<?= head("aAddRemoveMedia", "Adding or removing media", 3); ?>
+
+<p class="Body1">The default event handler notifies the Play Manager when the user adds or removes media from a data source. The <span class="Code">CPlayManager::NotifyMediaRemoved()</span> method stops the track playing on the media player if its data source is the removed media, and then removes all of the content records for that data source from the <span class="Module">Content Manager</span>. The <span class="Code">CPlayManager::NotifyMediaInserted()</span> method automatically tells the <span class="Module">Data Source Manager</span> to enumerate all of the tracks on the new media, sending data for each track asynchronously to the Event Queue.</p>
+
+
+
+<?= head("aContentEnumeration", "Content enumeration", 3); ?>
+
+<p class="Body1">
+<em>Content Enumeration</em> is the process of creating a list of tracks on all available media, and optionally, collecting metadata for those tracks. There are three modes of content enumeration, differing on when and what metadata is retrieved:</p>
+
+<ul>
+	<li>Single-pass</li>
+	<li>Single-pass with metadata</li>
+	<li>Double-pass.</li>
+</ul>
+
+<p class="Body1">
+Single-pass enumeration collects only a list of tracks on each media, with no metadata. Single-pass with metadata collects all available metadata for all tracks in a single pass. To do this, however, each track must be opened and processed by a codec. 
+</p>
+
+<p class="Body1">
+Double-pass enumeration separates metadata collection from the track enumeration. The second pass (the metadata pass) can then only be performed for tracks that do not already have metadata available. For example, if you have restored the state of the <span class="Module">Content Manager</span>, its media content records may already have metadata for the tracks, but if there are new tracks on the media, the <span class="Module">Content Manager</span> can send the tracks for which it needs metadata to the second pass, and skip the tracks it already knows about.
+</p>
+
+<p class="Body1">
+The content enumeration mode can be different for each data source. Each data source can specify a default content enumeration mode, as well as a default update chunk size. Your application can set these default values.
+</p>
+
+<p class="Body1">The <span class="Code">CPlayManager::RefreshAllContent()</span> method calls each <span class="Module">Data Source</span> object to start enumerating its content.  Each data source sends the list of tracks in batches to the event queue. The default event handler will send these content updates to the <span class="Module">Content Manager</span>.
+</p>
+
+
+<p class="Body1">In each of these modes, the <span class="Module">Data Source Manager</span> awakens its own thread to handle the actual content enumeration and returns. All data is sent to the event queue as it is processed.</p>
+<p class="Body1">
+In the single pass mode, the <span class="Module">Data Source Manager</span> cycles through each data source, collecting the file name for each available track and sending it to the Event Queue. This type of content refresh is good for small FAT data sources, such as Compact Flash, where you may not need the metadata and you just want the player to play a pre-set sequence.</p>
+
+<p class="Body1">In the single-pass with metadata mode, the Data Source Manager goes through each data source, creates a <span class="Module">Codec</span> object for each file, and runs each file through the Codec to extract the metadata from the file. This metadata generally includes information such as Artist, Album, and Song title, but may also include such details as the length of the track, etc. This type of content refresh is good for data sources that take a long time to seek to different tracks, such as a CD player.</p>
+
+<p class="Body1">In the double-pass mode, the <span class="Module">Data Source Manager</span> performs a single pass as above to retrieve the filesystem information for each track. These files are sent to the Event Queue, and if you use the default handler in the <span class="Module">Play Manager</span>, the file names are passed into the <span class="Module">Content Manager</span>. Any files that do not have metadata already associated with them are then sent to the Data Source Manager for the second pass. The second pass opens a <span class="Module">Codec</span> object for each file name and uses it to extract the metadata as above, passing it to the event queue. This type of content refresh is good for when you have stored the state of the Content Manager (see <?= crossref("aState", "Storing and Retrieving State"); ?>), and may only need to update the metadata for specific tracks. It can also be used to periodically check for new content.
+</p>
+
+<p class="Body1">
+Each <span class="Module">Data Source</span> has a default mode of content refreshing, that will be used if no mode is specified. You can, of course, over-ride the mode by supplying one.
+</p>
+
+<p class="Body1">See the <?= crossref("aDataSources", "Data Sources"); ?> topic for more.</p>
+
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

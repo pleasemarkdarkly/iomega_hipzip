@@ -1,0 +1,39 @@
+<?php
+
+$pagetitle = "Abstract Classes: IPlaylist";
+include("startpage.php");
+
+?>
+
+<p class="Body1">
+A <span class="Module">Playlist</span> object is a sequential collection of Media Content Records accessible using a zero-based index. Its main responsibility is to provide the current Playlist Entry, and set the next and previous playlist entries according to a provided mode.
+</p>
+<p class="Body1">
+The client application creates a <span class="Module">Playlist</span> object and loads it into the <span class="Module">Play Manager</span>. If you want to change the playlist, you can either add or delete entries in the current playlist, or load a new playlist (stored on FAT-formatted media as a file, for example) and set it in the <span class="Module">Play Manager</span>.
+</p>
+<p class="Body1">
+The main reasons you may want to implement your own Playlist class might be if you don't like the shuffle mechanism in <span class="Code">CSimplePlaylist</span>, or if you want to add some sort of tracking or caching strategy.
+</p>
+
+<p class="Body1">
+See <?= crossref("/classIPlaylist", "Playlist"); ?> in the API reference for more information.
+</p>
+
+<?= head("","CSimplePlaylist Random Sequence",3); ?>
+<p class="Body1">There is always a current track in a playlist. When you call the reshuffle entries method, whatever the current track is, becomes the first entry in the random list. If you wanted to start playback with a random song, and still hear all songs in a playlist, you would have to reshuffle the playlist, move to the next playlist entry, and then reshuffle again (to get the first entry forward in the list).</p>
+<p class="Body1">If you add new entries to a playlist that already exists and is already shuffled, the new entries are inserted at the end of the indexed sequence but inserted randomly into the random list. If the current track is not at the beginning of the random list, it is likely that some of the new entries will get inserted earlier in the random list and will not be heard until the list is reshuffled or repeated.</p>
+
+<?= head("cIPlaylistEntry","IPlaylistEntry",3); ?>
+
+<p class="Body1">
+A <span class="Module">Playlist Entry</span> is a simple interface used to get a pointer to the media content record it represents. 
+</p>
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

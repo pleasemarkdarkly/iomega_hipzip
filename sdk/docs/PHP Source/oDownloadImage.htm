@@ -1,0 +1,32 @@
+<?php
+
+$pagetitle = "Download the image to the device";
+include("startpage.php");
+
+?>
+
+
+<p class="Body1">
+Now that you have created an image, you can transfer this image to the Dharma board and start debugging it, or simply transfer and execute it. 
+
+</p> 
+<p class="Body1">
+There are two methods for downloading an image to the device: 
+</p>
+
+<ol>
+	<li>Using <span class="Code">gdb</span> (the debugger) to <?= crossref("oDebugImage", "download the image into memory"); ?>.</li>
+	<li>Using RedBoot to <?= crossref("oBurnToFlash", "download the image to flash"); ?> memory.</li>
+</ol>
+<p class="Body1">
+These options are described in the following sections.
+</p>
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

@@ -1,0 +1,159 @@
+# Module listing for dj
+
+# Base system modules
+codec/codecmanager/v1_01                dharma
+codec/common/current                    dharma
+content/common/current                  dharma
+core/events/current                     dharma
+core/mediaplayer/current                dharma
+core/playmanager/current                dharma
+datasource/common/current               dharma
+datasource/datasourcemanager/current    dharma
+datastream/filter/current               dharma
+datastream/filtermanager/v1_0           dharma
+datastream/input/v1_0                   dharma
+datastream/output/v1_0                  dharma
+datastream/outputmanager/v1_0           dharma
+
+# Various utility modules
+util/datastructures/current             dharma
+util/debug/current                      dharma
+util/diag/current                       dharma
+util/eventq/current                     dharma
+util/eresult/v1_0                       dharma
+util/ident/v1_0                         dharma
+util/rbuf/current                       dharma
+util/registry/current                   persistent
+util/tchar/current                      dharma
+util/thread/v1_02                       dharma
+util/timer/current                      dharma
+util/utils/current                      dharma
+
+# FIS flash file system support
+fs/flash/current                        default
+
+# updater support
+main/util/update/current                default
+
+# Software SRC, outfilter support
+datastream/outfilter/current            dharma
+#datastream/srcfilter/current            dharma
+
+# Content management
+main/content/djcontentmanager/current           dharma
+#main/content/datasourcecontentmanager/current   incremental
+main/content/simplercontentmanager/current      dharma
+content/simplemetadata/current                  dharma
+content/metadatatable/v1_0                      dharma
+util/metakit/current                            dharma
+
+# Basic codec support
+codec/mp3/arm/current                   dharma
+codec/mp3/id3v2/current                 dharma
+codec/pcm/current                       dharma
+codec/wav/current                       dharma
+codec/wma/current                       dharma
+
+# Keyboard and IR drivers
+devs/keyboard/current                   dharma
+
+
+# IDE block device support
+
+io/storage/v1_01                        dharma
+
+# Fat filesystem
+fs/fat/current                          dharma
+datasource/fatdatasource/current        dharma
+datastream/fatfile/current              dharma
+fs/utils/format_fat32/current           dharma
+fs/utils/chkdsk_fat32/current           dharma
+
+# ISO9660 CD filesystem support and CDDA (redbook)
+datasource/cddatasource/current         dharma
+datastream/cddafile/current             dharma
+datastream/isofile/current              dharma
+fs/iso/current                          dharma
+
+# Network stream support
+datasource/netdatasource/current        dharma
+datastream/netstream/current            dharma
+io/net/current							dharma
+
+# DJ specific modules
+main/ecos_support                       default
+main/main/current                       dharma
+main/playlist/plformat/djp              dharma
+main/ui/current                         record
+main/ui/common/current                  dharma
+main/util/datastructures/current        dharma
+main/metadata/metadatafiletag/current	dharma
+
+# Web control
+main/webcontrol/current					dharma
+
+# Serial control
+main/serialcontrol/current				dj
+main/externcontrol/current				dj
+
+# Audio playback support
+datastream/waveout/current              dharma
+io/audio/current                        dharma
+
+# Line-in support
+datasource/lineindatasource/current     dharma
+datastream/lineinput/current            dharma
+
+# Basic playlist support
+playlist/common/v1_0                    dharma
+main/playlist/djplaylist/current        dharma
+
+# Playlist format support
+playlist/plformat/common/current        dharma
+playlist/plformat/m3u/current           dharma
+playlist/plformat/pls/current           dharma
+playlist/plformat/manager/current       dharma
+
+# UPnP Support
+main/djupnp                             dharma
+main/iml/iml                            dharma
+main/iml/manager                        dharma
+main/iml/query                          dharma
+util/upnp/api/current                   dharma
+util/upnp/genlib/current                dharma
+util/upnp/protocols/current             dharma
+util/upnp/upnpdom/current               dharma
+
+# MP3 encoding support
+codec/mp3/pem/current                   dharma
+# datastream/pempipe/current              dharma
+extras/idlecoder/current                dharma
+
+# Include the following to enable Rob's remote test harness
+main/upnpservices/current               dharma
+main/testharness/current                dharma
+util/tftp/current                       dharma
+
+# CD metadata
+#content/freedb/current                  dharma
+extras/cdmetadata/current               dharma
+main/cddb/current                       dharma
+
+
+# CDDB
+extras/cddb/current                         nozlib
+extras/cddb/dharma/current                  dharma
+extras/cddb/abstract_layer/current          dharma
+extras/cddb/abstract_layer/dharma/current   dharma
+extras/cddb/common/microxml/current         dharma
+extras/cddb/common/pubutils/current         dharma
+extras/cddb/common/pubutils/dharma/current  dharma
+extras/cddb/toolkit/commmgr/current         dharma
+extras/cddb/toolkit/commmgr/dharma/current  dharma
+
+# Buffering
+main/buffering/current                  dharma
+
+# For copying data CDs
+extras/filecopier/current               dharma
+

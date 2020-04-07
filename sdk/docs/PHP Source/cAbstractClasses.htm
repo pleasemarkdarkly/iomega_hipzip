@@ -1,0 +1,35 @@
+<?php
+
+$pagetitle = "Abstract Classes";
+include("startpage.php");
+
+?>
+
+<p class="Body1">This section describes the abstract classes you may implement to extend functionality of the applications you develop. Interactive Objects provides basic implementations of these classes, but by extending these classes, you can create additional functionality that can be managed by the higher-level objects in the system.
+</p>
+<p class="Body1">The abstract classes in this release of Dharma include:</p>
+<ul>
+
+	<li><?= crossref("cIDataSource", "DataSource"); ?></li>	
+	<li><?= crossref("cDataStreams", "DataStreams"); ?></li>
+	<li><?= crossref("cIMetadata", "Metadata"); ?></li>	
+	<li><?= crossref("cICodec", "Codec"); ?></li>
+	<li><?= crossref("cIFilter", "Filter"); ?></li>
+	<li><?= crossref("cIContentManager", "ContentManager"); ?></li>
+	<li><?= crossref("cIPlaylist", "Playlist"); ?></li>
+
+	</ul>
+<p class="Body1">We'll now take a closer look at each of these classes.</p>
+
+
+
+
+
+
+<?php
+
+if (!$subpage)
+{
+include("endpage.php");
+}
+?>

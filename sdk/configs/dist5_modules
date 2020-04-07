@@ -1,0 +1,4 @@
+devs/storage/ata/v1_0        hd_slave
+# deps
+io/storage/v1_0              default
+util/debug/v1_0              default

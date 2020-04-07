@@ -1,0 +1,12 @@
+
+include dj_shared_modules
+
+# hardware specific modules
+devs/audio/current                      cs42l50
+devs/storage/ata/current                dj
+devs/ir                                 uei
+
+# LCD/GUI support
+devs/lcd/current                        HP24516RBU-LYO
+gui/peg/current                         proscrn1
+gui/peg/screendriver/current            proscrn1
